@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Day 2: Spatial Analysis &#8212; GSCN Workshop 2025</title>
+    <title>Day 2: Advanced Single-cell Analysis and Spatial Omics &#8212; GSCN Workshop 2025</title>
   
   
   
@@ -63,8 +63,8 @@
     <link rel="canonical" href="/202504_workshop_GSCN/day_2/README.html" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Spatial Analysis Tutorials" href="spatialdata/README.html" />
-    <link rel="prev" title="Day 1: Introduction" href="../day_1/README.html" />
+    <link rel="next" title="Ligand-recepter interactions" href="nb1_ligand_recepter_interactions.html" />
+    <link rel="prev" title="Trajectory analysis" href="../day_1/nb5_trajectory_inference.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -176,17 +176,52 @@
                 </a>
             </li>
         </ul>
-        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Workshop Days</span></p>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Notebooks</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../day_1/README.html">Day 1</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../day_1/README.html">Day 1</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../day_1/nb1_qc_normalization.html">Pre-processing</a></li>
+
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../day_1/nb2_preprocessing.html">Dimensionality reduction, clustering and annotation</a></li>
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../day_1/nb3_batch_correction.html">Multiple samples</a></li>
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../day_1/nb4_downstream_analysis.html">4. Downstream Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../day_1/nb5_trajectory_inference.html">Trajectory analysis</a></li>
+
+
+
+</ul>
+</details></li>
 <li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">Day 2</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="nb1_ligand_recepter_interactions.html">1. Ligand-Receptor Interactions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nb2_differential_cellular_abundance.html">2. Differential Cellular Abundance</a></li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="spatialdata/README.html">Spatial Analysis</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l3"><a class="reference internal" href="spatialdata/beginner/nb1_spatialdata_objects.html">1. SpatialData Objects</a></li>
 <li class="toctree-l3"><a class="reference internal" href="spatialdata/beginner/nb2_static_plotting.html">2. Static Plotting</a></li>
 <li class="toctree-l3"><a class="reference internal" href="spatialdata/beginner/nb3_interactive_plotting_with_napari.html">3. Interactive Plotting with Napari</a></li>
 <li class="toctree-l3"><a class="reference internal" href="spatialdata/beginner/nb4_simple_analysis_using_scverse_tools.html">4. Simple Analysis using scverse Tools</a></li>
-<li class="toctree-l3"><a class="reference internal" href="spatialdata/advanced/transformations.html">5. Transformations</a></li>
-<li class="toctree-l3"><a class="reference internal" href="spatialdata/advanced/tutorial_niche_calculation.html">6. Niche Calculation Tutorial</a></li>
+<li class="toctree-l3"><a class="reference internal" href="spatialdata/advanced/transformations.html">5. Transformations (advanced)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="spatialdata/advanced/tutorial_niche_calculation.html">6. Niche Calculation Tutorial (advanced)</a></li>
 </ul>
 </details></li>
 </ul>
@@ -394,7 +429,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Day 2: Spatial Analysis</h1>
+    <h1>Day 2: Advanced Single-cell Analysis and Spatial Omics</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -404,7 +439,11 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contents">Contents</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#notebooks">Notebooks</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#morning-session-advanced-single-cell-analysis">Morning Session: Advanced Single-cell Analysis</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afternoon-session-spatial-analysis">Afternoon Session: Spatial Analysis</a></li>
+</ul>
+</li>
 </ul>
             </nav>
         </div>
@@ -416,19 +455,43 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="day-2-spatial-analysis">
-<h1>Day 2: Spatial Analysis<a class="headerlink" href="#day-2-spatial-analysis" title="Link to this heading">#</a></h1>
-<p>Welcome to Day 2 of the workshop! Today we’ll focus on spatial analysis techniques using various tools from the scverse ecosystem.</p>
-<section id="contents">
-<h2>Contents<a class="headerlink" href="#contents" title="Link to this heading">#</a></h2>
+  <section class="tex2jax_ignore mathjax_ignore" id="day-2-advanced-single-cell-analysis-and-spatial-omics">
+<h1>Day 2: Advanced Single-cell Analysis and Spatial Omics<a class="headerlink" href="#day-2-advanced-single-cell-analysis-and-spatial-omics" title="Link to this heading">#</a></h1>
+<p>Welcome to Day 2 of the workshop! Today we’ll focus on advanced single-cell analysis techniques and spatial omics using various tools from the scverse ecosystem.</p>
+<section id="notebooks">
+<h2>Notebooks<a class="headerlink" href="#notebooks" title="Link to this heading">#</a></h2>
+<section id="morning-session-advanced-single-cell-analysis">
+<h3>Morning Session: Advanced Single-cell Analysis<a class="headerlink" href="#morning-session-advanced-single-cell-analysis" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p><a class="reference internal" href="nb1_ligand_recepter_interactions.html"><span class="std std-doc">Ligand-Receptor Interactions</span></a></p>
 <ul class="simple">
-<li><p><strong>Spatial Analysis</strong>: A comprehensive set of tutorials covering both beginner and advanced topics in spatial analysis</p>
-<ul>
-<li><p>Beginner tutorials introducing basic concepts and tools</p></li>
-<li><p>Advanced tutorials exploring complex analysis techniques</p></li>
+<li><p>Learn how to analyze cell-cell communication</p></li>
+<li><p>Identify significant ligand-receptor pairs</p></li>
+<li><p>Visualize and interpret interaction networks</p></li>
 </ul>
 </li>
+<li><p><a class="reference internal" href="nb2_differential_cellular_abundance.html"><span class="std std-doc">Differential Cellular Abundance</span></a></p>
+<ul class="simple">
+<li><p>Understand methods for comparing cell type proportions</p></li>
+<li><p>Learn statistical approaches for differential abundance</p></li>
+<li><p>Visualize and interpret changes in cell populations</p></li>
 </ul>
+</li>
+</ol>
+</section>
+<section id="afternoon-session-spatial-analysis">
+<h3>Afternoon Session: Spatial Analysis<a class="headerlink" href="#afternoon-session-spatial-analysis" title="Link to this heading">#</a></h3>
+<ol class="arabic simple" start="3">
+<li><p><a class="reference internal" href="spatialdata/README.html"><span class="std std-doc">Spatial Analysis</span></a></p>
+<ul class="simple">
+<li><p>Introduction to spatial transcriptomics concepts</p></li>
+<li><p>Learn how to process and analyze spatial data</p></li>
+<li><p>Explore spatial patterns and interactions</p></li>
+<li><p>Apply advanced spatial analysis techniques</p></li>
+</ul>
+</li>
+</ol>
+</section>
 </section>
 <div class="toctree-wrapper compound">
 </div>
@@ -465,20 +528,20 @@ document.write(`
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="../day_1/README.html"
+       href="../day_1/nb5_trajectory_inference.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Day 1: Introduction</p>
+        <p class="prev-next-title">Trajectory analysis</p>
       </div>
     </a>
     <a class="right-next"
-       href="spatialdata/README.html"
+       href="nb1_ligand_recepter_interactions.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Spatial Analysis Tutorials</p>
+        <p class="prev-next-title">Ligand-recepter interactions</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -498,7 +561,11 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contents">Contents</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#notebooks">Notebooks</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#morning-session-advanced-single-cell-analysis">Morning Session: Advanced Single-cell Analysis</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afternoon-session-spatial-analysis">Afternoon Session: Spatial Analysis</a></li>
+</ul>
+</li>
 </ul>
   </nav></div>
 

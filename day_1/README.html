@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Day 1: Introduction &#8212; GSCN Workshop 2025</title>
+    <title>Day 1: Introduction to Single-cell RNA-seq Analysis &#8212; GSCN Workshop 2025</title>
   
   
   
@@ -61,7 +61,7 @@
     <link rel="canonical" href="/202504_workshop_GSCN/day_1/README.html" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Day 2: Spatial Analysis" href="../day_2/README.html" />
+    <link rel="next" title="Pre-processing" href="nb1_qc_normalization.html" />
     <link rel="prev" title="scverse workshop in collaboration with the GSCN" href="../README.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -174,17 +174,52 @@
                 </a>
             </li>
         </ul>
-        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Workshop Days</span></p>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Notebooks</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Day 1</a></li>
+<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">Day 1</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="nb1_qc_normalization.html">Pre-processing</a></li>
+
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="nb2_preprocessing.html">Dimensionality reduction, clustering and annotation</a></li>
+
+
+
+
+
+
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="nb3_batch_correction.html">Multiple samples</a></li>
+
+
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="nb4_downstream_analysis.html">4. Downstream Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nb5_trajectory_inference.html">Trajectory analysis</a></li>
+
+
+
+</ul>
+</details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../day_2/README.html">Day 2</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../day_2/nb1_ligand_recepter_interactions.html">1. Ligand-Receptor Interactions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../day_2/nb2_differential_cellular_abundance.html">2. Differential Cellular Abundance</a></li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="../day_2/spatialdata/README.html">Spatial Analysis</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l3"><a class="reference internal" href="../day_2/spatialdata/beginner/nb1_spatialdata_objects.html">1. SpatialData Objects</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../day_2/spatialdata/beginner/nb2_static_plotting.html">2. Static Plotting</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../day_2/spatialdata/beginner/nb3_interactive_plotting_with_napari.html">3. Interactive Plotting with Napari</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../day_2/spatialdata/beginner/nb4_simple_analysis_using_scverse_tools.html">4. Simple Analysis using scverse Tools</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../day_2/spatialdata/advanced/transformations.html">5. Transformations</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../day_2/spatialdata/advanced/tutorial_niche_calculation.html">6. Niche Calculation Tutorial</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../day_2/spatialdata/advanced/transformations.html">5. Transformations (advanced)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../day_2/spatialdata/advanced/tutorial_niche_calculation.html">6. Niche Calculation Tutorial (advanced)</a></li>
 </ul>
 </details></li>
 </ul>
@@ -392,7 +427,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Day 1: Introduction</h1>
+    <h1>Day 1: Introduction to Single-cell RNA-seq Analysis</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -404,6 +439,11 @@ document.write(`
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#environment-setup">Environment setup</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data">Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#notebooks">Notebooks</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#morning-session-basic-analysis-pipeline">Morning Session: Basic Analysis Pipeline</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afternoon-session-advanced-analysis">Afternoon Session: Advanced Analysis</a></li>
+</ul>
+</li>
 </ul>
             </nav>
         </div>
@@ -415,8 +455,8 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="day-1-introduction">
-<h1>Day 1: Introduction<a class="headerlink" href="#day-1-introduction" title="Link to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="day-1-introduction-to-single-cell-rna-seq-analysis">
+<h1>Day 1: Introduction to Single-cell RNA-seq Analysis<a class="headerlink" href="#day-1-introduction-to-single-cell-rna-seq-analysis" title="Link to this heading">#</a></h1>
 <section id="environment-setup">
 <h2>Environment setup<a class="headerlink" href="#environment-setup" title="Link to this heading">#</a></h2>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">create</span> <span class="o">-</span><span class="n">y</span> <span class="o">--</span><span class="n">name</span> <span class="n">workshop_2025</span> <span class="n">python</span><span class="o">=</span><span class="mf">3.10</span>
@@ -435,6 +475,56 @@ document.write(`
 <li><p>Please download this folder in your workstation: <a class="reference external" href="https://drive.google.com/drive/folders/1fXhGtF4qnaiXDBBHvQGfgxDWc9h45oR5?usp=sharing">https://drive.google.com/drive/folders/1fXhGtF4qnaiXDBBHvQGfgxDWc9h45oR5?usp=sharing</a></p></li>
 </ul>
 </section>
+<section id="notebooks">
+<h2>Notebooks<a class="headerlink" href="#notebooks" title="Link to this heading">#</a></h2>
+<section id="morning-session-basic-analysis-pipeline">
+<h3>Morning Session: Basic Analysis Pipeline<a class="headerlink" href="#morning-session-basic-analysis-pipeline" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p><a class="reference internal" href="nb1_qc_normalization.html"><span class="std std-doc">Quality Control and Normalization</span></a></p>
+<ul class="simple">
+<li><p>Learn how to perform quality control on single-cell RNA-seq data</p></li>
+<li><p>Understand and apply different normalization techniques</p></li>
+<li><p>Identify and filter out low-quality cells</p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="nb2_preprocessing.html"><span class="std std-doc">Preprocessing</span></a></p>
+<ul class="simple">
+<li><p>Explore data preprocessing steps including feature selection</p></li>
+<li><p>Learn about dimensionality reduction techniques</p></li>
+<li><p>Understand how to handle technical artifacts</p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="nb3_batch_correction.html"><span class="std std-doc">Batch Correction</span></a></p>
+<ul class="simple">
+<li><p>Learn about batch effects in single-cell data</p></li>
+<li><p>Apply different batch correction methods</p></li>
+<li><p>Evaluate the effectiveness of batch correction</p></li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="afternoon-session-advanced-analysis">
+<h3>Afternoon Session: Advanced Analysis<a class="headerlink" href="#afternoon-session-advanced-analysis" title="Link to this heading">#</a></h3>
+<ol class="arabic simple" start="4">
+<li><p><a class="reference internal" href="nb4_downstream_analysis.html"><span class="std std-doc">Downstream Analysis</span></a></p>
+<ul class="simple">
+<li><p>Perform clustering and cell type annotation</p></li>
+<li><p>Conduct differential expression analysis</p></li>
+<li><p>Visualize and interpret results</p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="nb5_trajectory_inference.html"><span class="std std-doc">Trajectory Inference</span></a></p>
+<ul class="simple">
+<li><p>Learn about trajectory inference methods</p></li>
+<li><p>Apply trajectory analysis to understand cell differentiation</p></li>
+<li><p>Visualize and interpret developmental trajectories</p></li>
+</ul>
+</li>
+</ol>
+</section>
+</section>
+<div class="toctree-wrapper compound">
+</div>
 </section>
 
     <script type="text/x-thebe-config">
@@ -477,11 +567,11 @@ document.write(`
       </div>
     </a>
     <a class="right-next"
-       href="../day_2/README.html"
+       href="nb1_qc_normalization.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Day 2: Spatial Analysis</p>
+        <p class="prev-next-title">Pre-processing</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -503,6 +593,11 @@ document.write(`
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#environment-setup">Environment setup</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data">Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#notebooks">Notebooks</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#morning-session-basic-analysis-pipeline">Morning Session: Basic Analysis Pipeline</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#afternoon-session-advanced-analysis">Afternoon Session: Advanced Analysis</a></li>
+</ul>
+</li>
 </ul>
   </nav></div>
 
