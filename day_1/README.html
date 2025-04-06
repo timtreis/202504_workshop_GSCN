@@ -379,7 +379,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
 </div></div>
       
     </div>
@@ -395,6 +397,14 @@ document.write(`
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#environment-setup">Environment setup</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -406,7 +416,17 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="day-1-introduction">
 <h1>Day 1: Introduction<a class="headerlink" href="#day-1-introduction" title="Link to this heading">#</a></h1>
-<p>Content for Day 1 will be added soon.</p>
+<section id="environment-setup">
+<h2>Environment setup<a class="headerlink" href="#environment-setup" title="Link to this heading">#</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">create</span> <span class="o">-</span><span class="n">y</span> <span class="o">--</span><span class="n">name</span> <span class="n">workshop_2025</span> <span class="n">python</span><span class="o">=</span><span class="mf">3.10</span>
+<span class="n">pip</span> <span class="n">install</span> <span class="n">uv</span>
+<span class="n">uv</span> <span class="n">pip</span> <span class="n">install</span> <span class="n">scanpy</span> <span class="n">python</span><span class="o">-</span><span class="n">igraph</span> <span class="n">jupyterlab</span> <span class="n">notebook</span> 
+<span class="n">conda</span> <span class="n">install</span> <span class="o">-</span><span class="n">y</span> <span class="n">ipykernel</span>
+<span class="n">conda</span> <span class="n">install</span> <span class="o">-</span><span class="n">y</span> <span class="n">conda</span><span class="o">-</span><span class="n">forge</span><span class="p">::</span><span class="n">python</span><span class="o">-</span><span class="n">annoy</span>
+<span class="n">uv</span> <span class="n">pip</span> <span class="n">install</span> <span class="n">scikit</span><span class="o">-</span><span class="n">misc</span> <span class="n">PhenoGraph</span> <span class="n">celltypist</span> <span class="n">palantir</span> <span class="n">scrublet</span> <span class="n">cellrank</span> <span class="n">pydeseq2</span> <span class="n">liana</span> <span class="n">gseapy</span> <span class="n">rpy2</span> <span class="n">anndata2ri</span>
+</pre></div>
+</div>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -463,6 +483,21 @@ document.write(`
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#environment-setup">Environment setup</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>
