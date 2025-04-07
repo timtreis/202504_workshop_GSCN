@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Trajectory analysis &#8212; GSCN Workshop 2025</title>
+    <title>Introduction &#8212; GSCN Workshop 2025</title>
   
   
   
@@ -204,8 +204,7 @@
 
 
 <li class="toctree-l2"><a class="reference internal" href="nb4_downstream_analysis.html">Downstream Analysis</a></li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">Trajectory analysis</a></li>
-
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Introduction</a></li>
 
 
 </ul>
@@ -427,7 +426,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Trajectory analysis</h1>
+    <h1>Introduction</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -437,16 +436,12 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Trajectory analysis</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Introduction</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#load-packages">Load packages</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#load-processed-data">Load processed data</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#trajectory-inference">Trajectory Inference</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#diffusion-maps">Diffusion Maps</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#method-1-scanpy-inbuilt-diffusion-maps">Method 1: Scanpy inbuilt diffusion maps</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-data-2-cells-along-a-continuum">Example data 2: Cells along a continuum</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nearest-neighbor-and-diffusion-maps">Nearest neighbor and diffusion maps</a></li>
-</ul>
-</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#diffusion-maps">Diffusion Maps</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#load-data">Load data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#run-diffusion-maps">Run Diffusion Maps</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#palantir">Palantir</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#define-start-cell">Define start cell</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#define-terminal-states">Define terminal states</a></li>
@@ -478,9 +473,9 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="trajectory-analysis">
-<h1>Trajectory analysis<a class="headerlink" href="#trajectory-analysis" title="Link to this heading">#</a></h1>
-<p>In this notebook, we will explore the problem of trajectory analysis</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="introduction">
+<h1>Introduction<a class="headerlink" href="#introduction" title="Link to this heading">#</a></h1>
+<p>In this notebook, we will look at trajectory inference using Diffusion Maps, Palantir and PAGA.</p>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="load-packages">
 <h1>Load packages<a class="headerlink" href="#load-packages" title="Link to this heading">#</a></h1>
@@ -497,48 +492,11 @@ document.write(`
 </div>
 </div>
 </section>
-<section class="tex2jax_ignore mathjax_ignore" id="load-processed-data">
-<h1>Load processed data<a class="headerlink" href="#load-processed-data" title="Link to this heading">#</a></h1>
-<p>⚠️ Adjust the variable below to the data path on your specific workstation.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data_path</span> <span class="o">=</span> <span class="s1">&#39;../data/&#39;</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adata_clean</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="n">read_h5ad</span><span class="p">(</span><span class="n">data_path</span> <span class="o">+</span> <span class="s1">&#39;processed/annotated_data.h5ad&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adata_clean</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>AnnData object with n_obs × n_vars = 11828 × 17698
-    obs: &#39;n_genes_by_counts&#39;, &#39;log1p_n_genes_by_counts&#39;, &#39;total_counts&#39;, &#39;log1p_total_counts&#39;, &#39;pct_counts_in_top_50_genes&#39;, &#39;pct_counts_in_top_100_genes&#39;, &#39;pct_counts_in_top_200_genes&#39;, &#39;pct_counts_in_top_500_genes&#39;, &#39;mt_pct_content&#39;, &#39;ribo_pct_content&#39;, &#39;doublet_score&#39;, &#39;doublet&#39;, &#39;G2_M_checkpoint&#39;, &#39;leiden_r1.5&#39;, &#39;leiden_r0.5&#39;, &#39;leiden&#39;
-    var: &#39;gene_ids&#39;, &#39;feature_types&#39;, &#39;n_cells_by_counts&#39;, &#39;mean_counts&#39;, &#39;log1p_mean_counts&#39;, &#39;pct_dropout_by_counts&#39;, &#39;total_counts&#39;, &#39;log1p_total_counts&#39;, &#39;n_cells&#39;, &#39;highly_variable&#39;, &#39;highly_variable_rank&#39;, &#39;means&#39;, &#39;variances&#39;, &#39;variances_norm&#39;
-    uns: &#39;hvg&#39;, &#39;leiden&#39;, &#39;leiden_colors&#39;, &#39;leiden_r0.5_colors&#39;, &#39;leiden_r1.5_colors&#39;, &#39;log1p&#39;, &#39;neighbors_30&#39;, &#39;on_norm_log&#39;, &#39;pca&#39;, &#39;rank_genes_groups&#39;, &#39;umap&#39;
-    obsm: &#39;X_pca&#39;, &#39;X_umap&#39;
-    varm: &#39;PCs&#39;
-    layers: &#39;raw_data&#39;
-    obsp: &#39;neighbors_30_connectivities&#39;, &#39;neighbors_30_distances&#39;
-</pre></div>
-</div>
-</div>
-</div>
-</section>
 <section class="tex2jax_ignore mathjax_ignore" id="trajectory-inference">
 <h1>Trajectory Inference<a class="headerlink" href="#trajectory-inference" title="Link to this heading">#</a></h1>
-<p>scRNA-seq has been applied extensively to study developmental systems. It is now generally understood that the process of differentiation is a continuous process rather than a series of discreet/distinct stages. Trajectory inference is a computational framework to align the cells developing from one phenotype to another along a continuous axis (also called pseudotime).</p>
-<p>Underlying pseudotime analysis is the assumption that because differentiation process is asynchronous, a single snapshot of scRNA-seq data comprises of cells in all possible states during the process. This allows us to utilize the heterogeneity among the cells to align them along a continuous axis. In essence, we are interested in capturing gradual changes during the process, which means we ought to understand and map local similarity between cells. As we have discussed extensively in sessions 2 and 3, graphs are the perfect mathematical tools to do so. Therefore, all the methods we discuss below will rely on modeling the data using a graph.</p>
-<p>There are tens of algorithms developed to perform pseudotime analysis on single-cell RNA-seq data. Here, we will discuss two important methods, namely diffusion maps and Palantir, for their effectiveness and success we have seen in scRNA-seq data analysis. ( Note: Palantir develops on top of diffusion maps).</p>
+<p>scRNA-seq has been applied extensively to study developmental systems. The process of differentiation is a continuous process rather than a series of discreet/distinct stages. Trajectory inference is a computational framework to align the cells developing from one phenotype to another along a continuous axis (also called pseudotime).</p>
+<p>Underlying pseudotime analysis is the assumption that because differentiation process is asynchronous, a single snapshot of scRNA-seq data comprises of cells in all possible states during the process. This allows us to utilize the heterogeneity among the cells to align them along a continuous axis. In essence, we are interested in capturing gradual changes during the process, which means we ought to understand and map local similarity between cells. And graphs are the perfect mathematical tools to do so. Therefore, all the methods we discuss below will rely on modeling the data using a graph.</p>
+<p>There are tens of algorithms developed to perform pseudotime analysis on single-cell RNA-seq data. Here, we will discuss two important methods, namely diffusion maps and Palantir, for their effectiveness and success we have seen in scRNA-seq data analysis.</p>
 <p>Refs:</p>
 <p><a class="reference external" href="https://www.nature.com/articles/s41587-019-0071-9?platform=hootsuite">https://www.nature.com/articles/s41587-019-0071-9?platform=hootsuite</a></p>
 <p><a class="reference external" href="https://pubmed.ncbi.nlm.nih.gov/30899105/">https://pubmed.ncbi.nlm.nih.gov/30899105/</a></p>
@@ -547,141 +505,22 @@ document.write(`
 <h2>Diffusion Maps<a class="headerlink" href="#diffusion-maps" title="Link to this heading">#</a></h2>
 <p>Diffusion Maps are a suite of graph-based techniques to perform non-linear dimensionality reduction of high-dimensional data. They can be crudely thought of as non-linear version of PCA: just like PCA, diffusion maps will identify axis of high variances in the data, but unlike PCA - which is linear - diffusion maps take into consideration  non-linear associations between features (genes in our case) of the data. In other words, diffusion maps transform any high-dimensional data into a lower dimensional Euclidean space by accounting for any non-linear dependencies between the features. In doing so, it preserves the relationship between points that are similar in high-dimensional space and discards distant relationships.</p>
 <p>This property of diffusion maps makes it very favorable for single-cell data analysis. By preserving the local neighborhood structure, it provides a platform to incrementally navigate along the data manifold. Unlike diffusion maps, UMAP (and Force Directed Layout) - while useful to visualize data - does not accurately preserve high-dimensional pairwise distances in the resulting low-dimensional representation. This limits the use of UMAP (and Force Directed Layout) to visualization and does not facilitate any further quantitative analysis. However, since diffusion maps are distance preserving, they can be used for downstream analysis.</p>
-<p>The need for using diffusion maps also stems from our assumption that scRNA-seq data are inherently noisy and biological signals are masked by the noise. As such, we typically begin by performing principal component analysis as a way to decouple strong variability in the data (true biological signal) from random noise. As we discussed in our previous workshop, this is achieved by retrieving only the top <code class="docutils literal notranslate"><span class="pre">p</span></code> principal components and neglecting the rest (which typically identify with noise in the data) for any downstream analysis. However, we have observed with scRNA-seq data that PCA is generally ideal for working with global aspects of the data (such as to cluster the cells on, visualize the data etc.) but is not <em>always</em> optimal for a finer analysis such as pseudotime alignment of individual cells.</p>
+<p>The need for using diffusion maps also stems from our assumption that scRNA-seq data are inherently noisy and biological signals are masked by the noise. As such, we typically begin by performing principal component analysis as a way to decouple strong variability in the data (true biological signal) from random noise by retrieving only the top <code class="docutils literal notranslate"><span class="pre">p</span></code> principal components and neglecting the rest (which typically identify with noise in the data) for any downstream analysis. However, we have observed with scRNA-seq data that PCA is generally ideal for working with global aspects of the data (such as to cluster the cells on, visualize the data etc.) but is not <em>always</em> optimal for a finer analysis such as pseudotime alignment of individual cells.</p>
 <p>One of the popular ways to study cells along a continuum of gene expression space (as opposed to distinct clusters) is to apply diffusion maps on the retrieved principal components. Because the resulting embedding aims to preserve the local neighborhood of each cell, the diffusion maps form a natural coordinate system for cells along a continuum. As a result, they have been most successfully employed to align cells undergoing development along a trajectory. The success of diffusion maps relies on its ability to capture the geometry of the data accurately.</p>
-<p>Diffusion maps work by first building a k-nearest neighbor graph on the principal components (similar to clustering analysis, see session 1 or previous workshop material), followed by conversion of the distance graph to an affinity graph. While there are various models/methods proposed to convert distance matrix to affinity matrix, we recommend using adaptive Gaussian kernel. The kernel ensures that affinity between cells decrease exponentially with distance between cells in every direction (of expression or PCA space) but remains sensitive to density of cells near every cell. In other words, if the neighborhood of a cell is densely sampled then the similarity between cells is more concentrated while if the neighborhood of a cell is sparsely sampled then the similarity is more diffuse. This is important to avoid bias in analysis due to sampling differences in a heterogeneous population of cells. The affinity matrix is then converted into a Markov matrix, which represents a probabilistic framework of cellular state neighborhood. To elaborate, for a data of K cells, the Markov matrix is of size K-by-K; each row of the matrix sums to 1 and the (i, j)-th entry of the matrix represents the probability of a cell transitioning from state i to state j in one time step. Therefore, the Markov matrix automatically provides a probabilistic representation of cellular transition and is well-suited for pseudotime analysis that aims to align the cells along their differentiation transition states. Furthermore, because we begin with the k-nearest neighbor graph, only the immediate neighborhood each cell (i.e. phenotypically most similar cells) get high probability score of transition. Once the Markov matrix is constructed, we obtain the eigenvalues and eigenvectors of the matrix (analogous to the procedure in PCA) and order the eigenvectors based on the associated eigenvalue. We interpret the top eigenvector (we ignore the first eigenvector with eigenvalue of 1, see references below for this) as the direction of highest variability in the data, and often can be used to study cellular transitions in the data. These eigenvectors are called the diffusion components or diffusion maps (maps because they map the data from high-dimensional gene expression or PCA space to a lower dimensional diffusion space). Similarly, we encourage you to explore the next few eigenvectors to study any potential axes of continuum in the data. We will discuss more below.</p>
-<p>You will notice that this is very similar to how we performed MAGIC above, and indeed the construction of Markov Matrix is identical and it is used for two separate scenarios.</p>
+<p>Diffusion maps work by first building a k-nearest neighbor graph on the principal components (similar to clustering analysis), followed by conversion of the distance graph to an affinity graph. The typically used Gaussian kernel ensures that affinity between cells decrease exponentially with distance between cells in every direction (of PCA space) but remains sensitive to density of cells near every cell. In other words, if the neighborhood of a cell is densely sampled then the similarity between cells is more concentrated while if the neighborhood of a cell is sparsely sampled then the similarity is more diffuse. This is important to avoid bias in analysis due to sampling differences in a heterogeneous population of cells. The affinity matrix is then converted into a Markov matrix, which represents a probabilistic framework of cellular state neighborhood. To elaborate, for a data of K cells, the Markov matrix is of size K-by-K; each row of the matrix sums to 1 and the (i, j)-th entry of the matrix represents the probability of a cell transitioning from state i to state j in one time step. Therefore, the Markov matrix automatically provides a probabilistic representation of cellular transition and is well-suited for pseudotime analysis that aims to align the cells along their differentiation transition states. Furthermore, because we begin with the k-nearest neighbor graph, only the immediate neighborhood each cell (i.e. phenotypically most similar cells) get high probability score of transition. Once the Markov matrix is constructed, we obtain the eigenvalues and eigenvectors of the matrix (analogous to the procedure in PCA) and order the eigenvectors based on the associated eigenvalue. We interpret the top eigenvector (we ignore the first eigenvector with eigenvalue of 1, see references below for this) as the direction of highest variability in the data, and often can be used to study cellular transitions in the data. These eigenvectors are called the diffusion components or diffusion maps. Similarly, we encourage you to explore the next few eigenvectors to study any potential axes of continuum in the data. We will discuss more below.</p>
 <p>Refs:
 <a class="reference external" href="https://www.nature.com/articles/nmeth.3971">https://www.nature.com/articles/nmeth.3971</a></p>
 <p><a class="reference external" href="https://www.nature.com/articles/nbt.3569">https://www.nature.com/articles/nbt.3569</a></p>
 <p><a class="reference external" href="https://www.sciencedirect.com/science/article/pii/S1063520306000546">https://www.sciencedirect.com/science/article/pii/S1063520306000546</a></p>
-<p>The size of the nearest neighborhood (<code class="docutils literal notranslate"><span class="pre">k</span></code> or <code class="docutils literal notranslate"><span class="pre">n_neighbors</span></code> parameter) is a crucial parameter and analogous to clustering analysis, we recommend you to choose it such that it is small enough to only consider local neighbors of each cell, but large enough that you do not get discrete sub-graphs. A typical choice of <code class="docutils literal notranslate"><span class="pre">n_neighbors</span></code> is <code class="docutils literal notranslate"><span class="pre">30</span></code>. Furthermore, analogous to clustering analysis, it is highly recommended that you show your results do not vary with slight alterations in the value of <code class="docutils literal notranslate"><span class="pre">n_neighbors</span></code>. For example, if you wish to choose <code class="docutils literal notranslate"><span class="pre">n_neighbors</span> <span class="pre">=</span> <span class="pre">30</span></code> then we recommend that you recompute the graph for various values of <code class="docutils literal notranslate"><span class="pre">n_neighbors</span></code> around <code class="docutils literal notranslate"><span class="pre">30</span></code> such as <code class="docutils literal notranslate"><span class="pre">n_neighbors</span> <span class="pre">=</span> <span class="pre">(21,</span> <span class="pre">24,</span> <span class="pre">27,</span> <span class="pre">30,</span> <span class="pre">33,</span> <span class="pre">36,</span> <span class="pre">39)</span></code> and show that the meaningful diffusion components you obtain for all these values of <code class="docutils literal notranslate"><span class="pre">n_neighbors</span></code> are highly correlated to each other.</p>
-<section id="method-1-scanpy-inbuilt-diffusion-maps">
-<h3>Method 1: Scanpy inbuilt diffusion maps<a class="headerlink" href="#method-1-scanpy-inbuilt-diffusion-maps" title="Link to this heading">#</a></h3>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adata_clean</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>AnnData object with n_obs × n_vars = 11828 × 17698
-    obs: &#39;n_genes_by_counts&#39;, &#39;log1p_n_genes_by_counts&#39;, &#39;total_counts&#39;, &#39;log1p_total_counts&#39;, &#39;pct_counts_in_top_50_genes&#39;, &#39;pct_counts_in_top_100_genes&#39;, &#39;pct_counts_in_top_200_genes&#39;, &#39;pct_counts_in_top_500_genes&#39;, &#39;mt_pct_content&#39;, &#39;ribo_pct_content&#39;, &#39;doublet_score&#39;, &#39;doublet&#39;, &#39;G2_M_checkpoint&#39;, &#39;leiden_r1.5&#39;, &#39;leiden_r0.5&#39;, &#39;leiden&#39;
-    var: &#39;gene_ids&#39;, &#39;feature_types&#39;, &#39;n_cells_by_counts&#39;, &#39;mean_counts&#39;, &#39;log1p_mean_counts&#39;, &#39;pct_dropout_by_counts&#39;, &#39;total_counts&#39;, &#39;log1p_total_counts&#39;, &#39;n_cells&#39;, &#39;highly_variable&#39;, &#39;highly_variable_rank&#39;, &#39;means&#39;, &#39;variances&#39;, &#39;variances_norm&#39;
-    uns: &#39;hvg&#39;, &#39;leiden&#39;, &#39;leiden_colors&#39;, &#39;leiden_r0.5_colors&#39;, &#39;leiden_r1.5_colors&#39;, &#39;log1p&#39;, &#39;neighbors_30&#39;, &#39;on_norm_log&#39;, &#39;pca&#39;, &#39;rank_genes_groups&#39;, &#39;umap&#39;
-    obsm: &#39;X_pca&#39;, &#39;X_umap&#39;
-    varm: &#39;PCs&#39;
-    layers: &#39;raw_data&#39;
-    obsp: &#39;neighbors_30_connectivities&#39;, &#39;neighbors_30_distances&#39;
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># n_comps is the number of top eigenvalues/eigenvectors you would like to compute, 20-30 is usually sufficient</span>
-<span class="n">sc</span><span class="o">.</span><span class="n">tl</span><span class="o">.</span><span class="n">diffmap</span><span class="p">(</span><span class="n">adata_clean</span><span class="p">,</span> <span class="n">n_comps</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">neighbors_key</span> <span class="o">=</span> <span class="s1">&#39;neighbors_30&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adata_clean</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>AnnData object with n_obs × n_vars = 11828 × 17698
-    obs: &#39;n_genes_by_counts&#39;, &#39;log1p_n_genes_by_counts&#39;, &#39;total_counts&#39;, &#39;log1p_total_counts&#39;, &#39;pct_counts_in_top_50_genes&#39;, &#39;pct_counts_in_top_100_genes&#39;, &#39;pct_counts_in_top_200_genes&#39;, &#39;pct_counts_in_top_500_genes&#39;, &#39;mt_pct_content&#39;, &#39;ribo_pct_content&#39;, &#39;doublet_score&#39;, &#39;doublet&#39;, &#39;G2_M_checkpoint&#39;, &#39;leiden_r1.5&#39;, &#39;leiden_r0.5&#39;, &#39;leiden&#39;
-    var: &#39;gene_ids&#39;, &#39;feature_types&#39;, &#39;n_cells_by_counts&#39;, &#39;mean_counts&#39;, &#39;log1p_mean_counts&#39;, &#39;pct_dropout_by_counts&#39;, &#39;total_counts&#39;, &#39;log1p_total_counts&#39;, &#39;n_cells&#39;, &#39;highly_variable&#39;, &#39;highly_variable_rank&#39;, &#39;means&#39;, &#39;variances&#39;, &#39;variances_norm&#39;
-    uns: &#39;hvg&#39;, &#39;leiden&#39;, &#39;leiden_colors&#39;, &#39;leiden_r0.5_colors&#39;, &#39;leiden_r1.5_colors&#39;, &#39;log1p&#39;, &#39;neighbors_30&#39;, &#39;on_norm_log&#39;, &#39;pca&#39;, &#39;rank_genes_groups&#39;, &#39;umap&#39;, &#39;diffmap_evals&#39;
-    obsm: &#39;X_pca&#39;, &#39;X_umap&#39;, &#39;X_diffmap&#39;
-    varm: &#39;PCs&#39;
-    layers: &#39;raw_data&#39;
-    obsp: &#39;neighbors_30_connectivities&#39;, &#39;neighbors_30_distances&#39;
-</pre></div>
-</div>
-</div>
-</div>
-<p>We can view the eigenvalues as below. The first eigenvalue is exactly 1 and this expected due to a property of any Markov matrix (any matrix whose rows sum to 1). This only reflects that there is one big connected component in the data (which is a common property across any data by construction and not specific to the current data) and we ignore this eigenvalue and the corresponding eigenvector. Note: if you see multiple eigenvalues exactly equal to 1, which is rare in scRNA-seq data specifically in the context of development, then that has a different, and important, interpretation. Please see the references above.</p>
-<p>We interpret the next eigenvalue and the associated eigenvector as the most informative component about the data that indicates direction of most biological variability. Often this indicates towards a possible transition between cell states.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sc</span><span class="o">.</span><span class="n">set_figure_params</span><span class="p">(</span><span class="n">scanpy</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">14</span><span class="p">,</span> <span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">adata_clean</span><span class="o">.</span><span class="n">uns</span><span class="p">[</span><span class="s1">&#39;diffmap_evals&#39;</span><span class="p">])),</span> <span class="n">adata_clean</span><span class="o">.</span><span class="n">uns</span><span class="p">[</span><span class="s1">&#39;diffmap_evals&#39;</span><span class="p">])</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="s1">&#39;on&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Index&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Eigen-Values&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;Eigen-Values&#39;)
-</pre></div>
-</div>
-<a class="reference internal image-reference" href="../_images/321219898f58495b6c4001aa4c25f4be614f7b18b6a6f6312c188595c7176977.png"><img alt="../_images/321219898f58495b6c4001aa4c25f4be614f7b18b6a6f6312c188595c7176977.png" src="../_images/321219898f58495b6c4001aa4c25f4be614f7b18b6a6f6312c188595c7176977.png" style="width: 572px; height: 422px;" />
-</a>
-</div>
-</div>
-<p>We also use the first large gap in the eigenvalue spectrum (i.e. the plot above) to quantify the number of most meaningful diffusion components to consider for analysis. For example, in the plot above, we see a substantial gap between 6th and 7th eigenvalue. This indicates that perhaps the first 6 eigenvalues and associated eigenvectors are the most meaningful. This may seem a bit arbitrary (especially when you see that there is a much bigger change between 17th and 18th eigenvector), and we will discuss how to avoid this pitfall in the next session (see Palantir).</p>
-<p>We visualize the top 10 eigenvectors as follows (Note: we must ignore the first i.e. 0th eigenvector from downstream analysis):</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ncol</span> <span class="o">=</span> <span class="mi">4</span>
-<span class="n">nrow</span> <span class="o">=</span> <span class="mi">3</span>
-
-<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">8</span><span class="o">*</span><span class="n">ncol</span><span class="p">,</span> <span class="mi">6</span><span class="o">*</span><span class="n">nrow</span><span class="p">))</span>
-<span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">11</span><span class="p">):</span>
-    <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="n">nrow</span><span class="p">,</span> <span class="n">ncol</span><span class="p">,</span> <span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
-    <span class="n">im1</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">adata_clean</span><span class="o">.</span><span class="n">obsm</span><span class="p">[</span><span class="s1">&#39;X_umap&#39;</span><span class="p">][:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">adata_clean</span><span class="o">.</span><span class="n">obsm</span><span class="p">[</span><span class="s1">&#39;X_umap&#39;</span><span class="p">][:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">s</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span> 
-                 <span class="n">c</span> <span class="o">=</span> <span class="n">adata_clean</span><span class="o">.</span><span class="n">obsm</span><span class="p">[</span><span class="s1">&#39;X_diffmap&#39;</span><span class="p">][:,</span> <span class="n">j</span><span class="p">],</span> <span class="n">cmap</span> <span class="o">=</span> <span class="s1">&#39;plasma&#39;</span><span class="p">)</span>
-    <span class="n">fig</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">im1</span><span class="p">)</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s1">&#39;off&#39;</span><span class="p">)</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Diff Map - &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">j</span><span class="p">))</span>
-    
-<span class="c1"># To save: </span>
-<span class="c1"># fig.savefig(output_directory + &#39;umap_colored_by_diff_maps.png&#39;, bbox_inches = &#39;tight&#39;, dpi = 150)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<a class="reference internal image-reference" href="../_images/342411c0bbfd7f2dae69a387f1cdbb350e26b028a9e46db54f8f354f2bc281c6.png"><img alt="../_images/342411c0bbfd7f2dae69a387f1cdbb350e26b028a9e46db54f8f354f2bc281c6.png" src="../_images/342411c0bbfd7f2dae69a387f1cdbb350e26b028a9e46db54f8f354f2bc281c6.png" style="width: 2010px; height: 1132px;" />
-</a>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sc</span><span class="o">.</span><span class="n">pl</span><span class="o">.</span><span class="n">umap</span><span class="p">(</span><span class="n">adata_clean</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;leiden&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/sara.jimenez/miniconda3/envs/scvi-env/lib/python3.9/site-packages/scanpy/plotting/_tools/scatterplots.py:392: UserWarning: No data for colormapping provided via &#39;c&#39;. Parameters &#39;cmap&#39; will be ignored
-  cax = scatter(
-</pre></div>
-</div>
-<a class="reference internal image-reference" href="../_images/3f70383f277e102a33c0a5efeb3e1b346a5f5065b9d59cea300b8ec60fc32ca7.png"><img alt="../_images/3f70383f277e102a33c0a5efeb3e1b346a5f5065b9d59cea300b8ec60fc32ca7.png" src="../_images/3f70383f277e102a33c0a5efeb3e1b346a5f5065b9d59cea300b8ec60fc32ca7.png" style="width: 631px; height: 417px;" />
-</a>
-</div>
-</div>
-<p>Interpreting the diffusion maps:</p>
-<ol class="arabic simple">
-<li><p>We ignore the 0th diffusion component (for reasons, please see the text above and the provided references).</p></li>
-<li><p>The next top diffusion component (Diff Map - 1) separates out clusters 6, 0 and 1.</p></li>
-<li><p>Diff Map - 2 separates out clusters 4, 2, 3, 5, and 9.</p></li>
-<li><p>Diff Map - 3 identifies the small cluster 9 as being distinct from rest of the data. Note: if C9 is so different and is not clear what kind of cell type it is, diffusion maps could be hinting that it is a rare and distinct or a noisy cluster of cells. As such, diffusion maps can be used for data clean-up as well.</p></li>
-</ol>
-<p>And so forth.</p>
-<p>To summarize, diffusion maps attempt to highlight the differences or variablity in the data. However, we set out to illustrate the use of diffusion maps for the context of aligning cells on a continuous axis and as such, applying it to data with clear separated clusters (like the example above) is not ideal. Therefore, we will run diffusion maps on a separate data (provided along with this notebook) and interpret the findings.</p>
+<p>The size of the nearest neighborhood (<code class="docutils literal notranslate"><span class="pre">k</span></code> or <code class="docutils literal notranslate"><span class="pre">n_neighbors</span></code> parameter) is a crucial parameter and analogous to clustering analysis, we recommend you to choose it such that it is small enough to only consider local neighbors of each cell, but large enough that you do not get discrete sub-graphs. Furthermore, it is highly recommended that you show your results do not vary with slight alterations in the value of <code class="docutils literal notranslate"><span class="pre">n_neighbors</span></code>. For example, if you wish to choose <code class="docutils literal notranslate"><span class="pre">n_neighbors</span> <span class="pre">=</span> <span class="pre">30</span></code> then we recommend that you recompute the graph for various values of <code class="docutils literal notranslate"><span class="pre">n_neighbors</span></code> around <code class="docutils literal notranslate"><span class="pre">30</span></code> such as <code class="docutils literal notranslate"><span class="pre">n_neighbors</span> <span class="pre">=</span> <span class="pre">(21,</span> <span class="pre">24,</span> <span class="pre">27,</span> <span class="pre">30,</span> <span class="pre">33,</span> <span class="pre">36,</span> <span class="pre">39)</span></code> and show that the meaningful diffusion components you obtain for all these values of <code class="docutils literal notranslate"><span class="pre">n_neighbors</span></code> are highly correlated to each other.</p>
 </section>
-<section id="example-data-2-cells-along-a-continuum">
-<h3>Example data 2: Cells along a continuum<a class="headerlink" href="#example-data-2-cells-along-a-continuum" title="Link to this heading">#</a></h3>
+<section id="load-data">
+<h2>Load data<a class="headerlink" href="#load-data" title="Link to this heading">#</a></h2>
 <p>The data is taken from <a class="reference external" href="https://www.nature.com/articles/s41587-019-0068-4">https://www.nature.com/articles/s41587-019-0068-4</a> and downloaded from <a class="github reference external" href="https://github.com/dpeerlab/Palantir">dpeerlab/Palantir</a>. The data has already been normalized, clustered, cell type annotated and visualization maps have also been computed.</p>
 <p>The data consists of CD34+ human bone marrow cells undergoing differentiation.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adata_bm</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="n">read_h5ad</span><span class="p">(</span><span class="n">data_path</span> <span class="o">+</span> <span class="s1">&#39;/human_cd34_bm_rep1.h5ad&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adata_bm</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="n">read_h5ad</span><span class="p">(</span><span class="s1">&#39;/data/peer/sharmar1/msk_workshop/workshop_2024_spring/session-2/human_cd34_bm_rep1_sub.h5ad&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -693,10 +532,10 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>AnnData object with n_obs × n_vars = 5780 × 14651
-    obs: &#39;clusters&#39;, &#39;palantir_pseudotime&#39;, &#39;palantir_diff_potential&#39;
-    uns: &#39;cluster_colors&#39;, &#39;ct_colors&#39;, &#39;palantir_branch_probs_cell_types&#39;
-    obsm: &#39;tsne&#39;, &#39;MAGIC_imputed_data&#39;, &#39;palantir_branch_probs&#39;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>AnnData object with n_obs × n_vars = 5780 × 14612
+    obs: &#39;clusters&#39;
+    uns: &#39;cluster_colors&#39;, &#39;ct_colors&#39;
+    obsm: &#39;tsne&#39;
 </pre></div>
 </div>
 </div>
@@ -716,12 +555,11 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/sara.jimenez/miniconda3/envs/scvi-env/lib/python3.9/site-packages/scanpy/plotting/_tools/scatterplots.py:392: UserWarning: No data for colormapping provided via &#39;c&#39;. Parameters &#39;cmap&#39; will be ignored
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/sharmar1/miniconda3/envs/workshop_2024/lib/python3.8/site-packages/scanpy/plotting/_tools/scatterplots.py:394: UserWarning: No data for colormapping provided via &#39;c&#39;. Parameters &#39;cmap&#39; will be ignored
   cax = scatter(
 </pre></div>
 </div>
-<a class="reference internal image-reference" href="../_images/c63b43877c5aceecb42ff141fb31634215bb124d81a3fa8d59b923d175e5cc24.png"><img alt="../_images/c63b43877c5aceecb42ff141fb31634215bb124d81a3fa8d59b923d175e5cc24.png" src="../_images/c63b43877c5aceecb42ff141fb31634215bb124d81a3fa8d59b923d175e5cc24.png" style="width: 573px; height: 417px;" />
-</a>
+<img alt="../_images/2cbd42d3fb1915d43b1d789f717ba80bc9d6a1680180c711f882fa2821162d6c.png" src="../_images/2cbd42d3fb1915d43b1d789f717ba80bc9d6a1680180c711f882fa2821162d6c.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -733,8 +571,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="../_images/c965565215dfe90336123cb96ad0d7bf18fa2af73decbf32e26ef340986fbf2b.png"><img alt="../_images/c965565215dfe90336123cb96ad0d7bf18fa2af73decbf32e26ef340986fbf2b.png" src="../_images/c965565215dfe90336123cb96ad0d7bf18fa2af73decbf32e26ef340986fbf2b.png" style="width: 1733px; height: 840px;" />
-</a>
+<img alt="../_images/c358c98249009cb20556db25859e2bad246ea8df64e302540f2164e189addf99.png" src="../_images/c358c98249009cb20556db25859e2bad246ea8df64e302540f2164e189addf99.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -753,38 +590,23 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>AnnData object with n_obs × n_vars = 5780 × 14651
-    obs: &#39;clusters&#39;, &#39;palantir_pseudotime&#39;, &#39;palantir_diff_potential&#39;
-    uns: &#39;cluster_colors&#39;, &#39;ct_colors&#39;, &#39;palantir_branch_probs_cell_types&#39;, &#39;clusters_colors&#39;, &#39;pca&#39;
-    obsm: &#39;tsne&#39;, &#39;MAGIC_imputed_data&#39;, &#39;palantir_branch_probs&#39;, &#39;X_tsne&#39;, &#39;X_pca&#39;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>AnnData object with n_obs × n_vars = 5780 × 14612
+    obs: &#39;clusters&#39;
+    uns: &#39;cluster_colors&#39;, &#39;ct_colors&#39;, &#39;clusters_colors&#39;, &#39;pca&#39;
+    obsm: &#39;tsne&#39;, &#39;X_tsne&#39;, &#39;X_pca&#39;
     varm: &#39;PCs&#39;
 </pre></div>
 </div>
 </div>
 </div>
 </section>
-<section id="nearest-neighbor-and-diffusion-maps">
-<h3>Nearest neighbor and diffusion maps<a class="headerlink" href="#nearest-neighbor-and-diffusion-maps" title="Link to this heading">#</a></h3>
+<section id="run-diffusion-maps">
+<h2>Run Diffusion Maps<a class="headerlink" href="#run-diffusion-maps" title="Link to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Compute diffusion maps</span>
 <span class="n">sc</span><span class="o">.</span><span class="n">pp</span><span class="o">.</span><span class="n">neighbors</span><span class="p">(</span><span class="n">adata_bm</span><span class="p">,</span> <span class="n">n_neighbors</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">use_rep</span> <span class="o">=</span> <span class="s1">&#39;X_pca&#39;</span><span class="p">,</span> <span class="n">metric</span><span class="o">=</span><span class="s1">&#39;euclidean&#39;</span><span class="p">,</span> <span class="n">key_added</span><span class="o">=</span><span class="s1">&#39;neighbors_30&#39;</span><span class="p">)</span>
 <span class="n">sc</span><span class="o">.</span><span class="n">tl</span><span class="o">.</span><span class="n">diffmap</span><span class="p">(</span><span class="n">adata_bm</span><span class="p">,</span> <span class="n">n_comps</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">neighbors_key</span> <span class="o">=</span> <span class="s1">&#39;neighbors_30&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/sara.jimenez/miniconda3/envs/scvi-env/lib/python3.9/site-packages/umap/distances.py:1063: NumbaDeprecationWarning: The &#39;nopython&#39; keyword argument was not supplied to the &#39;numba.jit&#39; decorator. The implicit default value for this argument is currently False, but it will be changed to True in Numba 0.59.0. See https://numba.readthedocs.io/en/stable/reference/deprecation.html#deprecation-of-object-mode-fall-back-behaviour-when-using-jit for details.
-  @numba.jit()
-/Users/sara.jimenez/miniconda3/envs/scvi-env/lib/python3.9/site-packages/umap/distances.py:1071: NumbaDeprecationWarning: The &#39;nopython&#39; keyword argument was not supplied to the &#39;numba.jit&#39; decorator. The implicit default value for this argument is currently False, but it will be changed to True in Numba 0.59.0. See https://numba.readthedocs.io/en/stable/reference/deprecation.html#deprecation-of-object-mode-fall-back-behaviour-when-using-jit for details.
-  @numba.jit()
-/Users/sara.jimenez/miniconda3/envs/scvi-env/lib/python3.9/site-packages/umap/distances.py:1086: NumbaDeprecationWarning: The &#39;nopython&#39; keyword argument was not supplied to the &#39;numba.jit&#39; decorator. The implicit default value for this argument is currently False, but it will be changed to True in Numba 0.59.0. See https://numba.readthedocs.io/en/stable/reference/deprecation.html#deprecation-of-object-mode-fall-back-behaviour-when-using-jit for details.
-  @numba.jit()
-/Users/sara.jimenez/miniconda3/envs/scvi-env/lib/python3.9/site-packages/tqdm/auto.py:21: TqdmWarning: IProgress not found. Please update jupyter and ipywidgets. See https://ipywidgets.readthedocs.io/en/stable/user_install.html
-  from .autonotebook import tqdm as notebook_tqdm
-/Users/sara.jimenez/miniconda3/envs/scvi-env/lib/python3.9/site-packages/umap/umap_.py:660: NumbaDeprecationWarning: The &#39;nopython&#39; keyword argument was not supplied to the &#39;numba.jit&#39; decorator. The implicit default value for this argument is currently False, but it will be changed to True in Numba 0.59.0. See https://numba.readthedocs.io/en/stable/reference/deprecation.html#deprecation-of-object-mode-fall-back-behaviour-when-using-jit for details.
-  @numba.jit()
-OMP: Info #276: omp_set_nested routine deprecated, please use omp_set_max_active_levels instead.
 </pre></div>
 </div>
 </div>
@@ -803,8 +625,7 @@ OMP: Info #276: omp_set_nested routine deprecated, please use omp_set_max_active
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;Eigen-Values&#39;)
 </pre></div>
 </div>
-<a class="reference internal image-reference" href="../_images/48a1f37dfa496fd93405f71c800079c64b8f43a48a513f3e875097998ff19174.png"><img alt="../_images/48a1f37dfa496fd93405f71c800079c64b8f43a48a513f3e875097998ff19174.png" src="../_images/48a1f37dfa496fd93405f71c800079c64b8f43a48a513f3e875097998ff19174.png" style="width: 573px; height: 422px;" />
-</a>
+<img alt="../_images/4367ed362055666ec8ddeb8497906bc3769604b2a6d3f15e503d580466dbd09b.png" src="../_images/4367ed362055666ec8ddeb8497906bc3769604b2a6d3f15e503d580466dbd09b.png" />
 </div>
 </div>
 <p>We see a clear gap between 8th and 9th eigenvalues (note: counting starts at 0). This is indicative that the first 8 eigenvalues are the most informative about the data.</p>
@@ -829,8 +650,7 @@ OMP: Info #276: omp_set_nested routine deprecated, please use omp_set_max_active
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="../_images/2d18ee0ddf8e2f186318d67d79c1cb375016f612dab3d650c7600a42a824fa20.png"><img alt="../_images/2d18ee0ddf8e2f186318d67d79c1cb375016f612dab3d650c7600a42a824fa20.png" src="../_images/2d18ee0ddf8e2f186318d67d79c1cb375016f612dab3d650c7600a42a824fa20.png" style="width: 2010px; height: 1128px;" />
-</a>
+<img alt="../_images/3d7e7c30082eec2eab8c11b6fa53b8ff28075a9192e9aa70e7b35daaf5b38a25.png" src="../_images/3d7e7c30082eec2eab8c11b6fa53b8ff28075a9192e9aa70e7b35daaf5b38a25.png" />
 </div>
 </div>
 <p>Interpreting the plots above:</p>
@@ -854,14 +674,6 @@ OMP: Info #276: omp_set_nested routine deprecated, please use omp_set_max_active
 <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]):</span>
     <span class="n">corr_temp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">corrcoef</span><span class="p">(</span><span class="n">data</span><span class="p">[:,</span> <span class="n">j</span><span class="p">],</span> <span class="n">diff_1</span><span class="p">)</span>
     <span class="n">corr_score</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">corr_temp</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/sara.jimenez/miniconda3/envs/scvi-env/lib/python3.9/site-packages/numpy/lib/function_base.py:2854: RuntimeWarning: invalid value encountered in divide
-  c /= stddev[:, None]
-/Users/sara.jimenez/miniconda3/envs/scvi-env/lib/python3.9/site-packages/numpy/lib/function_base.py:2855: RuntimeWarning: invalid value encountered in divide
-  c /= stddev[None, :]
 </pre></div>
 </div>
 </div>
@@ -906,28 +718,28 @@ OMP: Info #276: omp_set_nested routine deprecated, please use omp_set_max_active
   <tbody>
     <tr>
       <th>A1BG</th>
-      <td>-0.167827</td>
-      <td>0.167827</td>
+      <td>-0.167809</td>
+      <td>0.167809</td>
     </tr>
     <tr>
       <th>A2M</th>
-      <td>-0.003106</td>
-      <td>0.003106</td>
+      <td>-0.003054</td>
+      <td>0.003054</td>
     </tr>
     <tr>
       <th>A2ML1</th>
-      <td>0.044155</td>
-      <td>0.044155</td>
+      <td>0.044146</td>
+      <td>0.044146</td>
     </tr>
     <tr>
       <th>A4GALT</th>
-      <td>0.326927</td>
-      <td>0.326927</td>
+      <td>0.327103</td>
+      <td>0.327103</td>
     </tr>
     <tr>
       <th>AAAS</th>
-      <td>0.156086</td>
-      <td>0.156086</td>
+      <td>0.156136</td>
+      <td>0.156136</td>
     </tr>
   </tbody>
 </table>
@@ -971,28 +783,28 @@ OMP: Info #276: omp_set_nested routine deprecated, please use omp_set_max_active
   <tbody>
     <tr>
       <th>KLF1</th>
-      <td>0.824020</td>
-      <td>0.824020</td>
+      <td>0.823961</td>
+      <td>0.823961</td>
     </tr>
     <tr>
       <th>APOC1</th>
-      <td>0.793446</td>
-      <td>0.793446</td>
+      <td>0.793427</td>
+      <td>0.793427</td>
     </tr>
     <tr>
       <th>CNRIP1</th>
-      <td>0.778498</td>
-      <td>0.778498</td>
+      <td>0.778444</td>
+      <td>0.778444</td>
     </tr>
     <tr>
       <th>GATA1</th>
-      <td>0.762808</td>
-      <td>0.762808</td>
+      <td>0.762813</td>
+      <td>0.762813</td>
     </tr>
     <tr>
       <th>ANK1</th>
-      <td>0.748084</td>
-      <td>0.748084</td>
+      <td>0.748066</td>
+      <td>0.748066</td>
     </tr>
     <tr>
       <th>...</th>
@@ -1000,33 +812,33 @@ OMP: Info #276: omp_set_nested routine deprecated, please use omp_set_max_active
       <td>...</td>
     </tr>
     <tr>
-      <th>SIRPD</th>
-      <td>NaN</td>
-      <td>NaN</td>
+      <th>TMED6</th>
+      <td>-0.000033</td>
+      <td>0.000033</td>
     </tr>
     <tr>
-      <th>SLC7A10</th>
-      <td>NaN</td>
-      <td>NaN</td>
+      <th>KPTN</th>
+      <td>0.000027</td>
+      <td>0.000027</td>
     </tr>
     <tr>
-      <th>SNCG</th>
-      <td>NaN</td>
-      <td>NaN</td>
+      <th>GIPC3</th>
+      <td>-0.000024</td>
+      <td>0.000024</td>
     </tr>
     <tr>
-      <th>TM4SF18</th>
-      <td>NaN</td>
-      <td>NaN</td>
+      <th>KCNJ16</th>
+      <td>-0.000019</td>
+      <td>0.000019</td>
     </tr>
     <tr>
-      <th>WLS</th>
-      <td>NaN</td>
-      <td>NaN</td>
+      <th>RP11-299H22.1</th>
+      <td>-0.000008</td>
+      <td>0.000008</td>
     </tr>
   </tbody>
 </table>
-<p>14651 rows × 2 columns</p>
+<p>14612 rows × 2 columns</p>
 </div></div></div>
 </div>
 <div class="cell docutils container">
@@ -1044,8 +856,7 @@ OMP: Info #276: omp_set_nested routine deprecated, please use omp_set_max_active
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="../_images/c95d5f6a41e4581f83acddcb48fd77752761ef94f7cb34b79fe08aca4f3d2e19.png"><img alt="../_images/c95d5f6a41e4581f83acddcb48fd77752761ef94f7cb34b79fe08aca4f3d2e19.png" src="../_images/c95d5f6a41e4581f83acddcb48fd77752761ef94f7cb34b79fe08aca4f3d2e19.png" style="width: 1558px; height: 786px;" />
-</a>
+<img alt="../_images/8ffd9ef29acd2bb3dedc908da532eee44d5a4b7b362eb5eb94f3854e5342bf38.png" src="../_images/8ffd9ef29acd2bb3dedc908da532eee44d5a4b7b362eb5eb94f3854e5342bf38.png" />
 </div>
 </div>
 <p>As we can see, KLF1, GATA1 are some of the highly correlated genes with diffusion component 1. Inspecting the top genes this way can help you get a sense of what each diffusion component is trying to explain.</p>
@@ -1073,98 +884,19 @@ OMP: Info #276: omp_set_nested routine deprecated, please use omp_set_max_active
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/sara.jimenez/miniconda3/envs/scvi-env/lib/python3.9/site-packages/numpy/lib/function_base.py:2854: RuntimeWarning: invalid value encountered in divide
-  c /= stddev[:, None]
-/Users/sara.jimenez/miniconda3/envs/scvi-env/lib/python3.9/site-packages/numpy/lib/function_base.py:2855: RuntimeWarning: invalid value encountered in divide
-  c /= stddev[None, :]
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/sara.jimenez/miniconda3/envs/scvi-env/lib/python3.9/site-packages/numpy/lib/function_base.py:2854: RuntimeWarning: invalid value encountered in divide
-  c /= stddev[:, None]
-/Users/sara.jimenez/miniconda3/envs/scvi-env/lib/python3.9/site-packages/numpy/lib/function_base.py:2855: RuntimeWarning: invalid value encountered in divide
-  c /= stddev[None, :]
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/sara.jimenez/miniconda3/envs/scvi-env/lib/python3.9/site-packages/numpy/lib/function_base.py:2854: RuntimeWarning: invalid value encountered in divide
-  c /= stddev[:, None]
-/Users/sara.jimenez/miniconda3/envs/scvi-env/lib/python3.9/site-packages/numpy/lib/function_base.py:2855: RuntimeWarning: invalid value encountered in divide
-  c /= stddev[None, :]
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/sara.jimenez/miniconda3/envs/scvi-env/lib/python3.9/site-packages/numpy/lib/function_base.py:2854: RuntimeWarning: invalid value encountered in divide
-  c /= stddev[:, None]
-/Users/sara.jimenez/miniconda3/envs/scvi-env/lib/python3.9/site-packages/numpy/lib/function_base.py:2855: RuntimeWarning: invalid value encountered in divide
-  c /= stddev[None, :]
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>5
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/sara.jimenez/miniconda3/envs/scvi-env/lib/python3.9/site-packages/numpy/lib/function_base.py:2854: RuntimeWarning: invalid value encountered in divide
-  c /= stddev[:, None]
-/Users/sara.jimenez/miniconda3/envs/scvi-env/lib/python3.9/site-packages/numpy/lib/function_base.py:2855: RuntimeWarning: invalid value encountered in divide
-  c /= stddev[None, :]
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>6
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/sara.jimenez/miniconda3/envs/scvi-env/lib/python3.9/site-packages/numpy/lib/function_base.py:2854: RuntimeWarning: invalid value encountered in divide
-  c /= stddev[:, None]
-/Users/sara.jimenez/miniconda3/envs/scvi-env/lib/python3.9/site-packages/numpy/lib/function_base.py:2855: RuntimeWarning: invalid value encountered in divide
-  c /= stddev[None, :]
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>7
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/sara.jimenez/miniconda3/envs/scvi-env/lib/python3.9/site-packages/numpy/lib/function_base.py:2854: RuntimeWarning: invalid value encountered in divide
-  c /= stddev[:, None]
-/Users/sara.jimenez/miniconda3/envs/scvi-env/lib/python3.9/site-packages/numpy/lib/function_base.py:2855: RuntimeWarning: invalid value encountered in divide
-  c /= stddev[None, :]
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>8
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/sara.jimenez/miniconda3/envs/scvi-env/lib/python3.9/site-packages/numpy/lib/function_base.py:2854: RuntimeWarning: invalid value encountered in divide
-  c /= stddev[:, None]
-/Users/sara.jimenez/miniconda3/envs/scvi-env/lib/python3.9/site-packages/numpy/lib/function_base.py:2855: RuntimeWarning: invalid value encountered in divide
-  c /= stddev[None, :]
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>9
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/sara.jimenez/miniconda3/envs/scvi-env/lib/python3.9/site-packages/numpy/lib/function_base.py:2854: RuntimeWarning: invalid value encountered in divide
-  c /= stddev[:, None]
-/Users/sara.jimenez/miniconda3/envs/scvi-env/lib/python3.9/site-packages/numpy/lib/function_base.py:2855: RuntimeWarning: invalid value encountered in divide
-  c /= stddev[None, :]
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>10
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/sara.jimenez/miniconda3/envs/scvi-env/lib/python3.9/site-packages/numpy/lib/function_base.py:2854: RuntimeWarning: invalid value encountered in divide
-  c /= stddev[:, None]
-/Users/sara.jimenez/miniconda3/envs/scvi-env/lib/python3.9/site-packages/numpy/lib/function_base.py:2855: RuntimeWarning: invalid value encountered in divide
-  c /= stddev[None, :]
+2
+3
+4
+5
+6
+7
+8
+9
+10
 </pre></div>
 </div>
 </div>
 </div>
-</section>
 </section>
 <section id="palantir">
 <h2>Palantir<a class="headerlink" href="#palantir" title="Link to this heading">#</a></h2>
@@ -1185,120 +917,16 @@ OMP: Info #276: omp_set_nested routine deprecated, please use omp_set_max_active
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>AnnData object with n_obs × n_vars = 5780 × 14651
-    obs: &#39;clusters&#39;, &#39;palantir_pseudotime&#39;, &#39;palantir_diff_potential&#39;
-    uns: &#39;cluster_colors&#39;, &#39;ct_colors&#39;, &#39;palantir_branch_probs_cell_types&#39;, &#39;clusters_colors&#39;, &#39;pca&#39;, &#39;neighbors_30&#39;, &#39;diffmap_evals&#39;
-    obsm: &#39;tsne&#39;, &#39;MAGIC_imputed_data&#39;, &#39;palantir_branch_probs&#39;, &#39;X_tsne&#39;, &#39;X_pca&#39;, &#39;X_diffmap&#39;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>AnnData object with n_obs × n_vars = 5780 × 14612
+    obs: &#39;clusters&#39;
+    uns: &#39;cluster_colors&#39;, &#39;ct_colors&#39;, &#39;clusters_colors&#39;, &#39;pca&#39;
+    obsm: &#39;tsne&#39;, &#39;X_tsne&#39;, &#39;X_pca&#39;
     varm: &#39;PCs&#39;
-    obsp: &#39;neighbors_30_distances&#39;, &#39;neighbors_30_connectivities&#39;
 </pre></div>
 </div>
 </div>
 </div>
 <p>As part of the analysis, palantir first computes diffusion maps on the data, then scales the diffusion components based on their eigenvalues (please see the manuscript for more details). Then it uses the rescaled diffusion components to build the pseudotime.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>palantir
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting palantir
-  Downloading palantir-1.3.3-py3-none-any.whl (50 kB)
-     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">50.5/50.5 kB</span> <span class=" -Color -Color-Red">1.3 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
-?25hRequirement already satisfied: pandas&gt;=0.22.0 in /Users/sara.jimenez/miniconda3/envs/scvi-env/lib/python3.9/site-packages (from palantir) (1.5.3)
-Requirement already satisfied: scikit-learn in /Users/sara.jimenez/miniconda3/envs/scvi-env/lib/python3.9/site-packages (from palantir) (1.2.2)
-Collecting mellon&gt;=1.3.0
-  Downloading mellon-1.4.3-py3-none-any.whl (95 kB)
-     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">96.0/96.0 kB</span> <span class=" -Color -Color-Red">2.7 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
-?25hRequirement already satisfied: scipy&gt;=1.3 in /Users/sara.jimenez/miniconda3/envs/scvi-env/lib/python3.9/site-packages (from palantir) (1.10.1)
-Requirement already satisfied: joblib in /Users/sara.jimenez/miniconda3/envs/scvi-env/lib/python3.9/site-packages (from palantir) (1.2.0)
-Requirement already satisfied: numpy&gt;=1.14.2 in /Users/sara.jimenez/miniconda3/envs/scvi-env/lib/python3.9/site-packages (from palantir) (1.24.3)
-Requirement already satisfied: anndata&gt;=0.8.0 in /Users/sara.jimenez/miniconda3/envs/scvi-env/lib/python3.9/site-packages (from palantir) (0.8.0)
-Collecting pygam
-  Downloading pygam-0.9.1-py3-none-any.whl (522 kB)
-     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">522.0/522.0 kB</span> <span class=" -Color -Color-Red">2.2 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>a <span class=" -Color -Color-Cyan">0:00:01</span>
-?25hCollecting fcsparser&gt;=0.1.2
-  Downloading fcsparser-0.2.8-py3-none-any.whl (14.6 MB)
-     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">14.6/14.6 MB</span> <span class=" -Color -Color-Red">5.5 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>00:0100:01
-?25hRequirement already satisfied: scanpy&gt;=1.6.0 in /Users/sara.jimenez/miniconda3/envs/scvi-env/lib/python3.9/site-packages (from palantir) (1.9.3)
-Requirement already satisfied: matplotlib&gt;=2.2.2 in /Users/sara.jimenez/miniconda3/envs/scvi-env/lib/python3.9/site-packages (from palantir) (3.7.1)
-Requirement already satisfied: networkx&gt;=2.1 in /Users/sara.jimenez/miniconda3/envs/scvi-env/lib/python3.9/site-packages (from palantir) (3.1)
-Requirement already satisfied: leidenalg&gt;=0.9.1 in /Users/sara.jimenez/miniconda3/envs/scvi-env/lib/python3.9/site-packages (from palantir) (0.9.1)
-Requirement already satisfied: packaging&gt;=20 in /Users/sara.jimenez/miniconda3/envs/scvi-env/lib/python3.9/site-packages (from anndata&gt;=0.8.0-&gt;palantir) (23.1)
-Requirement already satisfied: h5py&gt;=3 in /Users/sara.jimenez/miniconda3/envs/scvi-env/lib/python3.9/site-packages (from anndata&gt;=0.8.0-&gt;palantir) (3.8.0)
-Requirement already satisfied: natsort in /Users/sara.jimenez/miniconda3/envs/scvi-env/lib/python3.9/site-packages (from anndata&gt;=0.8.0-&gt;palantir) (8.3.1)
-Requirement already satisfied: igraph&lt;0.11,&gt;=0.10.0 in /Users/sara.jimenez/miniconda3/envs/scvi-env/lib/python3.9/site-packages (from leidenalg&gt;=0.9.1-&gt;palantir) (0.10.4)
-Requirement already satisfied: kiwisolver&gt;=1.0.1 in /Users/sara.jimenez/miniconda3/envs/scvi-env/lib/python3.9/site-packages (from matplotlib&gt;=2.2.2-&gt;palantir) (1.4.4)
-Requirement already satisfied: fonttools&gt;=4.22.0 in /Users/sara.jimenez/miniconda3/envs/scvi-env/lib/python3.9/site-packages (from matplotlib&gt;=2.2.2-&gt;palantir) (4.39.4)
-Requirement already satisfied: cycler&gt;=0.10 in /Users/sara.jimenez/miniconda3/envs/scvi-env/lib/python3.9/site-packages (from matplotlib&gt;=2.2.2-&gt;palantir) (0.11.0)
-Requirement already satisfied: pillow&gt;=6.2.0 in /Users/sara.jimenez/miniconda3/envs/scvi-env/lib/python3.9/site-packages (from matplotlib&gt;=2.2.2-&gt;palantir) (9.5.0)
-Requirement already satisfied: python-dateutil&gt;=2.7 in /Users/sara.jimenez/miniconda3/envs/scvi-env/lib/python3.9/site-packages (from matplotlib&gt;=2.2.2-&gt;palantir) (2.8.2)
-Requirement already satisfied: contourpy&gt;=1.0.1 in /Users/sara.jimenez/miniconda3/envs/scvi-env/lib/python3.9/site-packages (from matplotlib&gt;=2.2.2-&gt;palantir) (1.0.7)
-Requirement already satisfied: pyparsing&gt;=2.3.1 in /Users/sara.jimenez/miniconda3/envs/scvi-env/lib/python3.9/site-packages (from matplotlib&gt;=2.2.2-&gt;palantir) (3.0.9)
-Requirement already satisfied: importlib-resources&gt;=3.2.0 in /Users/sara.jimenez/miniconda3/envs/scvi-env/lib/python3.9/site-packages (from matplotlib&gt;=2.2.2-&gt;palantir) (5.12.0)
-Requirement already satisfied: jax in /Users/sara.jimenez/miniconda3/envs/scvi-env/lib/python3.9/site-packages (from mellon&gt;=1.3.0-&gt;palantir) (0.4.10)
-Collecting jaxopt
-  Downloading jaxopt-0.8.3-py3-none-any.whl (172 kB)
-     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">172.3/172.3 kB</span> <span class=" -Color -Color-Red">6.1 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>a <span class=" -Color -Color-Cyan">0:00:01</span>
-?25hRequirement already satisfied: pytz&gt;=2020.1 in /Users/sara.jimenez/miniconda3/envs/scvi-env/lib/python3.9/site-packages (from pandas&gt;=0.22.0-&gt;palantir) (2023.3)
-Requirement already satisfied: statsmodels&gt;=0.10.0rc2 in /Users/sara.jimenez/miniconda3/envs/scvi-env/lib/python3.9/site-packages (from scanpy&gt;=1.6.0-&gt;palantir) (0.14.0)
-Requirement already satisfied: patsy in /Users/sara.jimenez/miniconda3/envs/scvi-env/lib/python3.9/site-packages (from scanpy&gt;=1.6.0-&gt;palantir) (0.5.3)
-Requirement already satisfied: session-info in /Users/sara.jimenez/miniconda3/envs/scvi-env/lib/python3.9/site-packages (from scanpy&gt;=1.6.0-&gt;palantir) (1.0.0)
-Requirement already satisfied: numba&gt;=0.41.0 in /Users/sara.jimenez/miniconda3/envs/scvi-env/lib/python3.9/site-packages (from scanpy&gt;=1.6.0-&gt;palantir) (0.57.0)
-Requirement already satisfied: umap-learn&gt;=0.3.10 in /Users/sara.jimenez/miniconda3/envs/scvi-env/lib/python3.9/site-packages (from scanpy&gt;=1.6.0-&gt;palantir) (0.5.3)
-Requirement already satisfied: seaborn in /Users/sara.jimenez/miniconda3/envs/scvi-env/lib/python3.9/site-packages (from scanpy&gt;=1.6.0-&gt;palantir) (0.12.2)
-Requirement already satisfied: tqdm in /Users/sara.jimenez/miniconda3/envs/scvi-env/lib/python3.9/site-packages (from scanpy&gt;=1.6.0-&gt;palantir) (4.65.0)
-Requirement already satisfied: threadpoolctl&gt;=2.0.0 in /Users/sara.jimenez/miniconda3/envs/scvi-env/lib/python3.9/site-packages (from scikit-learn-&gt;palantir) (3.1.0)
-Collecting scipy&gt;=1.3
-  Downloading scipy-1.11.4-cp39-cp39-macosx_12_0_arm64.whl (29.7 MB)
-     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">29.7/29.7 MB</span> <span class=" -Color -Color-Red">4.1 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>00:0100:01
-?25hCollecting numpy&gt;=1.14.2
-  Downloading numpy-1.26.4-cp39-cp39-macosx_11_0_arm64.whl (14.0 MB)
-     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">14.0/14.0 MB</span> <span class=" -Color -Color-Red">3.9 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>00:0100:01
-?25hCollecting progressbar2&lt;5.0.0,&gt;=4.2.0
-  Downloading progressbar2-4.5.0-py3-none-any.whl (57 kB)
-     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">57.1/57.1 kB</span> <span class=" -Color -Color-Red">3.6 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>
-?25hRequirement already satisfied: texttable&gt;=1.6.2 in /Users/sara.jimenez/miniconda3/envs/scvi-env/lib/python3.9/site-packages (from igraph&lt;0.11,&gt;=0.10.0-&gt;leidenalg&gt;=0.9.1-&gt;palantir) (1.6.7)
-Requirement already satisfied: zipp&gt;=3.1.0 in /Users/sara.jimenez/miniconda3/envs/scvi-env/lib/python3.9/site-packages (from importlib-resources&gt;=3.2.0-&gt;matplotlib&gt;=2.2.2-&gt;palantir) (3.15.0)
-Requirement already satisfied: llvmlite&lt;0.41,&gt;=0.40.0dev0 in /Users/sara.jimenez/miniconda3/envs/scvi-env/lib/python3.9/site-packages (from numba&gt;=0.41.0-&gt;scanpy&gt;=1.6.0-&gt;palantir) (0.40.0)
-Collecting numba&gt;=0.41.0
-  Downloading numba-0.60.0-cp39-cp39-macosx_11_0_arm64.whl (2.7 MB)
-     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">2.7/2.7 MB</span> <span class=" -Color -Color-Red">4.0 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>00:0100:01
-?25hCollecting llvmlite&lt;0.44,&gt;=0.43.0dev0
-  Downloading llvmlite-0.43.0-cp39-cp39-macosx_11_0_arm64.whl (28.8 MB)
-     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ <span class=" -Color -Color-Green">28.8/28.8 MB</span> <span class=" -Color -Color-Red">10.4 MB/s</span> eta <span class=" -Color -Color-Cyan">0:00:00</span>00:0100:01
-?25hCollecting python-utils&gt;=3.8.1
-  Downloading python_utils-3.9.0-py2.py3-none-any.whl (32 kB)
-Requirement already satisfied: six&gt;=1.5 in /Users/sara.jimenez/miniconda3/envs/scvi-env/lib/python3.9/site-packages (from python-dateutil&gt;=2.7-&gt;matplotlib&gt;=2.2.2-&gt;palantir) (1.16.0)
-Requirement already satisfied: pynndescent&gt;=0.5 in /Users/sara.jimenez/miniconda3/envs/scvi-env/lib/python3.9/site-packages (from umap-learn&gt;=0.3.10-&gt;scanpy&gt;=1.6.0-&gt;palantir) (0.5.10)
-Requirement already satisfied: ml-dtypes&gt;=0.1.0 in /Users/sara.jimenez/miniconda3/envs/scvi-env/lib/python3.9/site-packages (from jax-&gt;mellon&gt;=1.3.0-&gt;palantir) (0.1.0)
-Requirement already satisfied: opt-einsum in /Users/sara.jimenez/miniconda3/envs/scvi-env/lib/python3.9/site-packages (from jax-&gt;mellon&gt;=1.3.0-&gt;palantir) (3.3.0)
-Requirement already satisfied: jaxlib&gt;=0.1.69 in /Users/sara.jimenez/miniconda3/envs/scvi-env/lib/python3.9/site-packages (from jaxopt-&gt;mellon&gt;=1.3.0-&gt;palantir) (0.4.10)
-Requirement already satisfied: stdlib-list in /Users/sara.jimenez/miniconda3/envs/scvi-env/lib/python3.9/site-packages (from session-info-&gt;scanpy&gt;=1.6.0-&gt;palantir) (0.8.0)
-Requirement already satisfied: typing-extensions&gt;3.10.0.2 in /Users/sara.jimenez/miniconda3/envs/scvi-env/lib/python3.9/site-packages (from python-utils&gt;=3.8.1-&gt;progressbar2&lt;5.0.0,&gt;=4.2.0-&gt;pygam-&gt;palantir) (4.6.1)
-Installing collected packages: python-utils, numpy, llvmlite, scipy, progressbar2, numba, pygam, fcsparser, jaxopt, mellon, palantir
-  Attempting uninstall: numpy
-    Found existing installation: numpy 1.24.3
-    Uninstalling numpy-1.24.3:
-      Successfully uninstalled numpy-1.24.3
-  Attempting uninstall: llvmlite
-    Found existing installation: llvmlite 0.40.0
-    Uninstalling llvmlite-0.40.0:
-      Successfully uninstalled llvmlite-0.40.0
-  Attempting uninstall: scipy
-    Found existing installation: scipy 1.10.1
-    Uninstalling scipy-1.10.1:
-      Successfully uninstalled scipy-1.10.1
-  Attempting uninstall: numba
-    Found existing installation: numba 0.57.0
-    Uninstalling numba-0.57.0:
-      Successfully uninstalled numba-0.57.0
-Successfully installed fcsparser-0.2.8 jaxopt-0.8.3 llvmlite-0.43.0 mellon-1.4.3 numba-0.60.0 numpy-1.26.4 palantir-1.3.3 progressbar2-4.5.0 pygam-0.9.1 python-utils-3.9.0 scipy-1.11.4
-</pre></div>
-</div>
-</div>
-</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">palantir</span>
@@ -1321,12 +949,12 @@ Successfully installed fcsparser-0.2.8 jaxopt-0.8.3 llvmlite-0.43.0 mellon-1.4.3
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>AnnData object with n_obs × n_vars = 5780 × 14651
-    obs: &#39;clusters&#39;, &#39;palantir_pseudotime&#39;, &#39;palantir_diff_potential&#39;
-    uns: &#39;cluster_colors&#39;, &#39;ct_colors&#39;, &#39;palantir_branch_probs_cell_types&#39;, &#39;clusters_colors&#39;, &#39;pca&#39;, &#39;neighbors_30&#39;, &#39;diffmap_evals&#39;, &#39;DM_EigenValues&#39;
-    obsm: &#39;tsne&#39;, &#39;MAGIC_imputed_data&#39;, &#39;palantir_branch_probs&#39;, &#39;X_tsne&#39;, &#39;X_pca&#39;, &#39;X_diffmap&#39;, &#39;DM_EigenVectors&#39;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>AnnData object with n_obs × n_vars = 5780 × 14612
+    obs: &#39;clusters&#39;
+    uns: &#39;cluster_colors&#39;, &#39;ct_colors&#39;, &#39;clusters_colors&#39;, &#39;pca&#39;, &#39;DM_EigenValues&#39;
+    obsm: &#39;tsne&#39;, &#39;X_tsne&#39;, &#39;X_pca&#39;, &#39;DM_EigenVectors&#39;
     varm: &#39;PCs&#39;
-    obsp: &#39;neighbors_30_distances&#39;, &#39;neighbors_30_connectivities&#39;, &#39;DM_Kernel&#39;, &#39;DM_Similarity&#39;
+    obsp: &#39;DM_Kernel&#39;, &#39;DM_Similarity&#39;
 </pre></div>
 </div>
 </div>
@@ -1342,8 +970,7 @@ Successfully installed fcsparser-0.2.8 jaxopt-0.8.3 llvmlite-0.43.0 mellon-1.4.3
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="../_images/e221c4b6b221c5c5cde6eea5f11379c9808d6545ce2d67657352f626812dbb7a.png"><img alt="../_images/e221c4b6b221c5c5cde6eea5f11379c9808d6545ce2d67657352f626812dbb7a.png" src="../_images/e221c4b6b221c5c5cde6eea5f11379c9808d6545ce2d67657352f626812dbb7a.png" style="width: 392px; height: 375px;" />
-</a>
+<img alt="../_images/90fa049c052667c291669e4011322722d14a71ebbaa84685f19714073adc556d.png" src="../_images/90fa049c052667c291669e4011322722d14a71ebbaa84685f19714073adc556d.png" />
 </div>
 </div>
 <p>Like before we see a gap between 8th and 9th eigenvalues. Now, palantir will use this result to rescale the top N eigenvectors, which are chosen automatically (but can also be userdefined) based on the gap between eigenvalues as shown above.</p>
@@ -1361,12 +988,12 @@ Successfully installed fcsparser-0.2.8 jaxopt-0.8.3 llvmlite-0.43.0 mellon-1.4.3
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>AnnData object with n_obs × n_vars = 5780 × 14651
-    obs: &#39;clusters&#39;, &#39;palantir_pseudotime&#39;, &#39;palantir_diff_potential&#39;
-    uns: &#39;cluster_colors&#39;, &#39;ct_colors&#39;, &#39;palantir_branch_probs_cell_types&#39;, &#39;clusters_colors&#39;, &#39;pca&#39;, &#39;neighbors_30&#39;, &#39;diffmap_evals&#39;, &#39;DM_EigenValues&#39;
-    obsm: &#39;tsne&#39;, &#39;MAGIC_imputed_data&#39;, &#39;palantir_branch_probs&#39;, &#39;X_tsne&#39;, &#39;X_pca&#39;, &#39;X_diffmap&#39;, &#39;DM_EigenVectors&#39;, &#39;DM_EigenVectors_multiscaled&#39;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>AnnData object with n_obs × n_vars = 5780 × 14612
+    obs: &#39;clusters&#39;
+    uns: &#39;cluster_colors&#39;, &#39;ct_colors&#39;, &#39;clusters_colors&#39;, &#39;pca&#39;, &#39;DM_EigenValues&#39;
+    obsm: &#39;tsne&#39;, &#39;X_tsne&#39;, &#39;X_pca&#39;, &#39;DM_EigenVectors&#39;, &#39;DM_EigenVectors_multiscaled&#39;
     varm: &#39;PCs&#39;
-    obsp: &#39;neighbors_30_distances&#39;, &#39;neighbors_30_connectivities&#39;, &#39;DM_Kernel&#39;, &#39;DM_Similarity&#39;
+    obsp: &#39;DM_Kernel&#39;, &#39;DM_Similarity&#39;
 </pre></div>
 </div>
 </div>
@@ -1406,8 +1033,7 @@ Successfully installed fcsparser-0.2.8 jaxopt-0.8.3 llvmlite-0.43.0 mellon-1.4.3
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="../_images/29e927b5c425529eab774093f6a8f9dba034e7220af62cd3bf6cefda1bef6f83.png"><img alt="../_images/29e927b5c425529eab774093f6a8f9dba034e7220af62cd3bf6cefda1bef6f83.png" src="../_images/29e927b5c425529eab774093f6a8f9dba034e7220af62cd3bf6cefda1bef6f83.png" style="width: 1888px; height: 1417px;" />
-</a>
+<img alt="../_images/1aeae91f8421b98f4333bae52d463315dee39cfb08d3e5ac04686399e2bf5b4d.png" src="../_images/1aeae91f8421b98f4333bae52d463315dee39cfb08d3e5ac04686399e2bf5b4d.png" />
 </div>
 </div>
 <p>Visualize genes for interpretation:</p>
@@ -1420,13 +1046,12 @@ Successfully installed fcsparser-0.2.8 jaxopt-0.8.3 llvmlite-0.43.0 mellon-1.4.3
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="../_images/f90854b110b7a14132ce77f55dc809d5e8bffd158d073b2704115745d9ece7a7.png"><img alt="../_images/f90854b110b7a14132ce77f55dc809d5e8bffd158d073b2704115745d9ece7a7.png" src="../_images/f90854b110b7a14132ce77f55dc809d5e8bffd158d073b2704115745d9ece7a7.png" style="width: 1211px; height: 721px;" />
-</a>
+<img alt="../_images/92bc5f7a1d43176648fe8e05be172d2efd1d6be3d8542edff92d37220e771970.png" src="../_images/92bc5f7a1d43176648fe8e05be172d2efd1d6be3d8542edff92d37220e771970.png" />
 </div>
 </div>
 <section id="define-start-cell">
 <h3>Define start cell<a class="headerlink" href="#define-start-cell" title="Link to this heading">#</a></h3>
-<p>Palantir expects thatyou provide an example cell as a start point. The algorithm will use this cells as the initiating point of the trajectory but with each iteration, the start cell will be refined automatically. In other words, palantir is very robust to the choice of start cell, so it is OK that you only provide an approximate <code class="docutils literal notranslate"><span class="pre">start_cell</span></code>.</p>
+<p>Palantir expects that you provide an example cell as a start point. The algorithm will use this cell as the initiating point of the trajectory but with each iteration, the start cell will be refined automatically. In other words, palantir is very robust to the choice of start cell, so it is OK that you only provide an <em>approximate</em> <code class="docutils literal notranslate"><span class="pre">start_cell</span></code>.</p>
 <p>But how does one generally assign a start cell? This is a context dependent problem. In this data, the authors decided to find the cell with high expression of CD34 gene (the most primitive cell from Cluster 0) and define it as the start point. For this they selected a random cell from the highlighted region below.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1457,8 +1082,7 @@ Successfully installed fcsparser-0.2.8 jaxopt-0.8.3 llvmlite-0.43.0 mellon-1.4.3
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="../_images/ef7ef7bd6cf1cced5972577aaf1cf61791168b8635e676972fc1f309401d0630.png"><img alt="../_images/ef7ef7bd6cf1cced5972577aaf1cf61791168b8635e676972fc1f309401d0630.png" src="../_images/ef7ef7bd6cf1cced5972577aaf1cf61791168b8635e676972fc1f309401d0630.png" style="width: 1268px; height: 498px;" />
-</a>
+<img alt="../_images/f3f8ff2f5d6cb3df43a05962868d3b7e2f6faec18acad4d2950dbac7ea63196b.png" src="../_images/f3f8ff2f5d6cb3df43a05962868d3b7e2f6faec18acad4d2950dbac7ea63196b.png" />
 </div>
 </div>
 </section>
@@ -1509,8 +1133,7 @@ Successfully installed fcsparser-0.2.8 jaxopt-0.8.3 llvmlite-0.43.0 mellon-1.4.3
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="../_images/e9be17bbd190abc3e09f36fae945acd6e4b4fa25622e557cd7a13656c3385b56.png"><img alt="../_images/e9be17bbd190abc3e09f36fae945acd6e4b4fa25622e557cd7a13656c3385b56.png" src="../_images/e9be17bbd190abc3e09f36fae945acd6e4b4fa25622e557cd7a13656c3385b56.png" style="width: 2524px; height: 963px;" />
-</a>
+<img alt="../_images/083ec6fb89fa7156b8f10e1e4eee3be0f26550b5dcee02855ba28df8cab4b16f.png" src="../_images/083ec6fb89fa7156b8f10e1e4eee3be0f26550b5dcee02855ba28df8cab4b16f.png" />
 </div>
 </div>
 <p>In the plot above the tsne representation of the data is colored by each diffusion component. The cells with minimum value for the diffusion component is highlighted in red, while the cells with the maximum value for the diffusion component is highlighted is black. For the plots above, we can speculate that the potential terminal states are as follows after taking care of duplicates:</p>
@@ -1585,11 +1208,10 @@ Successfully installed fcsparser-0.2.8 jaxopt-0.8.3 llvmlite-0.43.0 mellon-1.4.3
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x2e874b400&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7f3fd6a42220&gt;
 </pre></div>
 </div>
-<a class="reference internal image-reference" href="../_images/1d066efd7f12e2766f84d953f9fec417e893b7b7fe69b6dbbb6e8ed31011d3bf.png"><img alt="../_images/1d066efd7f12e2766f84d953f9fec417e893b7b7fe69b6dbbb6e8ed31011d3bf.png" src="../_images/1d066efd7f12e2766f84d953f9fec417e893b7b7fe69b6dbbb6e8ed31011d3bf.png" style="width: 379px; height: 374px;" />
-</a>
+<img alt="../_images/3f78b0742c64e8048de387a0c82d45e4d44279eb152385221e2738ab501cfd77.png" src="../_images/3f78b0742c64e8048de387a0c82d45e4d44279eb152385221e2738ab501cfd77.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1601,8 +1223,7 @@ Successfully installed fcsparser-0.2.8 jaxopt-0.8.3 llvmlite-0.43.0 mellon-1.4.3
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="../_images/4f4425c058728113cd0e14efd200cf717d367ebb761f7194eb690cfb3336279b.png"><img alt="../_images/4f4425c058728113cd0e14efd200cf717d367ebb761f7194eb690cfb3336279b.png" src="../_images/4f4425c058728113cd0e14efd200cf717d367ebb761f7194eb690cfb3336279b.png" style="width: 1599px; height: 373px;" />
-</a>
+<img alt="../_images/222b621beb4757907a67374af166ac328aac0de57dc6e0b4aae2cb4ae6af389f.png" src="../_images/222b621beb4757907a67374af166ac328aac0de57dc6e0b4aae2cb4ae6af389f.png" />
 </div>
 </div>
 </section>
@@ -1618,10 +1239,10 @@ Successfully installed fcsparser-0.2.8 jaxopt-0.8.3 llvmlite-0.43.0 mellon-1.4.3
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Sampling and flocking waypoints...
-Time for determining waypoints: 0.005348682403564453 minutes
+Time for determining waypoints: 0.011640826861063639 minutes
 Determining pseudotime...
 Shortest path distances using 30-nearest neighbor graph...
-Time for shortest paths: 0.8863316337267558 minutes
+Time for shortest paths: 0.3310884952545166 minutes
 Iteratively refining the pseudotime...
 Correlation at iteration 1: 0.9996
 Correlation at iteration 2: 1.0000
@@ -1640,12 +1261,12 @@ Project results to all cells...
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>AnnData object with n_obs × n_vars = 5780 × 14651
-    obs: &#39;clusters&#39;, &#39;palantir_pseudotime&#39;, &#39;palantir_diff_potential&#39;, &#39;palantir_entropy&#39;
-    uns: &#39;cluster_colors&#39;, &#39;ct_colors&#39;, &#39;palantir_branch_probs_cell_types&#39;, &#39;clusters_colors&#39;, &#39;pca&#39;, &#39;neighbors_30&#39;, &#39;diffmap_evals&#39;, &#39;DM_EigenValues&#39;, &#39;palantir_waypoints&#39;
-    obsm: &#39;tsne&#39;, &#39;MAGIC_imputed_data&#39;, &#39;palantir_branch_probs&#39;, &#39;X_tsne&#39;, &#39;X_pca&#39;, &#39;X_diffmap&#39;, &#39;DM_EigenVectors&#39;, &#39;DM_EigenVectors_multiscaled&#39;, &#39;palantir_fate_probabilities&#39;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>AnnData object with n_obs × n_vars = 5780 × 14612
+    obs: &#39;clusters&#39;, &#39;palantir_pseudotime&#39;, &#39;palantir_entropy&#39;
+    uns: &#39;cluster_colors&#39;, &#39;ct_colors&#39;, &#39;clusters_colors&#39;, &#39;pca&#39;, &#39;DM_EigenValues&#39;, &#39;palantir_waypoints&#39;
+    obsm: &#39;tsne&#39;, &#39;X_tsne&#39;, &#39;X_pca&#39;, &#39;DM_EigenVectors&#39;, &#39;DM_EigenVectors_multiscaled&#39;, &#39;palantir_fate_probabilities&#39;
     varm: &#39;PCs&#39;
-    obsp: &#39;neighbors_30_distances&#39;, &#39;neighbors_30_connectivities&#39;, &#39;DM_Kernel&#39;, &#39;DM_Similarity&#39;
+    obsp: &#39;DM_Kernel&#39;, &#39;DM_Similarity&#39;
 </pre></div>
 </div>
 </div>
@@ -1668,17 +1289,17 @@ Project results to all cells...
 </div>
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>index
-Run4_120703408880541    0.550738
-Run4_120703409056541    0.074225
-Run4_120703409580963    0.752128
-Run4_120703423990708    0.722782
-Run4_120703424252854    0.564369
+Run4_120703408880541    0.543378
+Run4_120703409056541    0.073480
+Run4_120703409580963    0.745047
+Run4_120703423990708    0.707525
+Run4_120703424252854    0.495364
                           ...   
-Run5_241114589051630    0.857101
-Run5_241114589051819    0.413827
-Run5_241114589128940    0.472308
-Run5_241114589357942    0.887548
-Run5_241114589841822    0.470172
+Run5_241114589051630    0.841101
+Run5_241114589051819    0.400520
+Run5_241114589128940    0.483058
+Run5_241114589357942    0.872141
+Run5_241114589841822    0.473073
 Name: palantir_pseudotime, Length: 5780, dtype: float64
 </pre></div>
 </div>
@@ -1732,48 +1353,48 @@ Name: palantir_pseudotime, Length: 5780, dtype: float64
   <tbody>
     <tr>
       <th>Run4_120703408880541</th>
-      <td>0.166378</td>
-      <td>0.033098</td>
-      <td>0.692449</td>
+      <td>0.194640</td>
+      <td>0.042404</td>
+      <td>0.589250</td>
       <td>0.000000</td>
-      <td>0.035484</td>
-      <td>0.068032</td>
+      <td>0.071628</td>
+      <td>0.096334</td>
     </tr>
     <tr>
       <th>Run4_120703409056541</th>
-      <td>0.392431</td>
-      <td>0.077788</td>
-      <td>0.310796</td>
-      <td>0.026885</td>
-      <td>0.032207</td>
-      <td>0.159892</td>
+      <td>0.346379</td>
+      <td>0.075168</td>
+      <td>0.332505</td>
+      <td>0.019021</td>
+      <td>0.056162</td>
+      <td>0.170764</td>
     </tr>
     <tr>
       <th>Run4_120703409580963</th>
-      <td>0.938346</td>
-      <td>0.011350</td>
-      <td>0.023633</td>
+      <td>0.914851</td>
+      <td>0.014348</td>
+      <td>0.031800</td>
       <td>0.000000</td>
       <td>0.000000</td>
-      <td>0.023331</td>
+      <td>0.032569</td>
     </tr>
     <tr>
       <th>Run4_120703423990708</th>
-      <td>0.874245</td>
-      <td>0.023151</td>
-      <td>0.048204</td>
+      <td>0.874916</td>
+      <td>0.021077</td>
+      <td>0.046715</td>
       <td>0.000000</td>
       <td>0.000000</td>
-      <td>0.047587</td>
+      <td>0.047844</td>
     </tr>
     <tr>
       <th>Run4_120703424252854</th>
-      <td>0.406759</td>
-      <td>0.118921</td>
-      <td>0.201461</td>
+      <td>0.354335</td>
+      <td>0.122651</td>
+      <td>0.203145</td>
       <td>0.000000</td>
-      <td>0.021106</td>
-      <td>0.244437</td>
+      <td>0.034556</td>
+      <td>0.278791</td>
     </tr>
     <tr>
       <th>...</th>
@@ -1786,48 +1407,48 @@ Name: palantir_pseudotime, Length: 5780, dtype: float64
     </tr>
     <tr>
       <th>Run5_241114589051630</th>
-      <td>0.024373</td>
+      <td>0.041180</td>
       <td>0.000000</td>
-      <td>0.954936</td>
+      <td>0.912767</td>
       <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
+      <td>0.015487</td>
+      <td>0.020382</td>
     </tr>
     <tr>
       <th>Run5_241114589051819</th>
-      <td>0.436307</td>
-      <td>0.086823</td>
-      <td>0.261348</td>
+      <td>0.384889</td>
+      <td>0.083465</td>
+      <td>0.284330</td>
       <td>0.000000</td>
-      <td>0.027347</td>
-      <td>0.178463</td>
+      <td>0.048319</td>
+      <td>0.189614</td>
     </tr>
     <tr>
       <th>Run5_241114589128940</th>
-      <td>0.420652</td>
-      <td>0.083913</td>
-      <td>0.283884</td>
+      <td>0.365257</td>
+      <td>0.079772</td>
+      <td>0.311678</td>
       <td>0.000000</td>
-      <td>0.029924</td>
-      <td>0.172480</td>
+      <td>0.053226</td>
+      <td>0.181225</td>
     </tr>
     <tr>
       <th>Run5_241114589357942</th>
-      <td>0.014986</td>
+      <td>0.025483</td>
       <td>0.000000</td>
-      <td>0.972292</td>
+      <td>0.946017</td>
       <td>0.000000</td>
       <td>0.000000</td>
-      <td>0.000000</td>
+      <td>0.012613</td>
     </tr>
     <tr>
       <th>Run5_241114589841822</th>
-      <td>0.442553</td>
-      <td>0.088615</td>
-      <td>0.251219</td>
+      <td>0.388665</td>
+      <td>0.084475</td>
+      <td>0.278553</td>
       <td>0.000000</td>
-      <td>0.026313</td>
-      <td>0.182146</td>
+      <td>0.047368</td>
+      <td>0.191909</td>
     </tr>
   </tbody>
 </table>
@@ -1851,17 +1472,17 @@ Name: palantir_pseudotime, Length: 5780, dtype: float64
 </div>
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>index
-Run4_120703408880541    0.991592
-Run4_120703409056541    1.429927
-Run4_120703409580963    0.307683
-Run4_120703423990708    0.533640
-Run4_120703424252854    1.403655
+Run4_120703408880541    1.208108
+Run4_120703409056541    1.466803
+Run4_120703409580963    0.398771
+Run4_120703423990708    0.535005
+Run4_120703424252854    1.453987
                           ...   
-Run5_241114589051630    0.238597
-Run5_241114589051819    1.375757
-Run5_241114589128940    1.380736
-Run5_241114589357942    0.160424
-Run5_241114589841822    1.371430
+Run5_241114589051630    0.409000
+Run5_241114589051819    1.437839
+Run5_241114589128940    1.440396
+Run5_241114589357942    0.279952
+Run5_241114589841822    1.435856
 Name: palantir_entropy, Length: 5780, dtype: float64
 </pre></div>
 </div>
@@ -1877,8 +1498,7 @@ Name: palantir_entropy, Length: 5780, dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="../_images/241c9d0ab6943943fa3750153398225035606066e28ff99bbf329949a3ead0a2.png"><img alt="../_images/241c9d0ab6943943fa3750153398225035606066e28ff99bbf329949a3ead0a2.png" src="../_images/241c9d0ab6943943fa3750153398225035606066e28ff99bbf329949a3ead0a2.png" style="width: 830px; height: 373px;" />
-</a>
+<img alt="../_images/a734d77da9e2608098b2ebcf3ec8c1f63fd389165023640c6546efa0dd4efb43.png" src="../_images/a734d77da9e2608098b2ebcf3ec8c1f63fd389165023640c6546efa0dd4efb43.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1898,8 +1518,7 @@ Name: palantir_entropy, Length: 5780, dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="../_images/3db433cee5ba75c11caf35483c3c79004e9629a38d7f3ddb91a64ce9514ba49f.png"><img alt="../_images/3db433cee5ba75c11caf35483c3c79004e9629a38d7f3ddb91a64ce9514ba49f.png" src="../_images/3db433cee5ba75c11caf35483c3c79004e9629a38d7f3ddb91a64ce9514ba49f.png" style="width: 1866px; height: 966px;" />
-</a>
+<img alt="../_images/dfa42fd68521fd203b5431d8c82e0658bf869aab8877f18d21c0355d0aeb51f7.png" src="../_images/dfa42fd68521fd203b5431d8c82e0658bf869aab8877f18d21c0355d0aeb51f7.png" />
 </div>
 </div>
 </section>
@@ -1948,8 +1567,7 @@ Name: palantir_entropy, Length: 5780, dtype: float64
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 1.0, &#39;Run4_121896095574750&#39;)
 </pre></div>
 </div>
-<a class="reference internal image-reference" href="../_images/697d321626cdf000e8e7ddc617f814673cd3b9fdc33746484721333d39bd55ff.png"><img alt="../_images/697d321626cdf000e8e7ddc617f814673cd3b9fdc33746484721333d39bd55ff.png" src="../_images/697d321626cdf000e8e7ddc617f814673cd3b9fdc33746484721333d39bd55ff.png" style="width: 1339px; height: 1005px;" />
-</a>
+<img alt="../_images/afb5913d3f2c1fde1353f5b36a3436d83ea229cbb5c111563552495dd392375c.png" src="../_images/afb5913d3f2c1fde1353f5b36a3436d83ea229cbb5c111563552495dd392375c.png" />
 </div>
 </div>
 </section>
@@ -1971,12 +1589,12 @@ Name: palantir_entropy, Length: 5780, dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>AnnData object with n_obs × n_vars = 5780 × 14651
-    obs: &#39;clusters&#39;, &#39;palantir_pseudotime&#39;, &#39;palantir_diff_potential&#39;, &#39;palantir_entropy&#39;
-    uns: &#39;cluster_colors&#39;, &#39;ct_colors&#39;, &#39;palantir_branch_probs_cell_types&#39;, &#39;clusters_colors&#39;, &#39;pca&#39;, &#39;neighbors_30&#39;, &#39;diffmap_evals&#39;, &#39;DM_EigenValues&#39;, &#39;palantir_waypoints&#39;
-    obsm: &#39;tsne&#39;, &#39;MAGIC_imputed_data&#39;, &#39;palantir_branch_probs&#39;, &#39;X_tsne&#39;, &#39;X_pca&#39;, &#39;X_diffmap&#39;, &#39;DM_EigenVectors&#39;, &#39;DM_EigenVectors_multiscaled&#39;, &#39;palantir_fate_probabilities&#39;, &#39;branch_masks&#39;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>AnnData object with n_obs × n_vars = 5780 × 14612
+    obs: &#39;clusters&#39;, &#39;palantir_pseudotime&#39;, &#39;palantir_entropy&#39;
+    uns: &#39;cluster_colors&#39;, &#39;ct_colors&#39;, &#39;clusters_colors&#39;, &#39;pca&#39;, &#39;DM_EigenValues&#39;, &#39;palantir_waypoints&#39;
+    obsm: &#39;tsne&#39;, &#39;X_tsne&#39;, &#39;X_pca&#39;, &#39;DM_EigenVectors&#39;, &#39;DM_EigenVectors_multiscaled&#39;, &#39;palantir_fate_probabilities&#39;, &#39;branch_masks&#39;
     varm: &#39;PCs&#39;
-    obsp: &#39;neighbors_30_distances&#39;, &#39;neighbors_30_connectivities&#39;, &#39;DM_Kernel&#39;, &#39;DM_Similarity&#39;
+    obsp: &#39;DM_Kernel&#39;, &#39;DM_Similarity&#39;
 </pre></div>
 </div>
 </div>
@@ -2035,12 +1653,12 @@ Name: palantir_entropy, Length: 5780, dtype: float64
     </tr>
     <tr>
       <th>Run4_120703409056541</th>
+      <td>True</td>
+      <td>True</td>
+      <td>True</td>
       <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
-      <td>False</td>
+      <td>True</td>
+      <td>True</td>
     </tr>
     <tr>
       <th>Run4_120703409580963</th>
@@ -2063,11 +1681,11 @@ Name: palantir_entropy, Length: 5780, dtype: float64
     <tr>
       <th>Run4_120703424252854</th>
       <td>False</td>
+      <td>True</td>
       <td>False</td>
       <td>False</td>
       <td>False</td>
-      <td>False</td>
-      <td>False</td>
+      <td>True</td>
     </tr>
     <tr>
       <th>...</th>
@@ -2089,7 +1707,7 @@ Name: palantir_entropy, Length: 5780, dtype: float64
     </tr>
     <tr>
       <th>Run5_241114589051819</th>
-      <td>False</td>
+      <td>True</td>
       <td>True</td>
       <td>False</td>
       <td>False</td>
@@ -2179,36 +1797,15 @@ plot_branch_selection(ad: anndata._core.anndata.AnnData, pseudo_time_key: str = 
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="../_images/b63cf419bdd29f9271eb4aeb10952ff871e6c49b977bc87d114a78c96ea57704.png"><img alt="../_images/b63cf419bdd29f9271eb4aeb10952ff871e6c49b977bc87d114a78c96ea57704.png" src="../_images/b63cf419bdd29f9271eb4aeb10952ff871e6c49b977bc87d114a78c96ea57704.png" style="width: 1478px; height: 2978px;" />
-</a>
+<img alt="../_images/12b41905ce7728b81ca8401e32a9269bb0cbe3adbaecb193c56f04392d190a72.png" src="../_images/12b41905ce7728b81ca8401e32a9269bb0cbe3adbaecb193c56f04392d190a72.png" />
 </div>
 </div>
-<p>Now we can compute the gene expression trend along the trajectory.</p>
+<p>Now we can compute the gene expression trend along the trajectory. It is recommended that you MAGIC impute the data for this otherwise the trends will not be informative (due to 0s).</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gene_trends</span> <span class="o">=</span> <span class="n">palantir</span><span class="o">.</span><span class="n">presults</span><span class="o">.</span><span class="n">compute_gene_trends</span><span class="p">(</span><span class="n">adata_bm</span><span class="p">)</span><span class="c1">#, expression_key=&quot;magic_imputed_data&quot;)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Branch1
-[2024-11-07 22:58:32,311] [INFO    ] Using sparse Gaussian Process since n_landmarks (500) &lt; n_samples (1,444) and rank = 1.0.
-[2024-11-07 22:58:32,312] [INFO    ] Using covariance function Matern52(ls=1.0).
-Branch2
-[2024-11-07 22:58:35,021] [INFO    ] Using sparse Gaussian Process since n_landmarks (500) &lt; n_samples (1,361) and rank = 1.0.
-[2024-11-07 22:58:35,021] [INFO    ] Using covariance function Matern52(ls=1.0).
-Branch3
-[2024-11-07 22:58:36,951] [INFO    ] Using sparse Gaussian Process since n_landmarks (500) &lt; n_samples (1,240) and rank = 1.0.
-[2024-11-07 22:58:36,953] [INFO    ] Using covariance function Matern52(ls=1.0).
-Branch4
-[2024-11-07 22:58:39,120] [INFO    ] Using sparse Gaussian Process since n_landmarks (500) &lt; n_samples (540) and rank = 1.0.
-[2024-11-07 22:58:39,122] [INFO    ] Using covariance function Matern52(ls=1.0).
-Branch5
-[2024-11-07 22:58:40,712] [INFO    ] Using non-sparse Gaussian Process since n_landmarks (500) &gt;= n_samples (476) and rank = 1.0.
-[2024-11-07 22:58:40,713] [INFO    ] Using covariance function Matern52(ls=1.0).
-Branch6
-[2024-11-07 22:58:42,948] [INFO    ] Using sparse Gaussian Process since n_landmarks (500) &lt; n_samples (1,370) and rank = 1.0.
-[2024-11-07 22:58:42,949] [INFO    ] Using covariance function Matern52(ls=1.0).
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;/data/peer/sharmar1/msk_workshop/workshop_2024_spring/python_funs/&quot;</span><span class="p">)</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">workshop_extra</span>
 </pre></div>
 </div>
 </div>
@@ -2220,12 +1817,90 @@ Branch6
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>AnnData object with n_obs × n_vars = 5780 × 14651
-    obs: &#39;clusters&#39;, &#39;palantir_pseudotime&#39;, &#39;palantir_diff_potential&#39;, &#39;palantir_entropy&#39;
-    uns: &#39;cluster_colors&#39;, &#39;ct_colors&#39;, &#39;palantir_branch_probs_cell_types&#39;, &#39;clusters_colors&#39;, &#39;pca&#39;, &#39;neighbors_30&#39;, &#39;diffmap_evals&#39;, &#39;DM_EigenValues&#39;, &#39;palantir_waypoints&#39;
-    obsm: &#39;tsne&#39;, &#39;MAGIC_imputed_data&#39;, &#39;palantir_branch_probs&#39;, &#39;X_tsne&#39;, &#39;X_pca&#39;, &#39;X_diffmap&#39;, &#39;DM_EigenVectors&#39;, &#39;DM_EigenVectors_multiscaled&#39;, &#39;palantir_fate_probabilities&#39;, &#39;branch_masks&#39;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>AnnData object with n_obs × n_vars = 5780 × 14612
+    obs: &#39;clusters&#39;, &#39;palantir_pseudotime&#39;, &#39;palantir_entropy&#39;
+    uns: &#39;cluster_colors&#39;, &#39;ct_colors&#39;, &#39;clusters_colors&#39;, &#39;pca&#39;, &#39;DM_EigenValues&#39;, &#39;palantir_waypoints&#39;
+    obsm: &#39;tsne&#39;, &#39;X_tsne&#39;, &#39;X_pca&#39;, &#39;DM_EigenVectors&#39;, &#39;DM_EigenVectors_multiscaled&#39;, &#39;palantir_fate_probabilities&#39;, &#39;branch_masks&#39;
+    varm: &#39;PCs&#39;
+    obsp: &#39;DM_Kernel&#39;, &#39;DM_Similarity&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">workshop_extra</span><span class="o">.</span><span class="n">run_MAGIC</span><span class="p">(</span><span class="n">adata_bm</span><span class="p">,</span> 
+                         <span class="n">t</span> <span class="o">=</span> <span class="mi">3</span><span class="p">,</span> 
+                         <span class="n">use_rep</span><span class="o">=</span> <span class="s1">&#39;X_pca&#39;</span><span class="p">,</span> 
+                         <span class="n">n_components</span> <span class="o">=</span> <span class="mi">30</span><span class="p">,</span> 
+                         <span class="n">metric</span> <span class="o">=</span> <span class="s1">&#39;euclidean&#39;</span><span class="p">,</span> 
+                         <span class="n">key_added</span> <span class="o">=</span> <span class="s1">&#39;magic&#39;</span><span class="p">,</span> 
+                         <span class="n">impute</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Computing nearest neighbor graph
+Using knn_affinity = 10
+Creating Kernel
+Creating Markov Matrix
+Imputing
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>AnnData object with n_obs × n_vars = 5780 × 14612
+    obs: &#39;clusters&#39;, &#39;palantir_pseudotime&#39;, &#39;palantir_entropy&#39;
+    uns: &#39;cluster_colors&#39;, &#39;ct_colors&#39;, &#39;clusters_colors&#39;, &#39;pca&#39;, &#39;DM_EigenValues&#39;, &#39;palantir_waypoints&#39;, &#39;magic_diffmap_results&#39;
+    obsm: &#39;tsne&#39;, &#39;X_tsne&#39;, &#39;X_pca&#39;, &#39;DM_EigenVectors&#39;, &#39;DM_EigenVectors_multiscaled&#39;, &#39;palantir_fate_probabilities&#39;, &#39;branch_masks&#39;
+    varm: &#39;PCs&#39;
+    layers: &#39;magic_imputed_data&#39;
+    obsp: &#39;DM_Kernel&#39;, &#39;DM_Similarity&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gene_trends</span> <span class="o">=</span> <span class="n">palantir</span><span class="o">.</span><span class="n">presults</span><span class="o">.</span><span class="n">compute_gene_trends</span><span class="p">(</span><span class="n">adata_bm</span><span class="p">,</span> <span class="n">expression_key</span><span class="o">=</span><span class="s2">&quot;magic_imputed_data&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Branch1
+[2024-02-28 17:36:06,916] [INFO    ] Using sparse Gaussian Process since n_landmarks (500) &lt; n_samples (1,496) and rank = 1.0.
+[2024-02-28 17:36:06,917] [INFO    ] Using covariance function Matern52(ls=1.0).
+Branch2
+[2024-02-28 17:36:12,296] [INFO    ] Using sparse Gaussian Process since n_landmarks (500) &lt; n_samples (1,327) and rank = 1.0.
+[2024-02-28 17:36:12,297] [INFO    ] Using covariance function Matern52(ls=1.0).
+Branch3
+[2024-02-28 17:36:16,326] [INFO    ] Using sparse Gaussian Process since n_landmarks (500) &lt; n_samples (1,321) and rank = 1.0.
+[2024-02-28 17:36:16,327] [INFO    ] Using covariance function Matern52(ls=1.0).
+Branch4
+[2024-02-28 17:36:20,407] [INFO    ] Using sparse Gaussian Process since n_landmarks (500) &lt; n_samples (539) and rank = 1.0.
+[2024-02-28 17:36:20,407] [INFO    ] Using covariance function Matern52(ls=1.0).
+Branch5
+[2024-02-28 17:36:23,294] [INFO    ] Using sparse Gaussian Process since n_landmarks (500) &lt; n_samples (564) and rank = 1.0.
+[2024-02-28 17:36:23,295] [INFO    ] Using covariance function Matern52(ls=1.0).
+Branch6
+[2024-02-28 17:36:26,265] [INFO    ] Using sparse Gaussian Process since n_landmarks (500) &lt; n_samples (1,334) and rank = 1.0.
+[2024-02-28 17:36:26,266] [INFO    ] Using covariance function Matern52(ls=1.0).
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adata_bm</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>AnnData object with n_obs × n_vars = 5780 × 14612
+    obs: &#39;clusters&#39;, &#39;palantir_pseudotime&#39;, &#39;palantir_entropy&#39;
+    uns: &#39;cluster_colors&#39;, &#39;ct_colors&#39;, &#39;clusters_colors&#39;, &#39;pca&#39;, &#39;DM_EigenValues&#39;, &#39;palantir_waypoints&#39;, &#39;magic_diffmap_results&#39;
+    obsm: &#39;tsne&#39;, &#39;X_tsne&#39;, &#39;X_pca&#39;, &#39;DM_EigenVectors&#39;, &#39;DM_EigenVectors_multiscaled&#39;, &#39;palantir_fate_probabilities&#39;, &#39;branch_masks&#39;
     varm: &#39;PCs&#39;, &#39;gene_trends_Branch1&#39;, &#39;gene_trends_Branch2&#39;, &#39;gene_trends_Branch3&#39;, &#39;gene_trends_Branch4&#39;, &#39;gene_trends_Branch5&#39;, &#39;gene_trends_Branch6&#39;
-    obsp: &#39;neighbors_30_distances&#39;, &#39;neighbors_30_connectivities&#39;, &#39;DM_Kernel&#39;, &#39;DM_Similarity&#39;
+    layers: &#39;magic_imputed_data&#39;
+    obsp: &#39;DM_Kernel&#39;, &#39;DM_Similarity&#39;
 </pre></div>
 </div>
 </div>
@@ -2239,8 +1914,7 @@ Branch6
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="../_images/38ba2b6b4eb5e08c76b8957443dd8530726de0c879aadea11896701e79c1e23e.png"><img alt="../_images/38ba2b6b4eb5e08c76b8957443dd8530726de0c879aadea11896701e79c1e23e.png" src="../_images/38ba2b6b4eb5e08c76b8957443dd8530726de0c879aadea11896701e79c1e23e.png" style="width: 613px; height: 982px;" />
-</a>
+<img alt="../_images/be9e7eb3aac4e7efb0ee2229a9fc71bdaf79e6dc3c8f3cf0af635e0cb18c4f9f.png" src="../_images/be9e7eb3aac4e7efb0ee2229a9fc71bdaf79e6dc3c8f3cf0af635e0cb18c4f9f.png" />
 </div>
 </div>
 <p>As heatmaps:</p>
@@ -2252,8 +1926,7 @@ Branch6
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="../_images/8c88a2bf8b23e6760c40f4b71a1510188189a4f2a4be075c1ba482a52a1b6218.png"><img alt="../_images/8c88a2bf8b23e6760c40f4b71a1510188189a4f2a4be075c1ba482a52a1b6218.png" src="../_images/8c88a2bf8b23e6760c40f4b71a1510188189a4f2a4be075c1ba482a52a1b6218.png" style="width: 594px; height: 1313px;" />
-</a>
+<img alt="../_images/e95898b6861c0b940251f174b9228f7d7268f43a8ee4429068993416fdb6e29a.png" src="../_images/e95898b6861c0b940251f174b9228f7d7268f43a8ee4429068993416fdb6e29a.png" />
 </div>
 </div>
 </section>
@@ -2277,7 +1950,7 @@ Branch6
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Help on function cluster_gene_trends in module palantir.presults:
 
-cluster_gene_trends(data: Union[anndata._core.anndata.AnnData, pandas.core.frame.DataFrame], branch_name: str, genes: Optional[List[str]] = None, gene_trend_key: Optional[str] = &#39;gene_trends&#39;, n_neighbors: int = 150, **kwargs) -&gt; pandas.core.series.Series
+cluster_gene_trends(data: Union[anndata._core.anndata.AnnData, pandas.core.frame.DataFrame], branch_name: str, genes: Union[List[str], NoneType] = None, gene_trend_key: Union[str, NoneType] = &#39;gene_trends&#39;, n_neighbors: int = 150, **kwargs) -&gt; pandas.core.series.Series
     Cluster gene trends using the Leiden algorithm.
     
     This function applies the Leiden clustering algorithm to gene expression trends
@@ -2330,8 +2003,7 @@ cluster_gene_trends(data: Union[anndata._core.anndata.AnnData, pandas.core.frame
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="../_images/a04ea7179f6706d17d52752db6f823c11b1b4275472e42540085995322f3d181.png"><img alt="../_images/a04ea7179f6706d17d52752db6f823c11b1b4275472e42540085995322f3d181.png" src="../_images/a04ea7179f6706d17d52752db6f823c11b1b4275472e42540085995322f3d181.png" style="width: 1339px; height: 800px;" />
-</a>
+<img alt="../_images/36ceaea67690cdff3ea09e608bba60ea9f1b02632108ab63ca16bd94e84621da.png" src="../_images/36ceaea67690cdff3ea09e608bba60ea9f1b02632108ab63ca16bd94e84621da.png" />
 </div>
 </div>
 </section>
@@ -2348,13 +2020,10 @@ cluster_gene_trends(data: Union[anndata._core.anndata.AnnData, pandas.core.frame
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>AnnData object with n_obs × n_vars = 5780 × 14651
-    obs: &#39;clusters&#39;, &#39;palantir_pseudotime&#39;, &#39;palantir_diff_potential&#39;, &#39;palantir_entropy&#39;
-    var: &#39;gene_trends_clusters&#39;
-    uns: &#39;cluster_colors&#39;, &#39;ct_colors&#39;, &#39;palantir_branch_probs_cell_types&#39;, &#39;clusters_colors&#39;, &#39;pca&#39;, &#39;neighbors_30&#39;, &#39;diffmap_evals&#39;, &#39;DM_EigenValues&#39;, &#39;palantir_waypoints&#39;
-    obsm: &#39;tsne&#39;, &#39;MAGIC_imputed_data&#39;, &#39;palantir_branch_probs&#39;, &#39;X_tsne&#39;, &#39;X_pca&#39;, &#39;X_diffmap&#39;, &#39;DM_EigenVectors&#39;, &#39;DM_EigenVectors_multiscaled&#39;, &#39;palantir_fate_probabilities&#39;, &#39;branch_masks&#39;
-    varm: &#39;PCs&#39;, &#39;gene_trends_Branch1&#39;, &#39;gene_trends_Branch2&#39;, &#39;gene_trends_Branch3&#39;, &#39;gene_trends_Branch4&#39;, &#39;gene_trends_Branch5&#39;, &#39;gene_trends_Branch6&#39;
-    obsp: &#39;neighbors_30_distances&#39;, &#39;neighbors_30_connectivities&#39;, &#39;DM_Kernel&#39;, &#39;DM_Similarity&#39;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>AnnData object with n_obs × n_vars = 5780 × 14612
+    obs: &#39;clusters&#39;
+    uns: &#39;cluster_colors&#39;, &#39;ct_colors&#39;, &#39;clusters_colors&#39;
+    obsm: &#39;tsne&#39;, &#39;X_tsne&#39;
 </pre></div>
 </div>
 </div>
@@ -2366,12 +2035,11 @@ cluster_gene_trends(data: Union[anndata._core.anndata.AnnData, pandas.core.frame
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/sara.jimenez/miniconda3/envs/scvi-env/lib/python3.9/site-packages/scanpy/plotting/_tools/scatterplots.py:392: UserWarning: No data for colormapping provided via &#39;c&#39;. Parameters &#39;cmap&#39; will be ignored
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/sharmar1/miniconda3/envs/workshop_2024/lib/python3.8/site-packages/scanpy/plotting/_tools/scatterplots.py:394: UserWarning: No data for colormapping provided via &#39;c&#39;. Parameters &#39;cmap&#39; will be ignored
   cax = scatter(
 </pre></div>
 </div>
-<a class="reference internal image-reference" href="../_images/78440b84997d129ce17460b90cae0153eb3c1ae034ff842df08afc89251edffa.png"><img alt="../_images/78440b84997d129ce17460b90cae0153eb3c1ae034ff842df08afc89251edffa.png" src="../_images/78440b84997d129ce17460b90cae0153eb3c1ae034ff842df08afc89251edffa.png" style="width: 404px; height: 369px;" />
-</a>
+<img alt="../_images/2cbd42d3fb1915d43b1d789f717ba80bc9d6a1680180c711f882fa2821162d6c.png" src="../_images/2cbd42d3fb1915d43b1d789f717ba80bc9d6a1680180c711f882fa2821162d6c.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -2408,13 +2076,12 @@ cluster_gene_trends(data: Union[anndata._core.anndata.AnnData, pandas.core.frame
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>AnnData object with n_obs × n_vars = 5780 × 14651
-    obs: &#39;clusters&#39;, &#39;palantir_pseudotime&#39;, &#39;palantir_diff_potential&#39;, &#39;palantir_entropy&#39;
-    var: &#39;gene_trends_clusters&#39;
-    uns: &#39;cluster_colors&#39;, &#39;ct_colors&#39;, &#39;palantir_branch_probs_cell_types&#39;, &#39;clusters_colors&#39;, &#39;pca&#39;, &#39;neighbors_30&#39;, &#39;diffmap_evals&#39;, &#39;DM_EigenValues&#39;, &#39;palantir_waypoints&#39;, &#39;paga&#39;, &#39;clusters_sizes&#39;
-    obsm: &#39;tsne&#39;, &#39;MAGIC_imputed_data&#39;, &#39;palantir_branch_probs&#39;, &#39;X_tsne&#39;, &#39;X_pca&#39;, &#39;X_diffmap&#39;, &#39;DM_EigenVectors&#39;, &#39;DM_EigenVectors_multiscaled&#39;, &#39;palantir_fate_probabilities&#39;, &#39;branch_masks&#39;
-    varm: &#39;PCs&#39;, &#39;gene_trends_Branch1&#39;, &#39;gene_trends_Branch2&#39;, &#39;gene_trends_Branch3&#39;, &#39;gene_trends_Branch4&#39;, &#39;gene_trends_Branch5&#39;, &#39;gene_trends_Branch6&#39;
-    obsp: &#39;neighbors_30_distances&#39;, &#39;neighbors_30_connectivities&#39;, &#39;DM_Kernel&#39;, &#39;DM_Similarity&#39;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>AnnData object with n_obs × n_vars = 5780 × 14612
+    obs: &#39;clusters&#39;
+    uns: &#39;cluster_colors&#39;, &#39;ct_colors&#39;, &#39;clusters_colors&#39;, &#39;pca&#39;, &#39;neighbors_30&#39;, &#39;paga&#39;, &#39;clusters_sizes&#39;
+    obsm: &#39;tsne&#39;, &#39;X_tsne&#39;, &#39;X_pca&#39;
+    varm: &#39;PCs&#39;
+    obsp: &#39;neighbors_30_distances&#39;, &#39;neighbors_30_connectivities&#39;
 </pre></div>
 </div>
 </div>
@@ -2442,8 +2109,7 @@ cluster_gene_trends(data: Union[anndata._core.anndata.AnnData, pandas.core.frame
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="../_images/466677740458c89dda010cfe97418b6ad7ab263428e3dd13d44dd58e25400a06.png"><img alt="../_images/466677740458c89dda010cfe97418b6ad7ab263428e3dd13d44dd58e25400a06.png" src="../_images/466677740458c89dda010cfe97418b6ad7ab263428e3dd13d44dd58e25400a06.png" style="width: 331px; height: 352px;" />
-</a>
+<img alt="../_images/1449f2c05b547cd4f44669567d05d89595789372d4918407adeb6270b1257c4b.png" src="../_images/1449f2c05b547cd4f44669567d05d89595789372d4918407adeb6270b1257c4b.png" />
 </div>
 </div>
 <p>Interpreting the plot above:</p>
@@ -2460,8 +2126,7 @@ cluster_gene_trends(data: Union[anndata._core.anndata.AnnData, pandas.core.frame
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="../_images/0485292fff5cb7ca4b68477fbc19c3e165f2c1494107cf364472338ece5cc996.png"><img alt="../_images/0485292fff5cb7ca4b68477fbc19c3e165f2c1494107cf364472338ece5cc996.png" src="../_images/0485292fff5cb7ca4b68477fbc19c3e165f2c1494107cf364472338ece5cc996.png" style="width: 1154px; height: 374px;" />
-</a>
+<img alt="../_images/e863bd4e12aff3e17405f0f1dcdb6e944966e9ed5014c652c821f2bde3e2f2b9.png" src="../_images/e863bd4e12aff3e17405f0f1dcdb6e944966e9ed5014c652c821f2bde3e2f2b9.png" />
 </div>
 </div>
 </section>
@@ -2475,13 +2140,12 @@ cluster_gene_trends(data: Union[anndata._core.anndata.AnnData, pandas.core.frame
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>AnnData object with n_obs × n_vars = 5780 × 14651
-    obs: &#39;clusters&#39;, &#39;palantir_pseudotime&#39;, &#39;palantir_diff_potential&#39;, &#39;palantir_entropy&#39;
-    var: &#39;gene_trends_clusters&#39;
-    uns: &#39;cluster_colors&#39;, &#39;ct_colors&#39;, &#39;palantir_branch_probs_cell_types&#39;, &#39;clusters_colors&#39;, &#39;pca&#39;, &#39;neighbors_30&#39;, &#39;diffmap_evals&#39;, &#39;DM_EigenValues&#39;, &#39;palantir_waypoints&#39;, &#39;paga&#39;, &#39;clusters_sizes&#39;
-    obsm: &#39;tsne&#39;, &#39;MAGIC_imputed_data&#39;, &#39;palantir_branch_probs&#39;, &#39;X_tsne&#39;, &#39;X_pca&#39;, &#39;X_diffmap&#39;, &#39;DM_EigenVectors&#39;, &#39;DM_EigenVectors_multiscaled&#39;, &#39;palantir_fate_probabilities&#39;, &#39;branch_masks&#39;
-    varm: &#39;PCs&#39;, &#39;gene_trends_Branch1&#39;, &#39;gene_trends_Branch2&#39;, &#39;gene_trends_Branch3&#39;, &#39;gene_trends_Branch4&#39;, &#39;gene_trends_Branch5&#39;, &#39;gene_trends_Branch6&#39;
-    obsp: &#39;neighbors_30_distances&#39;, &#39;neighbors_30_connectivities&#39;, &#39;DM_Kernel&#39;, &#39;DM_Similarity&#39;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>AnnData object with n_obs × n_vars = 5780 × 14612
+    obs: &#39;clusters&#39;
+    uns: &#39;cluster_colors&#39;, &#39;ct_colors&#39;, &#39;clusters_colors&#39;, &#39;pca&#39;, &#39;neighbors_30&#39;, &#39;paga&#39;, &#39;clusters_sizes&#39;
+    obsm: &#39;tsne&#39;, &#39;X_tsne&#39;, &#39;X_pca&#39;
+    varm: &#39;PCs&#39;
+    obsp: &#39;neighbors_30_distances&#39;, &#39;neighbors_30_connectivities&#39;
 </pre></div>
 </div>
 </div>
@@ -2503,8 +2167,7 @@ cluster_gene_trends(data: Union[anndata._core.anndata.AnnData, pandas.core.frame
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="../_images/1bb6de518dac06beb20e4f02daa466602cc4fd8d3faca8437a6a3bcef4a0ec09.png"><img alt="../_images/1bb6de518dac06beb20e4f02daa466602cc4fd8d3faca8437a6a3bcef4a0ec09.png" src="../_images/1bb6de518dac06beb20e4f02daa466602cc4fd8d3faca8437a6a3bcef4a0ec09.png" style="width: 398px; height: 375px;" />
-</a>
+<img alt="../_images/4cbf4c8e9d4c8b6775bf1ad563f49b812e05f06697586ff71c7484c5b26591da.png" src="../_images/4cbf4c8e9d4c8b6775bf1ad563f49b812e05f06697586ff71c7484c5b26591da.png" />
 </div>
 </div>
 <p>Based on the above plot, we will consider only the top 7 components:</p>
@@ -2551,13 +2214,12 @@ cluster_gene_trends(data: Union[anndata._core.anndata.AnnData, pandas.core.frame
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>AnnData object with n_obs × n_vars = 5780 × 14651
-    obs: &#39;clusters&#39;, &#39;palantir_pseudotime&#39;, &#39;palantir_diff_potential&#39;, &#39;palantir_entropy&#39;
-    var: &#39;gene_trends_clusters&#39;
-    uns: &#39;cluster_colors&#39;, &#39;ct_colors&#39;, &#39;palantir_branch_probs_cell_types&#39;, &#39;clusters_colors&#39;, &#39;pca&#39;, &#39;neighbors_30&#39;, &#39;diffmap_evals&#39;, &#39;DM_EigenValues&#39;, &#39;palantir_waypoints&#39;, &#39;paga&#39;, &#39;clusters_sizes&#39;, &#39;diff_neighbors&#39;
-    obsm: &#39;tsne&#39;, &#39;MAGIC_imputed_data&#39;, &#39;palantir_branch_probs&#39;, &#39;X_tsne&#39;, &#39;X_pca&#39;, &#39;X_diffmap&#39;, &#39;DM_EigenVectors&#39;, &#39;DM_EigenVectors_multiscaled&#39;, &#39;palantir_fate_probabilities&#39;, &#39;branch_masks&#39;, &#39;diffmap_evecs&#39;
-    varm: &#39;PCs&#39;, &#39;gene_trends_Branch1&#39;, &#39;gene_trends_Branch2&#39;, &#39;gene_trends_Branch3&#39;, &#39;gene_trends_Branch4&#39;, &#39;gene_trends_Branch5&#39;, &#39;gene_trends_Branch6&#39;
-    obsp: &#39;neighbors_30_distances&#39;, &#39;neighbors_30_connectivities&#39;, &#39;DM_Kernel&#39;, &#39;DM_Similarity&#39;, &#39;diff_neighbors_distances&#39;, &#39;diff_neighbors_connectivities&#39;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>AnnData object with n_obs × n_vars = 5780 × 14612
+    obs: &#39;clusters&#39;
+    uns: &#39;cluster_colors&#39;, &#39;ct_colors&#39;, &#39;clusters_colors&#39;, &#39;pca&#39;, &#39;neighbors_30&#39;, &#39;paga&#39;, &#39;clusters_sizes&#39;, &#39;diffmap_evals&#39;, &#39;diff_neighbors&#39;
+    obsm: &#39;tsne&#39;, &#39;X_tsne&#39;, &#39;X_pca&#39;, &#39;X_diffmap&#39;, &#39;diffmap_evecs&#39;
+    varm: &#39;PCs&#39;
+    obsp: &#39;neighbors_30_distances&#39;, &#39;neighbors_30_connectivities&#39;, &#39;diff_neighbors_distances&#39;, &#39;diff_neighbors_connectivities&#39;
 </pre></div>
 </div>
 </div>
@@ -2569,8 +2231,7 @@ cluster_gene_trends(data: Union[anndata._core.anndata.AnnData, pandas.core.frame
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="../_images/772957f77d4d24a4f3d7b13442dd3787480aa7e03c1e7640d68ec0239553d2de.png"><img alt="../_images/772957f77d4d24a4f3d7b13442dd3787480aa7e03c1e7640d68ec0239553d2de.png" src="../_images/772957f77d4d24a4f3d7b13442dd3787480aa7e03c1e7640d68ec0239553d2de.png" style="width: 331px; height: 352px;" />
-</a>
+<img alt="../_images/8907f09cff3a56e28d9f7488f0e1b3ae1fff0a4d599331a186dd15e45060ff2b.png" src="../_images/8907f09cff3a56e28d9f7488f0e1b3ae1fff0a4d599331a186dd15e45060ff2b.png" />
 </div>
 </div>
 <p>As you can see the two results of PAGA look visually quite similar (except that cluster 9 was more connected to other clusters when computing distances in the PCA space vs when computing in the diffusion space). It will be up to you to evaluate such cases using what is known about the cell types. In this case, Cluster 9 is ITGA2B+ (Megakaryocytes) and it is more phenotypically closer to cluster 2 and 8 as opposed to clusters 1 and 4. Therefore, diffusion distance based PAGA would be more faithful representation of the data here.</p>
@@ -2624,10 +2285,10 @@ cluster_gene_trends(data: Union[anndata._core.anndata.AnnData, pandas.core.frame
     <tr>
       <th>Cluster-0</th>
       <td>0.000000</td>
-      <td>0.335746</td>
+      <td>0.336017</td>
       <td>0.042759</td>
       <td>0.008247</td>
-      <td>0.004014</td>
+      <td>0.004282</td>
       <td>0.008583</td>
       <td>0.000415</td>
       <td>0.000000</td>
@@ -2636,16 +2297,16 @@ cluster_gene_trends(data: Union[anndata._core.anndata.AnnData, pandas.core.frame
     </tr>
     <tr>
       <th>Cluster-1</th>
-      <td>0.335746</td>
+      <td>0.336017</td>
       <td>0.000000</td>
       <td>0.014329</td>
-      <td>0.140419</td>
-      <td>0.569995</td>
+      <td>0.139999</td>
+      <td>0.569539</td>
       <td>0.011620</td>
       <td>0.204404</td>
-      <td>0.125988</td>
+      <td>0.126322</td>
       <td>0.000000</td>
-      <td>0.003320</td>
+      <td>0.001660</td>
     </tr>
     <tr>
       <th>Cluster-2</th>
@@ -2653,36 +2314,36 @@ cluster_gene_trends(data: Union[anndata._core.anndata.AnnData, pandas.core.frame
       <td>0.014329</td>
       <td>0.000000</td>
       <td>0.000000</td>
-      <td>0.083675</td>
+      <td>0.083272</td>
       <td>0.000000</td>
       <td>0.000626</td>
       <td>0.000000</td>
-      <td>0.564495</td>
-      <td>0.917967</td>
+      <td>0.560948</td>
+      <td>0.913564</td>
     </tr>
     <tr>
       <th>Cluster-3</th>
       <td>0.008247</td>
-      <td>0.140419</td>
+      <td>0.139999</td>
       <td>0.000000</td>
       <td>0.000000</td>
-      <td>0.193001</td>
+      <td>0.191141</td>
       <td>0.006204</td>
-      <td>0.940253</td>
+      <td>0.937366</td>
       <td>0.005905</td>
       <td>0.000000</td>
       <td>0.000000</td>
     </tr>
     <tr>
       <th>Cluster-4</th>
-      <td>0.004014</td>
-      <td>0.569995</td>
-      <td>0.083675</td>
-      <td>0.193001</td>
+      <td>0.004282</td>
+      <td>0.569539</td>
+      <td>0.083272</td>
+      <td>0.191141</td>
       <td>0.000000</td>
       <td>0.001533</td>
-      <td>0.678286</td>
-      <td>0.178738</td>
+      <td>0.675147</td>
+      <td>0.178244</td>
       <td>0.000000</td>
       <td>0.007358</td>
     </tr>
@@ -2704,23 +2365,23 @@ cluster_gene_trends(data: Union[anndata._core.anndata.AnnData, pandas.core.frame
       <td>0.000415</td>
       <td>0.204404</td>
       <td>0.000626</td>
-      <td>0.940253</td>
-      <td>0.678286</td>
+      <td>0.937366</td>
+      <td>0.675147</td>
       <td>0.000000</td>
       <td>0.000000</td>
-      <td>0.411622</td>
+      <td>0.410856</td>
       <td>0.000000</td>
       <td>0.000000</td>
     </tr>
     <tr>
       <th>Cluster-7</th>
       <td>0.000000</td>
-      <td>0.125988</td>
+      <td>0.126322</td>
       <td>0.000000</td>
       <td>0.005905</td>
-      <td>0.178738</td>
+      <td>0.178244</td>
       <td>0.000000</td>
-      <td>0.411622</td>
+      <td>0.410856</td>
       <td>0.000000</td>
       <td>0.000000</td>
       <td>0.000000</td>
@@ -2729,7 +2390,7 @@ cluster_gene_trends(data: Union[anndata._core.anndata.AnnData, pandas.core.frame
       <th>Cluster-8</th>
       <td>0.000000</td>
       <td>0.000000</td>
-      <td>0.564495</td>
+      <td>0.560948</td>
       <td>0.000000</td>
       <td>0.000000</td>
       <td>0.000000</td>
@@ -2741,8 +2402,8 @@ cluster_gene_trends(data: Union[anndata._core.anndata.AnnData, pandas.core.frame
     <tr>
       <th>Cluster-9</th>
       <td>0.001461</td>
-      <td>0.003320</td>
-      <td>0.917967</td>
+      <td>0.001660</td>
+      <td>0.913564</td>
       <td>0.000000</td>
       <td>0.007358</td>
       <td>0.000000</td>
@@ -2765,13 +2426,12 @@ cluster_gene_trends(data: Union[anndata._core.anndata.AnnData, pandas.core.frame
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>AnnData object with n_obs × n_vars = 5780 × 14651
-    obs: &#39;clusters&#39;, &#39;palantir_pseudotime&#39;, &#39;palantir_diff_potential&#39;, &#39;palantir_entropy&#39;
-    var: &#39;gene_trends_clusters&#39;
-    uns: &#39;cluster_colors&#39;, &#39;ct_colors&#39;, &#39;palantir_branch_probs_cell_types&#39;, &#39;clusters_colors&#39;, &#39;pca&#39;, &#39;neighbors_30&#39;, &#39;diffmap_evals&#39;, &#39;DM_EigenValues&#39;, &#39;palantir_waypoints&#39;, &#39;paga&#39;, &#39;clusters_sizes&#39;, &#39;diff_neighbors&#39;
-    obsm: &#39;tsne&#39;, &#39;MAGIC_imputed_data&#39;, &#39;palantir_branch_probs&#39;, &#39;X_tsne&#39;, &#39;X_pca&#39;, &#39;X_diffmap&#39;, &#39;DM_EigenVectors&#39;, &#39;DM_EigenVectors_multiscaled&#39;, &#39;palantir_fate_probabilities&#39;, &#39;branch_masks&#39;, &#39;diffmap_evecs&#39;
-    varm: &#39;PCs&#39;, &#39;gene_trends_Branch1&#39;, &#39;gene_trends_Branch2&#39;, &#39;gene_trends_Branch3&#39;, &#39;gene_trends_Branch4&#39;, &#39;gene_trends_Branch5&#39;, &#39;gene_trends_Branch6&#39;
-    obsp: &#39;neighbors_30_distances&#39;, &#39;neighbors_30_connectivities&#39;, &#39;DM_Kernel&#39;, &#39;DM_Similarity&#39;, &#39;diff_neighbors_distances&#39;, &#39;diff_neighbors_connectivities&#39;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>AnnData object with n_obs × n_vars = 5780 × 14612
+    obs: &#39;clusters&#39;
+    uns: &#39;cluster_colors&#39;, &#39;ct_colors&#39;, &#39;clusters_colors&#39;, &#39;pca&#39;, &#39;neighbors_30&#39;, &#39;paga&#39;, &#39;clusters_sizes&#39;, &#39;diffmap_evals&#39;, &#39;diff_neighbors&#39;
+    obsm: &#39;tsne&#39;, &#39;X_tsne&#39;, &#39;X_pca&#39;, &#39;X_diffmap&#39;, &#39;diffmap_evecs&#39;
+    varm: &#39;PCs&#39;
+    obsp: &#39;neighbors_30_distances&#39;, &#39;neighbors_30_connectivities&#39;, &#39;diff_neighbors_distances&#39;, &#39;diff_neighbors_connectivities&#39;
 </pre></div>
 </div>
 </div>
@@ -2852,8 +2512,7 @@ cluster_gene_trends(data: Union[anndata._core.anndata.AnnData, pandas.core.frame
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;Distance in diffusion space&#39;)
 </pre></div>
 </div>
-<a class="reference internal image-reference" href="../_images/a89a7408d5603e7c635315a097408e7a29a5687e5173d12de3b9fed04097df51.png"><img alt="../_images/a89a7408d5603e7c635315a097408e7a29a5687e5173d12de3b9fed04097df51.png" src="../_images/a89a7408d5603e7c635315a097408e7a29a5687e5173d12de3b9fed04097df51.png" style="width: 451px; height: 351px;" />
-</a>
+<img alt="../_images/67fdea94117f20088e0856f020bbe1c0365931941ecc7f8394588053a607bf1e.png" src="../_images/67fdea94117f20088e0856f020bbe1c0365931941ecc7f8394588053a607bf1e.png" />
 </div>
 </div>
 </section>
@@ -2923,16 +2582,12 @@ cluster_gene_trends(data: Union[anndata._core.anndata.AnnData, pandas.core.frame
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Trajectory analysis</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Introduction</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#load-packages">Load packages</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#load-processed-data">Load processed data</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#trajectory-inference">Trajectory Inference</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#diffusion-maps">Diffusion Maps</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#method-1-scanpy-inbuilt-diffusion-maps">Method 1: Scanpy inbuilt diffusion maps</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-data-2-cells-along-a-continuum">Example data 2: Cells along a continuum</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nearest-neighbor-and-diffusion-maps">Nearest neighbor and diffusion maps</a></li>
-</ul>
-</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#diffusion-maps">Diffusion Maps</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#load-data">Load data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#run-diffusion-maps">Run Diffusion Maps</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#palantir">Palantir</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#define-start-cell">Define start cell</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#define-terminal-states">Define terminal states</a></li>
