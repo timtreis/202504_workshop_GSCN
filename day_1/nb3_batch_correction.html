@@ -495,7 +495,7 @@ document.write(`
 <p>⚠️ Adjust the variable below to the data path on your specific workstation.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data_path</span> <span class="o">=</span> <span class="s1">&#39;../data/&#39;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data_path</span> <span class="o">=</span> <span class="s1">&#39;../../../../scWorkshop/data_day1/&#39;</span>
 </pre></div>
 </div>
 </div>
@@ -695,12 +695,6 @@ document.write(`
 <span class="n">adata1</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="n">AnnData</span><span class="p">(</span><span class="n">data_batch1</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> 
                     <span class="n">obs</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">index</span> <span class="o">=</span> <span class="n">data_batch1</span><span class="o">.</span><span class="n">columns</span><span class="p">),</span> 
                     <span class="n">var</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">index</span> <span class="o">=</span> <span class="n">data_batch1</span><span class="o">.</span><span class="n">index</span><span class="p">))</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/my/xsqd7w190lg06fx4rlnfklshlvq6xm/T/ipykernel_62198/428804876.py:5: FutureWarning: X.dtype being converted to np.float32 from int64. In the next version of anndata (0.9) conversion will not be automatic. Pass dtype explicitly to avoid this warning. Pass `AnnData(X, dtype=X.dtype, ...)` to get the future behavour.
-  adata1 = sc.AnnData(data_batch1.values.T,
 </pre></div>
 </div>
 </div>
@@ -1100,12 +1094,6 @@ document.write(`
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/my/xsqd7w190lg06fx4rlnfklshlvq6xm/T/ipykernel_62198/4161174250.py:5: FutureWarning: X.dtype being converted to np.float32 from int64. In the next version of anndata (0.9) conversion will not be automatic. Pass dtype explicitly to avoid this warning. Pass `AnnData(X, dtype=X.dtype, ...)` to get the future behavour.
-  adata2 = sc.AnnData(data_batch2.values.T,
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1378,13 +1366,13 @@ Categories (2, object): [&#39;0&#39;, &#39;1&#39;]
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[0., 0., 0., ..., 0., 0., 0.],
-       [0., 0., 0., ..., 0., 0., 0.],
-       [0., 0., 0., ..., 0., 0., 0.],
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[0, 0, 0, ..., 0, 0, 0],
+       [0, 0, 0, ..., 0, 0, 0],
+       [0, 0, 0, ..., 0, 0, 0],
        ...,
-       [0., 0., 0., ..., 0., 0., 0.],
-       [0., 0., 0., ..., 0., 0., 0.],
-       [0., 0., 0., ..., 0., 0., 0.]], dtype=float32)
+       [0, 0, 0, ..., 0, 0, 0],
+       [0, 0, 0, ..., 0, 0, 0],
+       [0, 0, 0, ..., 0, 0, 0]])
 </pre></div>
 </div>
 </div>
@@ -1434,10 +1422,10 @@ Categories (2, object): [&#39;0&#39;, &#39;1&#39;]
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x2d0227490&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x2e72c5930&gt;
 </pre></div>
 </div>
-<img alt="../_images/c115292299045c26ad9e72660291af9b10f4b8bd9e1d6f9d3a023b5f55656e0d.png" src="../_images/c115292299045c26ad9e72660291af9b10f4b8bd9e1d6f9d3a023b5f55656e0d.png" />
+<img alt="../_images/19ac676aaccf0b60424f90eeb1a9e3b762a128773aeb890f5c4e80253630a29f.png" src="../_images/19ac676aaccf0b60424f90eeb1a9e3b762a128773aeb890f5c4e80253630a29f.png" />
 </div>
 </div>
 <p>If you have more than 2 batch, you can run a for loop to visualize the distribution of each batch compared to the whole data. For this, you can adapt the following example code:</p>
@@ -1457,7 +1445,7 @@ Categories (2, object): [&#39;0&#39;, &#39;1&#39;]
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/407084b77ac2d6fc6a322650334b66d7160ab71f6b7ff6a415d73ee949ba8fff.png" src="../_images/407084b77ac2d6fc6a322650334b66d7160ab71f6b7ff6a415d73ee949ba8fff.png" />
+<img alt="../_images/f673ed2c01f4ab69ba46df97428b56056857746539a886ee4adc67c8d59ffb6f.png" src="../_images/f673ed2c01f4ab69ba46df97428b56056857746539a886ee4adc67c8d59ffb6f.png" />
 </div>
 </div>
 <p>We see that on average batch-1 cells have higher library size and higher number of genes expressed per cell. We will keep this mind as we analyze the data.</p>
@@ -1482,7 +1470,7 @@ Categories (2, object): [&#39;0&#39;, &#39;1&#39;]
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(0.0, 500.0)
 </pre></div>
 </div>
-<img alt="../_images/dad58c321fc68638fee44b59e7639cb975687840f75c2049b30c7c36deb12988.png" src="../_images/dad58c321fc68638fee44b59e7639cb975687840f75c2049b30c7c36deb12988.png" />
+<img alt="../_images/a5da0d130aac50f69f5e4909c8db6dab08ea7c935d10c573b449c13f2da37105.png" src="../_images/a5da0d130aac50f69f5e4909c8db6dab08ea7c935d10c573b449c13f2da37105.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1574,7 +1562,7 @@ Categories (2, object): [&#39;0&#39;, &#39;1&#39;]
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;% Variance Explained&#39;)
 </pre></div>
 </div>
-<img alt="../_images/7d4a52049069d290075178b4ebf687de9e962629a7ebe031a2192c3af1790708.png" src="../_images/7d4a52049069d290075178b4ebf687de9e962629a7ebe031a2192c3af1790708.png" />
+<img alt="../_images/13f7669f4de8ab3ce8f4d6cc70397b2d055cf65352be5afc2b44dd3643fc8074.png" src="../_images/13f7669f4de8ab3ce8f4d6cc70397b2d055cf65352be5afc2b44dd3643fc8074.png" />
 </div>
 </div>
 <p>Based on the plot above, we will select 30 principal components.</p>
@@ -1593,9 +1581,9 @@ Categories (2, object): [&#39;0&#39;, &#39;1&#39;]
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/sara.jimenez/miniconda3/envs/scvi-env/lib/python3.9/site-packages/tqdm/auto.py:21: TqdmWarning: IProgress not found. Please update jupyter and ipywidgets. See https://ipywidgets.readthedocs.io/en/stable/user_install.html
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>OMP: Info #276: omp_set_nested routine deprecated, please use omp_set_max_active_levels instead.
+/Users/sara.jimenez/miniconda3/envs/workshop_2025/lib/python3.10/site-packages/tqdm/auto.py:21: TqdmWarning: IProgress not found. Please update jupyter and ipywidgets. See https://ipywidgets.readthedocs.io/en/stable/user_install.html
   from .autonotebook import tqdm as notebook_tqdm
-OMP: Info #276: omp_set_nested routine deprecated, please use omp_set_max_active_levels instead.
 </pre></div>
 </div>
 </div>
@@ -1612,6 +1600,14 @@ OMP: Info #276: omp_set_nested routine deprecated, please use omp_set_max_active
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Clustering using leiden</span>
 <span class="n">sc</span><span class="o">.</span><span class="n">tl</span><span class="o">.</span><span class="n">leiden</span><span class="p">(</span><span class="n">adata</span><span class="p">,</span> <span class="n">resolution</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">,</span> <span class="n">neighbors_key</span> <span class="o">=</span> <span class="s1">&#39;neighbors_30&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/my/xsqd7w190lg06fx4rlnfklshlvq6xm/T/ipykernel_35685/3585288984.py:2: FutureWarning: In the future, the default backend for leiden will be igraph instead of leidenalg.
+
+ To achieve the future defaults please pass: flavor=&quot;igraph&quot; and n_iterations=2.  directed must also be False to work with igraph&#39;s implementation.
+  sc.tl.leiden(adata, resolution = 0.5, neighbors_key = &#39;neighbors_30&#39;)
 </pre></div>
 </div>
 </div>
@@ -1645,13 +1641,7 @@ OMP: Info #276: omp_set_nested routine deprecated, please use omp_set_max_active
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/sara.jimenez/miniconda3/envs/scvi-env/lib/python3.9/site-packages/scanpy/plotting/_tools/scatterplots.py:392: UserWarning: No data for colormapping provided via &#39;c&#39;. Parameters &#39;cmap&#39; will be ignored
-  cax = scatter(
-/Users/sara.jimenez/miniconda3/envs/scvi-env/lib/python3.9/site-packages/scanpy/plotting/_tools/scatterplots.py:392: UserWarning: No data for colormapping provided via &#39;c&#39;. Parameters &#39;cmap&#39; will be ignored
-  cax = scatter(
-</pre></div>
-</div>
-<img alt="../_images/cc15e46bcb2e0c210dd717578b7e9a8471060627dbe1b547a48d3ba512877cbd.png" src="../_images/cc15e46bcb2e0c210dd717578b7e9a8471060627dbe1b547a48d3ba512877cbd.png" />
+<img alt="../_images/8b326d80ce94fae62c821badf84db5ac9b9b85ae2f89637ce950978d1cf9961a.png" src="../_images/8b326d80ce94fae62c821badf84db5ac9b9b85ae2f89637ce950978d1cf9961a.png" />
 </div>
 </div>
 </section>
@@ -1677,11 +1667,7 @@ OMP: Info #276: omp_set_nested routine deprecated, please use omp_set_max_active
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/sara.jimenez/miniconda3/envs/scvi-env/lib/python3.9/site-packages/scanpy/plotting/_dotplot.py:749: UserWarning: No data for colormapping provided via &#39;c&#39;. Parameters &#39;cmap&#39;, &#39;norm&#39; will be ignored
-  dot_ax.scatter(x, y, **kwds)
-</pre></div>
-</div>
-<a class="reference internal image-reference" href="../_images/d32dfc94c39c902cca0ac6c2c6e2b90e09039d3a177605ec5277e926c07ee9d2.png"><img alt="../_images/d32dfc94c39c902cca0ac6c2c6e2b90e09039d3a177605ec5277e926c07ee9d2.png" src="../_images/d32dfc94c39c902cca0ac6c2c6e2b90e09039d3a177605ec5277e926c07ee9d2.png" style="width: 1036px; height: 623px;" />
+<a class="reference internal image-reference" href="../_images/518967cf2bcb6d8187edb6d2c9066a7570d854a679700ea693bf6fe5871e2374.png"><img alt="../_images/518967cf2bcb6d8187edb6d2c9066a7570d854a679700ea693bf6fe5871e2374.png" src="../_images/518967cf2bcb6d8187edb6d2c9066a7570d854a679700ea693bf6fe5871e2374.png" style="width: 1036px; height: 623px;" />
 </a>
 </div>
 </div>
@@ -1732,42 +1718,43 @@ OMP: Info #276: omp_set_nested routine deprecated, please use omp_set_max_active
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting scanorama
-  Downloading scanorama-1.7.4-py3-none-any.whl (12 kB)
-Collecting geosketch&gt;=1.0
-  Downloading geosketch-1.3-py3-none-any.whl (8.1 kB)
-Requirement already satisfied: scikit-learn&gt;=0.20rc1 in /Users/sara.jimenez/miniconda3/envs/scvi-env/lib/python3.9/site-packages (from scanorama) (1.2.2)
-Requirement already satisfied: matplotlib&gt;=2.0.2 in /Users/sara.jimenez/miniconda3/envs/scvi-env/lib/python3.9/site-packages (from scanorama) (3.7.1)
-Collecting intervaltree&gt;=3.1.0
-  Downloading intervaltree-3.1.0.tar.gz (32 kB)
-  Preparing metadata (setup.py) ... ?25ldone
-?25hCollecting fbpca&gt;=1.0
+  Downloading scanorama-1.7.4-py3-none-any.whl.metadata (525 bytes)
+Requirement already satisfied: annoy&gt;=1.11.5 in /Users/sara.jimenez/miniconda3/envs/workshop_2025/lib/python3.10/site-packages (from scanorama) (1.17.3)
+Collecting fbpca&gt;=1.0 (from scanorama)
   Downloading fbpca-1.0.tar.gz (11 kB)
   Preparing metadata (setup.py) ... ?25ldone
-?25hRequirement already satisfied: annoy&gt;=1.11.5 in /Users/sara.jimenez/miniconda3/envs/scvi-env/lib/python3.9/site-packages (from scanorama) (1.17.3)
-Requirement already satisfied: scipy&gt;=1.0.0 in /Users/sara.jimenez/miniconda3/envs/scvi-env/lib/python3.9/site-packages (from scanorama) (1.11.4)
-Requirement already satisfied: numpy&gt;=1.12.0 in /Users/sara.jimenez/miniconda3/envs/scvi-env/lib/python3.9/site-packages (from scanorama) (1.26.4)
-Collecting sortedcontainers&lt;3.0,&gt;=2.0
-  Using cached sortedcontainers-2.4.0-py2.py3-none-any.whl (29 kB)
-Requirement already satisfied: fonttools&gt;=4.22.0 in /Users/sara.jimenez/miniconda3/envs/scvi-env/lib/python3.9/site-packages (from matplotlib&gt;=2.0.2-&gt;scanorama) (4.39.4)
-Requirement already satisfied: pyparsing&gt;=2.3.1 in /Users/sara.jimenez/miniconda3/envs/scvi-env/lib/python3.9/site-packages (from matplotlib&gt;=2.0.2-&gt;scanorama) (3.0.9)
-Requirement already satisfied: cycler&gt;=0.10 in /Users/sara.jimenez/miniconda3/envs/scvi-env/lib/python3.9/site-packages (from matplotlib&gt;=2.0.2-&gt;scanorama) (0.11.0)
-Requirement already satisfied: kiwisolver&gt;=1.0.1 in /Users/sara.jimenez/miniconda3/envs/scvi-env/lib/python3.9/site-packages (from matplotlib&gt;=2.0.2-&gt;scanorama) (1.4.4)
-Requirement already satisfied: contourpy&gt;=1.0.1 in /Users/sara.jimenez/miniconda3/envs/scvi-env/lib/python3.9/site-packages (from matplotlib&gt;=2.0.2-&gt;scanorama) (1.0.7)
-Requirement already satisfied: packaging&gt;=20.0 in /Users/sara.jimenez/miniconda3/envs/scvi-env/lib/python3.9/site-packages (from matplotlib&gt;=2.0.2-&gt;scanorama) (23.1)
-Requirement already satisfied: pillow&gt;=6.2.0 in /Users/sara.jimenez/miniconda3/envs/scvi-env/lib/python3.9/site-packages (from matplotlib&gt;=2.0.2-&gt;scanorama) (9.5.0)
-Requirement already satisfied: python-dateutil&gt;=2.7 in /Users/sara.jimenez/miniconda3/envs/scvi-env/lib/python3.9/site-packages (from matplotlib&gt;=2.0.2-&gt;scanorama) (2.8.2)
-Requirement already satisfied: importlib-resources&gt;=3.2.0 in /Users/sara.jimenez/miniconda3/envs/scvi-env/lib/python3.9/site-packages (from matplotlib&gt;=2.0.2-&gt;scanorama) (5.12.0)
-Requirement already satisfied: threadpoolctl&gt;=2.0.0 in /Users/sara.jimenez/miniconda3/envs/scvi-env/lib/python3.9/site-packages (from scikit-learn&gt;=0.20rc1-&gt;scanorama) (3.1.0)
-Requirement already satisfied: joblib&gt;=1.1.1 in /Users/sara.jimenez/miniconda3/envs/scvi-env/lib/python3.9/site-packages (from scikit-learn&gt;=0.20rc1-&gt;scanorama) (1.2.0)
-Requirement already satisfied: zipp&gt;=3.1.0 in /Users/sara.jimenez/miniconda3/envs/scvi-env/lib/python3.9/site-packages (from importlib-resources&gt;=3.2.0-&gt;matplotlib&gt;=2.0.2-&gt;scanorama) (3.15.0)
-Requirement already satisfied: six&gt;=1.5 in /Users/sara.jimenez/miniconda3/envs/scvi-env/lib/python3.9/site-packages (from python-dateutil&gt;=2.7-&gt;matplotlib&gt;=2.0.2-&gt;scanorama) (1.16.0)
+?25hCollecting geosketch&gt;=1.0 (from scanorama)
+  Downloading geosketch-1.3-py3-none-any.whl.metadata (394 bytes)
+Collecting intervaltree&gt;=3.1.0 (from scanorama)
+  Downloading intervaltree-3.1.0.tar.gz (32 kB)
+  Preparing metadata (setup.py) ... ?25ldone
+?25hRequirement already satisfied: matplotlib&gt;=2.0.2 in /Users/sara.jimenez/miniconda3/envs/workshop_2025/lib/python3.10/site-packages (from scanorama) (3.10.1)
+Requirement already satisfied: numpy&gt;=1.12.0 in /Users/sara.jimenez/miniconda3/envs/workshop_2025/lib/python3.10/site-packages (from scanorama) (1.26.4)
+Requirement already satisfied: scipy&gt;=1.0.0 in /Users/sara.jimenez/miniconda3/envs/workshop_2025/lib/python3.10/site-packages (from scanorama) (1.11.4)
+Requirement already satisfied: scikit-learn&gt;=0.20rc1 in /Users/sara.jimenez/miniconda3/envs/workshop_2025/lib/python3.10/site-packages (from scanorama) (1.5.2)
+Collecting sortedcontainers&lt;3.0,&gt;=2.0 (from intervaltree&gt;=3.1.0-&gt;scanorama)
+  Downloading sortedcontainers-2.4.0-py2.py3-none-any.whl.metadata (10 kB)
+Requirement already satisfied: contourpy&gt;=1.0.1 in /Users/sara.jimenez/miniconda3/envs/workshop_2025/lib/python3.10/site-packages (from matplotlib&gt;=2.0.2-&gt;scanorama) (1.3.1)
+Requirement already satisfied: cycler&gt;=0.10 in /Users/sara.jimenez/miniconda3/envs/workshop_2025/lib/python3.10/site-packages (from matplotlib&gt;=2.0.2-&gt;scanorama) (0.12.1)
+Requirement already satisfied: fonttools&gt;=4.22.0 in /Users/sara.jimenez/miniconda3/envs/workshop_2025/lib/python3.10/site-packages (from matplotlib&gt;=2.0.2-&gt;scanorama) (4.57.0)
+Requirement already satisfied: kiwisolver&gt;=1.3.1 in /Users/sara.jimenez/miniconda3/envs/workshop_2025/lib/python3.10/site-packages (from matplotlib&gt;=2.0.2-&gt;scanorama) (1.4.8)
+Requirement already satisfied: packaging&gt;=20.0 in /Users/sara.jimenez/miniconda3/envs/workshop_2025/lib/python3.10/site-packages (from matplotlib&gt;=2.0.2-&gt;scanorama) (24.2)
+Requirement already satisfied: pillow&gt;=8 in /Users/sara.jimenez/miniconda3/envs/workshop_2025/lib/python3.10/site-packages (from matplotlib&gt;=2.0.2-&gt;scanorama) (11.1.0)
+Requirement already satisfied: pyparsing&gt;=2.3.1 in /Users/sara.jimenez/miniconda3/envs/workshop_2025/lib/python3.10/site-packages (from matplotlib&gt;=2.0.2-&gt;scanorama) (3.2.3)
+Requirement already satisfied: python-dateutil&gt;=2.7 in /Users/sara.jimenez/miniconda3/envs/workshop_2025/lib/python3.10/site-packages (from matplotlib&gt;=2.0.2-&gt;scanorama) (2.9.0.post0)
+Requirement already satisfied: joblib&gt;=1.2.0 in /Users/sara.jimenez/miniconda3/envs/workshop_2025/lib/python3.10/site-packages (from scikit-learn&gt;=0.20rc1-&gt;scanorama) (1.4.2)
+Requirement already satisfied: threadpoolctl&gt;=3.1.0 in /Users/sara.jimenez/miniconda3/envs/workshop_2025/lib/python3.10/site-packages (from scikit-learn&gt;=0.20rc1-&gt;scanorama) (3.6.0)
+Requirement already satisfied: six&gt;=1.5 in /Users/sara.jimenez/miniconda3/envs/workshop_2025/lib/python3.10/site-packages (from python-dateutil&gt;=2.7-&gt;matplotlib&gt;=2.0.2-&gt;scanorama) (1.16.0)
+Downloading scanorama-1.7.4-py3-none-any.whl (12 kB)
+Downloading geosketch-1.3-py3-none-any.whl (8.1 kB)
+Using cached sortedcontainers-2.4.0-py2.py3-none-any.whl (29 kB)
 Building wheels for collected packages: fbpca, intervaltree
   Building wheel for fbpca (setup.py) ... ?25ldone
-?25h  Created wheel for fbpca: filename=fbpca-1.0-py3-none-any.whl size=11373 sha256=8a94821a87ee66a0211e56ab18ee5926dc8a9e6b477abcedffc7962b823c79a7
-  Stored in directory: /Users/sara.jimenez/Library/Caches/pip/wheels/f5/60/60/28df6c25f4d22b73d1a2b1c7e4842a5e2178e35e47b62e8e9a
+?25h  Created wheel for fbpca: filename=fbpca-1.0-py3-none-any.whl size=11428 sha256=1a0b7d876d92715e7b838055a833305f0e0439e6b220b3a6a5002549f9756bd8
+  Stored in directory: /Users/sara.jimenez/Library/Caches/pip/wheels/3c/ea/60/8d1c9fbbc99492a1775b36a5e29c8c1ef309cc5821bd5a219d
   Building wheel for intervaltree (setup.py) ... ?25ldone
-?25h  Created wheel for intervaltree: filename=intervaltree-3.1.0-py2.py3-none-any.whl size=26098 sha256=17d2921060b808a31206ba813de6462470362bd69a129f9bc790d0a147fc501c
-  Stored in directory: /Users/sara.jimenez/Library/Caches/pip/wheels/ab/fa/1b/75d9a713279796785711bd0bad8334aaace560c0bd28830c8c
+?25h  Created wheel for intervaltree: filename=intervaltree-3.1.0-py2.py3-none-any.whl size=26160 sha256=69132210ee62d94076532f890afa451bc55b41ee97165a2aaad0d63f3bf4cef9
+  Stored in directory: /Users/sara.jimenez/Library/Caches/pip/wheels/fa/80/8c/43488a924a046b733b64de3fac99252674c892a4c3801c0a61
 Successfully built fbpca intervaltree
 Installing collected packages: sortedcontainers, fbpca, intervaltree, geosketch, scanorama
 Successfully installed fbpca-1.0 geosketch-1.3 intervaltree-3.1.0 scanorama-1.7.4 sortedcontainers-2.4.0
@@ -1831,8 +1818,10 @@ Successfully installed fbpca-1.0 geosketch-1.3 intervaltree-3.1.0 scanorama-1.7.
 Processing datasets (0, 1)
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/sara.jimenez/miniconda3/envs/scvi-env/lib/python3.9/site-packages/scanorama/scanorama.py:237: FutureWarning: X.dtype being converted to np.float32 from float64. In the next version of anndata (0.9) conversion will not be automatic. Pass dtype explicitly to avoid this warning. Pass `AnnData(X, dtype=X.dtype, ...)` to get the future behavour.
-  adata = AnnData(datasets[i])
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/sara.jimenez/miniconda3/envs/workshop_2025/lib/python3.10/site-packages/anndata/_core/anndata.py:787: ImplicitModificationWarning: Trying to modify index of attribute `.obs` of view, initializing view as actual.
+  getattr(self, attr).index = value
+/Users/sara.jimenez/miniconda3/envs/workshop_2025/lib/python3.10/site-packages/anndata/_core/anndata.py:787: ImplicitModificationWarning: Trying to modify index of attribute `.obs` of view, initializing view as actual.
+  getattr(self, attr).index = value
 </pre></div>
 </div>
 </div>

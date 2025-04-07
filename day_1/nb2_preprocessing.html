@@ -520,7 +520,7 @@ document.write(`
 <p>⚠️ Adjust the variable below to the data path on your specific workstation.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data_path</span> <span class="o">=</span> <span class="s1">&#39;../data/&#39;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data_path</span> <span class="o">=</span> <span class="s1">&#39;../../../../scWorkshop/data_day1/&#39;</span>
 </pre></div>
 </div>
 </div>
@@ -556,6 +556,11 @@ document.write(`
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sc</span><span class="o">.</span><span class="n">pp</span><span class="o">.</span><span class="n">highly_variable_genes</span><span class="p">(</span><span class="n">adata</span><span class="p">,</span> <span class="n">layer</span> <span class="o">=</span> <span class="s1">&#39;raw_data&#39;</span><span class="p">,</span> <span class="n">n_top_genes</span> <span class="o">=</span> <span class="mi">4000</span><span class="p">,</span> <span class="n">flavor</span> <span class="o">=</span> <span class="s1">&#39;seurat_v3&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>OMP: Info #276: omp_set_nested routine deprecated, please use omp_set_max_active_levels instead.
 </pre></div>
 </div>
 </div>
@@ -660,7 +665,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/cc5b1833ff51fe2ca926cd9bcaf7b0570f72e291270a100d0c69d7d57154f5af.png" src="../_images/cc5b1833ff51fe2ca926cd9bcaf7b0570f72e291270a100d0c69d7d57154f5af.png" />
+<img alt="../_images/d7846b33b8f7eeaa66eb0235037afd0149c9abeb006ce639bb2624b3fc7b1fcd.png" src="../_images/d7846b33b8f7eeaa66eb0235037afd0149c9abeb006ce639bb2624b3fc7b1fcd.png" />
 </div>
 </div>
 <p>The plots show how the data was normalized to select highly variable genes irrespective of the mean expression of the genes. This is achieved by using the index of dispersion which divides by mean expression, and subsequently binning the data by mean expression and selecting the most variable genes within each bin.</p>
@@ -674,6 +679,12 @@ document.write(`
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sc</span><span class="o">.</span><span class="n">tl</span><span class="o">.</span><span class="n">pca</span><span class="p">(</span><span class="n">adata</span><span class="p">,</span> <span class="n">n_comps</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">use_highly_variable</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/sara.jimenez/miniconda3/envs/workshop_2025/lib/python3.10/site-packages/scanpy/preprocessing/_pca/__init__.py:438: FutureWarning: Argument `use_highly_variable` is deprecated, consider using the mask argument. Use_highly_variable=True can be called through mask_var=&quot;highly_variable&quot;. Use_highly_variable=False can be called through mask_var=None
+  warn(msg, FutureWarning)
 </pre></div>
 </div>
 </div>
@@ -714,7 +725,7 @@ document.write(`
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;% Variance Explained&#39;)
 </pre></div>
 </div>
-<img alt="../_images/81696a07bff3e55eb49fa872b1ad81de2550fa12728258511e982ca0650acbc6.png" src="../_images/81696a07bff3e55eb49fa872b1ad81de2550fa12728258511e982ca0650acbc6.png" />
+<img alt="../_images/41f36f775262e8fdf4c9047dc94891043b0369ebe417430c70bcf0e0d7d6b0ae.png" src="../_images/41f36f775262e8fdf4c9047dc94891043b0369ebe417430c70bcf0e0d7d6b0ae.png" />
 </div>
 </div>
 <p>As we can see, the increase in variance explained is minimal after about 30 components (as indicated by the red line). So, it is reasonable to perform downstream analysis using 30 principal components.</p>
@@ -996,120 +1007,120 @@ document.write(`
       <td>0.003460</td>
       <td>0.001495</td>
       <td>0.004655</td>
-      <td>0.024923</td>
-      <td>0.027061</td>
+      <td>-0.024923</td>
+      <td>-0.027061</td>
       <td>-0.005100</td>
       <td>-0.010910</td>
-      <td>0.031612</td>
-      <td>-0.002016</td>
+      <td>-0.031611</td>
+      <td>0.002016</td>
       <td>-0.029858</td>
       <td>...</td>
       <td>-0.005577</td>
-      <td>-0.001592</td>
+      <td>0.001592</td>
       <td>0.001108</td>
       <td>-0.007328</td>
-      <td>-0.001087</td>
+      <td>0.001087</td>
       <td>0.002984</td>
-      <td>0.005398</td>
+      <td>-0.005398</td>
       <td>-0.015227</td>
       <td>-0.003382</td>
-      <td>-0.006898</td>
+      <td>0.006898</td>
     </tr>
     <tr>
       <th>ISG15</th>
       <td>0.025548</td>
       <td>-0.010428</td>
       <td>0.018005</td>
-      <td>0.043884</td>
-      <td>0.034518</td>
+      <td>-0.043884</td>
+      <td>-0.034518</td>
       <td>0.016557</td>
       <td>-0.046805</td>
-      <td>-0.131785</td>
-      <td>0.082209</td>
+      <td>0.131786</td>
+      <td>-0.082209</td>
       <td>-0.043594</td>
       <td>...</td>
       <td>-0.012146</td>
-      <td>0.001861</td>
-      <td>-0.000153</td>
+      <td>-0.001860</td>
+      <td>-0.000154</td>
       <td>-0.076601</td>
-      <td>0.041966</td>
-      <td>-0.040002</td>
-      <td>-0.015070</td>
-      <td>0.051024</td>
+      <td>-0.041966</td>
+      <td>-0.040001</td>
+      <td>0.015070</td>
+      <td>0.051025</td>
       <td>-0.027368</td>
-      <td>-0.034242</td>
+      <td>0.034240</td>
     </tr>
     <tr>
       <th>TNFRSF18</th>
       <td>-0.001926</td>
       <td>-0.002227</td>
       <td>0.010640</td>
-      <td>-0.000202</td>
-      <td>-0.001739</td>
+      <td>0.000202</td>
+      <td>0.001739</td>
       <td>0.009756</td>
       <td>-0.000958</td>
-      <td>0.005888</td>
-      <td>0.001802</td>
+      <td>-0.005888</td>
+      <td>-0.001802</td>
       <td>-0.005096</td>
       <td>...</td>
       <td>0.004989</td>
-      <td>0.007858</td>
+      <td>-0.007858</td>
       <td>-0.004543</td>
       <td>-0.000308</td>
-      <td>0.007913</td>
+      <td>-0.007913</td>
       <td>0.000881</td>
-      <td>-0.000160</td>
+      <td>0.000160</td>
       <td>-0.003423</td>
       <td>-0.001428</td>
-      <td>-0.003782</td>
+      <td>0.003782</td>
     </tr>
     <tr>
       <th>TNFRSF4</th>
       <td>-0.002326</td>
       <td>-0.003271</td>
       <td>0.003786</td>
-      <td>0.001185</td>
-      <td>-0.000252</td>
+      <td>-0.001185</td>
+      <td>0.000252</td>
       <td>0.025617</td>
-      <td>-0.003469</td>
-      <td>0.006719</td>
-      <td>0.003083</td>
+      <td>-0.003468</td>
+      <td>-0.006719</td>
+      <td>-0.003083</td>
       <td>-0.001872</td>
       <td>...</td>
       <td>0.004027</td>
-      <td>0.014150</td>
+      <td>-0.014150</td>
       <td>-0.008061</td>
       <td>0.000240</td>
-      <td>0.007270</td>
+      <td>-0.007270</td>
       <td>-0.004165</td>
-      <td>-0.004229</td>
+      <td>0.004229</td>
       <td>-0.004143</td>
       <td>-0.001100</td>
-      <td>-0.005622</td>
+      <td>0.005622</td>
     </tr>
     <tr>
       <th>AJAP1</th>
       <td>-0.000105</td>
       <td>0.000798</td>
       <td>0.000185</td>
-      <td>-0.000454</td>
-      <td>0.000649</td>
+      <td>0.000454</td>
+      <td>-0.000649</td>
       <td>0.000810</td>
       <td>0.009929</td>
-      <td>-0.001191</td>
-      <td>0.005828</td>
+      <td>0.001191</td>
+      <td>-0.005828</td>
       <td>-0.004675</td>
       <td>...</td>
       <td>0.000171</td>
-      <td>-0.000859</td>
+      <td>0.000859</td>
       <td>-0.002204</td>
       <td>-0.001190</td>
-      <td>0.000733</td>
+      <td>-0.000733</td>
       <td>0.001044</td>
-      <td>0.000836</td>
+      <td>-0.000836</td>
       <td>0.000032</td>
       <td>-0.001007</td>
-      <td>-0.000782</td>
+      <td>0.000782</td>
     </tr>
     <tr>
       <th>...</th>
@@ -1140,120 +1151,120 @@ document.write(`
       <td>0.000030</td>
       <td>-0.000340</td>
       <td>0.001149</td>
-      <td>-0.000932</td>
-      <td>-0.000125</td>
+      <td>0.000932</td>
+      <td>0.000125</td>
       <td>0.001024</td>
       <td>-0.000448</td>
-      <td>-0.000670</td>
-      <td>-0.001311</td>
+      <td>0.000670</td>
+      <td>0.001311</td>
       <td>0.000317</td>
       <td>...</td>
       <td>-0.000260</td>
-      <td>-0.000183</td>
+      <td>0.000183</td>
       <td>0.003370</td>
       <td>0.000279</td>
-      <td>0.002084</td>
+      <td>-0.002084</td>
       <td>0.000202</td>
-      <td>-0.000125</td>
+      <td>0.000125</td>
       <td>-0.002253</td>
       <td>-0.001827</td>
-      <td>0.000195</td>
+      <td>-0.000195</td>
     </tr>
     <tr>
       <th>CLIC2</th>
       <td>0.001227</td>
       <td>0.001176</td>
       <td>0.000546</td>
-      <td>0.003140</td>
-      <td>0.005460</td>
+      <td>-0.003140</td>
+      <td>-0.005460</td>
       <td>0.001243</td>
       <td>0.009093</td>
-      <td>-0.000866</td>
-      <td>-0.010418</td>
+      <td>0.000866</td>
+      <td>0.010418</td>
       <td>0.008147</td>
       <td>...</td>
       <td>-0.004586</td>
-      <td>-0.001762</td>
+      <td>0.001762</td>
       <td>0.004911</td>
       <td>-0.001560</td>
-      <td>-0.002087</td>
+      <td>0.002087</td>
       <td>-0.000505</td>
-      <td>-0.003225</td>
+      <td>0.003225</td>
       <td>-0.000520</td>
       <td>-0.003054</td>
-      <td>0.001727</td>
+      <td>-0.001728</td>
     </tr>
     <tr>
       <th>TMLHE-AS1</th>
       <td>-0.001851</td>
       <td>0.004959</td>
       <td>0.001356</td>
-      <td>-0.005623</td>
-      <td>0.005996</td>
+      <td>0.005623</td>
+      <td>-0.005996</td>
       <td>-0.003384</td>
       <td>-0.004824</td>
-      <td>0.003624</td>
-      <td>-0.004341</td>
+      <td>-0.003624</td>
+      <td>0.004341</td>
       <td>-0.001396</td>
       <td>...</td>
       <td>-0.006034</td>
-      <td>0.002125</td>
+      <td>-0.002125</td>
       <td>-0.000821</td>
       <td>-0.007054</td>
-      <td>-0.006851</td>
+      <td>0.006851</td>
       <td>-0.009666</td>
-      <td>-0.002975</td>
+      <td>0.002975</td>
       <td>0.000777</td>
       <td>0.000721</td>
-      <td>-0.001407</td>
+      <td>0.001407</td>
     </tr>
     <tr>
       <th>TMLHE</th>
       <td>0.002869</td>
       <td>0.007232</td>
       <td>0.000418</td>
-      <td>-0.006841</td>
-      <td>0.017279</td>
+      <td>0.006841</td>
+      <td>-0.017279</td>
       <td>-0.002727</td>
       <td>-0.005216</td>
-      <td>0.004149</td>
-      <td>-0.010962</td>
+      <td>-0.004149</td>
+      <td>0.010962</td>
       <td>-0.000693</td>
       <td>...</td>
       <td>-0.001637</td>
-      <td>-0.008905</td>
-      <td>-0.002481</td>
-      <td>-0.010080</td>
-      <td>-0.007547</td>
+      <td>0.008905</td>
+      <td>-0.002482</td>
+      <td>-0.010079</td>
+      <td>0.007547</td>
       <td>-0.013333</td>
-      <td>-0.007706</td>
+      <td>0.007706</td>
       <td>0.013950</td>
-      <td>0.002581</td>
-      <td>-0.007681</td>
+      <td>0.002580</td>
+      <td>0.007682</td>
     </tr>
     <tr>
       <th>MT-CO1</th>
-      <td>0.013434</td>
+      <td>0.013433</td>
       <td>0.005554</td>
       <td>0.021370</td>
-      <td>0.025839</td>
-      <td>-0.029545</td>
-      <td>-0.017136</td>
+      <td>-0.025839</td>
+      <td>0.029545</td>
+      <td>-0.017137</td>
       <td>-0.004244</td>
-      <td>0.030658</td>
-      <td>0.036907</td>
-      <td>0.045738</td>
+      <td>-0.030658</td>
+      <td>-0.036907</td>
+      <td>0.045737</td>
       <td>...</td>
       <td>-0.030893</td>
-      <td>-0.021095</td>
-      <td>-0.032621</td>
+      <td>0.021095</td>
+      <td>-0.032620</td>
       <td>-0.007703</td>
-      <td>0.029223</td>
+      <td>-0.029222</td>
       <td>0.044550</td>
-      <td>0.025316</td>
+      <td>-0.025317</td>
       <td>-0.023050</td>
       <td>-0.000511</td>
-      <td>0.020105</td>
+      <td>-0.020105</td>
     </tr>
   </tbody>
 </table>
@@ -1269,17 +1280,17 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>LYZ         1.400950e-01
-S100A9      1.391812e-01
-S100A8      1.175034e-01
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>LYZ         1.400949e-01
+S100A9      1.391806e-01
+S100A8      1.175035e-01
 CTSS        1.035663e-01
-VCAN        9.564024e-02
+VCAN        9.564008e-02
                 ...     
-DCLK2       1.556435e-06
-SCG5        5.045683e-07
-NRG3        3.220663e-07
-GPR173      2.408021e-07
-TMEM132B    1.863688e-07
+DCLK2       1.558011e-06
+SCG5        5.054657e-07
+NRG3        3.210156e-07
+GPR173      2.413690e-07
+TMEM132B    1.883759e-07
 Name: PC-0, Length: 4000, dtype: float64
 </pre></div>
 </div>
@@ -1295,7 +1306,7 @@ Name: PC-0, Length: 4000, dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/1ad69192219672393ea782a4a38889d7d7edd9e71af26e6d236ee6b1447b2a73.png" src="../_images/1ad69192219672393ea782a4a38889d7d7edd9e71af26e6d236ee6b1447b2a73.png" />
+<img alt="../_images/eb4b2245bc7515fa7c089e52a98ad4dd5b586909db9a9df94c031b5e3164bd4f.png" src="../_images/eb4b2245bc7515fa7c089e52a98ad4dd5b586909db9a9df94c031b5e3164bd4f.png" />
 </div>
 </div>
 </section>
@@ -1315,17 +1326,8 @@ Name: PC-0, Length: 4000, dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/sara.jimenez/miniconda3/envs/scvi-env/lib/python3.9/site-packages/umap/distances.py:1063: NumbaDeprecationWarning: The &#39;nopython&#39; keyword argument was not supplied to the &#39;numba.jit&#39; decorator. The implicit default value for this argument is currently False, but it will be changed to True in Numba 0.59.0. See https://numba.readthedocs.io/en/stable/reference/deprecation.html#deprecation-of-object-mode-fall-back-behaviour-when-using-jit for details.
-  @numba.jit()
-/Users/sara.jimenez/miniconda3/envs/scvi-env/lib/python3.9/site-packages/umap/distances.py:1071: NumbaDeprecationWarning: The &#39;nopython&#39; keyword argument was not supplied to the &#39;numba.jit&#39; decorator. The implicit default value for this argument is currently False, but it will be changed to True in Numba 0.59.0. See https://numba.readthedocs.io/en/stable/reference/deprecation.html#deprecation-of-object-mode-fall-back-behaviour-when-using-jit for details.
-  @numba.jit()
-/Users/sara.jimenez/miniconda3/envs/scvi-env/lib/python3.9/site-packages/umap/distances.py:1086: NumbaDeprecationWarning: The &#39;nopython&#39; keyword argument was not supplied to the &#39;numba.jit&#39; decorator. The implicit default value for this argument is currently False, but it will be changed to True in Numba 0.59.0. See https://numba.readthedocs.io/en/stable/reference/deprecation.html#deprecation-of-object-mode-fall-back-behaviour-when-using-jit for details.
-  @numba.jit()
-/Users/sara.jimenez/miniconda3/envs/scvi-env/lib/python3.9/site-packages/tqdm/auto.py:21: TqdmWarning: IProgress not found. Please update jupyter and ipywidgets. See https://ipywidgets.readthedocs.io/en/stable/user_install.html
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/sara.jimenez/miniconda3/envs/workshop_2025/lib/python3.10/site-packages/tqdm/auto.py:21: TqdmWarning: IProgress not found. Please update jupyter and ipywidgets. See https://ipywidgets.readthedocs.io/en/stable/user_install.html
   from .autonotebook import tqdm as notebook_tqdm
-/Users/sara.jimenez/miniconda3/envs/scvi-env/lib/python3.9/site-packages/umap/umap_.py:660: NumbaDeprecationWarning: The &#39;nopython&#39; keyword argument was not supplied to the &#39;numba.jit&#39; decorator. The implicit default value for this argument is currently False, but it will be changed to True in Numba 0.59.0. See https://numba.readthedocs.io/en/stable/reference/deprecation.html#deprecation-of-object-mode-fall-back-behaviour-when-using-jit for details.
-  @numba.jit()
-OMP: Info #276: omp_set_nested routine deprecated, please use omp_set_max_active_levels instead.
 </pre></div>
 </div>
 </div>
@@ -1363,8 +1365,8 @@ OMP: Info #276: omp_set_nested routine deprecated, please use omp_set_max_active
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;11984x11984 sparse matrix of type &#39;&lt;class &#39;numpy.float64&#39;&gt;&#39;
-	with 347536 stored elements in Compressed Sparse Row format&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;11984x11984 sparse matrix of type &#39;&lt;class &#39;numpy.float32&#39;&gt;&#39;
+	with 371504 stored elements in Compressed Sparse Row format&gt;
 </pre></div>
 </div>
 </div>
@@ -1378,7 +1380,7 @@ OMP: Info #276: omp_set_nested routine deprecated, please use omp_set_max_active
 </div>
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;11984x11984 sparse matrix of type &#39;&lt;class &#39;numpy.float32&#39;&gt;&#39;
-	with 500544 stored elements in Compressed Sparse Row format&gt;
+	with 500528 stored elements in Compressed Sparse Row format&gt;
 </pre></div>
 </div>
 </div>
@@ -1426,13 +1428,13 @@ OMP: Info #276: omp_set_nested routine deprecated, please use omp_set_max_active
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[ 1.6250963,  5.5733585],
-       [-4.103601 ,  6.767667 ],
-       [-1.0423499,  6.822509 ],
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[ 0.17355639,  9.443629  ],
+       [-3.963389  ,  5.355441  ],
+       [-2.2380867 ,  7.8592095 ],
        ...,
-       [10.327127 , 10.977615 ],
-       [15.360161 ,  2.9707499],
-       [ 9.139833 , -1.1203988]], dtype=float32)
+       [ 9.359021  ,  9.930899  ],
+       [16.75031   ,  3.5885053 ],
+       [ 8.392729  ,  0.09622534]], dtype=float32)
 </pre></div>
 </div>
 </div>
@@ -1457,11 +1459,7 @@ OMP: Info #276: omp_set_nested routine deprecated, please use omp_set_max_active
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/sara.jimenez/miniconda3/envs/scvi-env/lib/python3.9/site-packages/scanpy/plotting/_tools/scatterplots.py:392: UserWarning: No data for colormapping provided via &#39;c&#39;. Parameters &#39;cmap&#39;, &#39;norm&#39; will be ignored
-  cax = scatter(
-</pre></div>
-</div>
-<img alt="../_images/85c5a6b479188b7f4103a9922a6b7fe99201cdbba46d4f28a07f3ab7346c2e29.png" src="../_images/85c5a6b479188b7f4103a9922a6b7fe99201cdbba46d4f28a07f3ab7346c2e29.png" />
+<img alt="../_images/d3516daa8c5b33c9562303051270d4cf93cf45d235131b330d2660e8302793ed.png" src="../_images/d3516daa8c5b33c9562303051270d4cf93cf45d235131b330d2660e8302793ed.png" />
 </div>
 </div>
 </section>
@@ -1497,7 +1495,7 @@ OMP: Info #276: omp_set_nested routine deprecated, please use omp_set_max_active
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/6cece7923032727a85a845510543afaa041a232e891fa75d56eeca86017b00f5.png" src="../_images/6cece7923032727a85a845510543afaa041a232e891fa75d56eeca86017b00f5.png" />
+<img alt="../_images/17d81202c54311cfa0b3fb3ec95c4f4d8054cb04d97609df715bb5f8c8e8f468.png" src="../_images/17d81202c54311cfa0b3fb3ec95c4f4d8054cb04d97609df715bb5f8c8e8f468.png" />
 </div>
 </div>
 </section>
@@ -1515,7 +1513,7 @@ OMP: Info #276: omp_set_nested routine deprecated, please use omp_set_max_active
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/3adfb12b7ba269d969bc4a327200c189b68b5ae33d87b8a382b4157e96cfa469.png" src="../_images/3adfb12b7ba269d969bc4a327200c189b68b5ae33d87b8a382b4157e96cfa469.png" />
+<img alt="../_images/2d6f38856f427d7ea67350a1056887fb8cca48919256ea05abe717e7932ad51e.png" src="../_images/2d6f38856f427d7ea67350a1056887fb8cca48919256ea05abe717e7932ad51e.png" />
 </div>
 </div>
 <p>A note: Sometimes it helps to trim the expression levels of genes to certain percentiles to avoid visualization being biased by a few super-high or super-low values. For this we can utilizie vmin and vmax parameter during plotting as shown below. We will set vmin = 1 percentile of gene expression and vmax = 99 percentile of gene expression, which means min gene expression is going to be 1 percentile of the original expression and analogously for max expression.</p>
@@ -1527,7 +1525,7 @@ OMP: Info #276: omp_set_nested routine deprecated, please use omp_set_max_active
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/1e76bb05cc442171acc0a8b46d30725c1a5bad6dfc7d0d30387f8bb0b860b3cf.png" src="../_images/1e76bb05cc442171acc0a8b46d30725c1a5bad6dfc7d0d30387f8bb0b860b3cf.png" />
+<img alt="../_images/e96faa46cbd920d7615121cd72870bec6c5945ad38afaf7039eaf765e93aab44.png" src="../_images/e96faa46cbd920d7615121cd72870bec6c5945ad38afaf7039eaf765e93aab44.png" />
 </div>
 </div>
 <section id="alternate-code-more-manual">
@@ -1560,7 +1558,7 @@ OMP: Info #276: omp_set_nested routine deprecated, please use omp_set_max_active
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/b582f799b812d66b55bd80301970dbbda75d4ab83e343463af72f0ceed8b9f05.png" src="../_images/b582f799b812d66b55bd80301970dbbda75d4ab83e343463af72f0ceed8b9f05.png" />
+<img alt="../_images/e8180b5ce58892de48f1c6cbff2f595d970960012ae316dc6dcfd632931458b9.png" src="../_images/e8180b5ce58892de48f1c6cbff2f595d970960012ae316dc6dcfd632931458b9.png" />
 </div>
 </div>
 <p>Such visualizations can help perform data analysis better. You may already be able to draw many hypotheses and make assessment of the data using such visualizations.</p>
@@ -1593,7 +1591,7 @@ OMP: Info #276: omp_set_nested routine deprecated, please use omp_set_max_active
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/1175a752771bcb16c1d4f6eb80694c0d7fbdae8d06eb16f55bd0202378203462.png" src="../_images/1175a752771bcb16c1d4f6eb80694c0d7fbdae8d06eb16f55bd0202378203462.png" />
+<img alt="../_images/3773e18c6c6e615f9d69b65d05a3d4204e105b0d2bb37bc22b38b6fb62eb6fb6.png" src="../_images/3773e18c6c6e615f9d69b65d05a3d4204e105b0d2bb37bc22b38b6fb62eb6fb6.png" />
 </div>
 </div>
 </section>
@@ -1731,7 +1729,11 @@ Name: HALLMARK_G2M_CHECKPOINT, Length: 201, dtype: object
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING: genes are not in var_names and ignored: [&#39;# https://www.gsea-msigdb.org/gsea/msigdb/human/geneset/HALLMARK_G2M_CHECKPOINT&#39;, &#39;BIRC5&#39;, &#39;CDC20&#39;, &#39;CDC25A&#39;, &#39;CDC45&#39;, &#39;CDK1&#39;, &#39;EGF&#39;, &#39;ESPL1&#39;, &#39;EXO1&#39;, &#39;H2AX&#39;, &#39;H2AZ1&#39;, &#39;H2AZ2&#39;, &#39;H2BC12&#39;, &#39;HOXC10&#39;, &#39;MEIS2&#39;, &#39;NEK2&#39;, &#39;PBK&#39;, &#39;PTTG3P&#39;, &#39;TROAP&#39;, &#39;TTK&#39;, &#39;UBE2C&#39;]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING: genes are not in var_names and ignored: Index([&#39;# https://www.gsea-msigdb.org/gsea/msigdb/human/geneset/HALLMARK_G2M_CHECKPOINT&#39;,
+       &#39;BIRC5&#39;, &#39;CDC20&#39;, &#39;CDC25A&#39;, &#39;CDC45&#39;, &#39;CDK1&#39;, &#39;EGF&#39;, &#39;ESPL1&#39;, &#39;EXO1&#39;,
+       &#39;H2AX&#39;, &#39;H2AZ1&#39;, &#39;H2AZ2&#39;, &#39;H2BC12&#39;, &#39;HOXC10&#39;, &#39;MEIS2&#39;, &#39;NEK2&#39;, &#39;PBK&#39;,
+       &#39;PTTG3P&#39;, &#39;TROAP&#39;, &#39;TTK&#39;, &#39;UBE2C&#39;],
+      dtype=&#39;object&#39;)
 </pre></div>
 </div>
 </div>
@@ -1762,7 +1764,7 @@ Name: HALLMARK_G2M_CHECKPOINT, Length: 201, dtype: object
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/6bbba5188fbf4575a4e235fea24902e98f6e3aa516b4ba3ef7e91f5daffd2a41.png" src="../_images/6bbba5188fbf4575a4e235fea24902e98f6e3aa516b4ba3ef7e91f5daffd2a41.png" />
+<img alt="../_images/a3aafb042758f0a426c1e46490906ee511c1cf8fa44661bb15ca52342ef582ab.png" src="../_images/a3aafb042758f0a426c1e46490906ee511c1cf8fa44661bb15ca52342ef582ab.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1772,7 +1774,7 @@ Name: HALLMARK_G2M_CHECKPOINT, Length: 201, dtype: object
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/6f82931e5452a83ebf83330ce9bc9282f1e30c7d96c2f8dbd8edc4245188411a.png" src="../_images/6f82931e5452a83ebf83330ce9bc9282f1e30c7d96c2f8dbd8edc4245188411a.png" />
+<img alt="../_images/155717378da118add529ab783f8d056284cb157d989fb35a09623acd0224f294.png" src="../_images/155717378da118add529ab783f8d056284cb157d989fb35a09623acd0224f294.png" />
 </div>
 </div>
 </section>
@@ -1794,6 +1796,14 @@ Name: HALLMARK_G2M_CHECKPOINT, Length: 201, dtype: object
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/my/xsqd7w190lg06fx4rlnfklshlvq6xm/T/ipykernel_30071/3603566992.py:1: FutureWarning: In the future, the default backend for leiden will be igraph instead of leidenalg.
+
+ To achieve the future defaults please pass: flavor=&quot;igraph&quot; and n_iterations=2.  directed must also be False to work with igraph&#39;s implementation.
+  sc.tl.leiden(adata, resolution = 1.5, random_state=0, neighbors_key=&#39;neighbors_30&#39;, key_added=&#39;leiden_r1.5&#39;)
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1805,7 +1815,7 @@ Name: HALLMARK_G2M_CHECKPOINT, Length: 201, dtype: object
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>AnnData object with n_obs × n_vars = 11984 × 17698
     obs: &#39;n_genes_by_counts&#39;, &#39;log1p_n_genes_by_counts&#39;, &#39;total_counts&#39;, &#39;log1p_total_counts&#39;, &#39;pct_counts_in_top_50_genes&#39;, &#39;pct_counts_in_top_100_genes&#39;, &#39;pct_counts_in_top_200_genes&#39;, &#39;pct_counts_in_top_500_genes&#39;, &#39;mt_pct_content&#39;, &#39;ribo_pct_content&#39;, &#39;doublet_score&#39;, &#39;doublet&#39;, &#39;G2_M_checkpoint&#39;, &#39;leiden_r1.5&#39;, &#39;leiden_r0.5&#39;
     var: &#39;gene_ids&#39;, &#39;feature_types&#39;, &#39;n_cells_by_counts&#39;, &#39;mean_counts&#39;, &#39;log1p_mean_counts&#39;, &#39;pct_dropout_by_counts&#39;, &#39;total_counts&#39;, &#39;log1p_total_counts&#39;, &#39;n_cells&#39;, &#39;highly_variable&#39;, &#39;highly_variable_rank&#39;, &#39;means&#39;, &#39;variances&#39;, &#39;variances_norm&#39;
-    uns: &#39;log1p&#39;, &#39;hvg&#39;, &#39;pca&#39;, &#39;neighbors_30&#39;, &#39;umap&#39;, &#39;leiden&#39;
+    uns: &#39;log1p&#39;, &#39;hvg&#39;, &#39;pca&#39;, &#39;neighbors_30&#39;, &#39;umap&#39;, &#39;leiden_r1.5&#39;, &#39;leiden_r0.5&#39;
     obsm: &#39;X_pca&#39;, &#39;X_umap&#39;
     varm: &#39;PCs&#39;
     layers: &#39;raw_data&#39;
@@ -1850,7 +1860,6 @@ Name: HALLMARK_G2M_CHECKPOINT, Length: 201, dtype: object
       <th>8</th>
       <th>9</th>
       <th>...</th>
-      <th>15</th>
       <th>16</th>
       <th>17</th>
       <th>18</th>
@@ -1860,6 +1869,7 @@ Name: HALLMARK_G2M_CHECKPOINT, Length: 201, dtype: object
       <th>22</th>
       <th>23</th>
       <th>24</th>
+      <th>25</th>
     </tr>
     <tr>
       <th>leiden_r0.5</th>
@@ -1889,23 +1899,23 @@ Name: HALLMARK_G2M_CHECKPOINT, Length: 201, dtype: object
   <tbody>
     <tr>
       <th>0</th>
-      <td>0</td>
-      <td>18</td>
-      <td>993</td>
+      <td>24</td>
       <td>0</td>
       <td>0</td>
-      <td>941</td>
-      <td>617</td>
+      <td>829</td>
+      <td>0</td>
+      <td>825</td>
+      <td>661</td>
       <td>0</td>
       <td>0</td>
       <td>0</td>
       <td>...</td>
       <td>0</td>
       <td>2</td>
-      <td>0</td>
+      <td>77</td>
+      <td>4</td>
       <td>0</td>
       <td>1</td>
-      <td>0</td>
       <td>0</td>
       <td>0</td>
       <td>0</td>
@@ -1913,47 +1923,47 @@ Name: HALLMARK_G2M_CHECKPOINT, Length: 201, dtype: object
     </tr>
     <tr>
       <th>1</th>
-      <td>5</td>
+      <td>1064</td>
       <td>0</td>
       <td>0</td>
-      <td>967</td>
-      <td>1</td>
+      <td>61</td>
       <td>0</td>
       <td>0</td>
+      <td>58</td>
       <td>0</td>
-      <td>0</td>
+      <td>217</td>
       <td>0</td>
       <td>...</td>
-      <td>17</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
       <td>0</td>
       <td>1</td>
+      <td>91</td>
       <td>0</td>
       <td>0</td>
       <td>0</td>
-      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>1291</td>
       <td>0</td>
       <td>0</td>
-      <td>6</td>
+      <td>2</td>
+      <td>0</td>
+      <td>828</td>
       <td>0</td>
       <td>0</td>
-      <td>0</td>
-      <td>0</td>
+      <td>632</td>
       <td>0</td>
       <td>0</td>
       <td>...</td>
-      <td>7</td>
-      <td>0</td>
-      <td>6</td>
+      <td>5</td>
       <td>0</td>
       <td>0</td>
-      <td>103</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
       <td>0</td>
       <td>1</td>
       <td>0</td>
@@ -1963,18 +1973,18 @@ Name: HALLMARK_G2M_CHECKPOINT, Length: 201, dtype: object
       <th>3</th>
       <td>0</td>
       <td>0</td>
+      <td>914</td>
       <td>0</td>
       <td>0</td>
-      <td>962</td>
       <td>0</td>
       <td>0</td>
-      <td>0</td>
+      <td>22</td>
       <td>0</td>
       <td>0</td>
       <td>...</td>
-      <td>2</td>
+      <td>6</td>
       <td>0</td>
-      <td>2</td>
+      <td>0</td>
       <td>0</td>
       <td>0</td>
       <td>0</td>
@@ -1986,26 +1996,26 @@ Name: HALLMARK_G2M_CHECKPOINT, Length: 201, dtype: object
     <tr>
       <th>4</th>
       <td>0</td>
-      <td>1028</td>
-      <td>48</td>
+      <td>949</td>
       <td>0</td>
       <td>0</td>
       <td>0</td>
-      <td>19</td>
-      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
       <td>0</td>
       <td>0</td>
       <td>...</td>
+      <td>10</td>
+      <td>0</td>
+      <td>0</td>
+      <td>2</td>
       <td>0</td>
       <td>1</td>
       <td>0</td>
       <td>0</td>
       <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
+      <td>1</td>
     </tr>
     <tr>
       <th>5</th>
@@ -2013,18 +2023,18 @@ Name: HALLMARK_G2M_CHECKPOINT, Length: 201, dtype: object
       <td>0</td>
       <td>0</td>
       <td>0</td>
-      <td>0</td>
+      <td>1</td>
       <td>0</td>
       <td>0</td>
       <td>0</td>
       <td>0</td>
       <td>0</td>
       <td>...</td>
-      <td>315</td>
+      <td>303</td>
+      <td>0</td>
       <td>0</td>
       <td>0</td>
       <td>129</td>
-      <td>0</td>
       <td>0</td>
       <td>0</td>
       <td>0</td>
@@ -2039,34 +2049,10 @@ Name: HALLMARK_G2M_CHECKPOINT, Length: 201, dtype: object
       <td>0</td>
       <td>0</td>
       <td>0</td>
-      <td>1</td>
-      <td>613</td>
-      <td>0</td>
-      <td>0</td>
-      <td>...</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>7</th>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
       <td>0</td>
       <td>0</td>
       <td>0</td>
       <td>571</td>
-      <td>0</td>
       <td>...</td>
       <td>0</td>
       <td>0</td>
@@ -2080,7 +2066,7 @@ Name: HALLMARK_G2M_CHECKPOINT, Length: 201, dtype: object
       <td>0</td>
     </tr>
     <tr>
-      <th>8</th>
+      <th>7</th>
       <td>0</td>
       <td>0</td>
       <td>0</td>
@@ -2090,7 +2076,7 @@ Name: HALLMARK_G2M_CHECKPOINT, Length: 201, dtype: object
       <td>0</td>
       <td>0</td>
       <td>0</td>
-      <td>494</td>
+      <td>0</td>
       <td>...</td>
       <td>0</td>
       <td>0</td>
@@ -2104,7 +2090,7 @@ Name: HALLMARK_G2M_CHECKPOINT, Length: 201, dtype: object
       <td>0</td>
     </tr>
     <tr>
-      <th>9</th>
+      <th>8</th>
       <td>0</td>
       <td>0</td>
       <td>0</td>
@@ -2128,6 +2114,30 @@ Name: HALLMARK_G2M_CHECKPOINT, Length: 201, dtype: object
       <td>0</td>
     </tr>
     <tr>
+      <th>9</th>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>368</td>
+      <td>0</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
       <th>10</th>
       <td>0</td>
       <td>0</td>
@@ -2137,7 +2147,7 @@ Name: HALLMARK_G2M_CHECKPOINT, Length: 201, dtype: object
       <td>0</td>
       <td>0</td>
       <td>0</td>
-      <td>0</td>
+      <td>2</td>
       <td>0</td>
       <td>...</td>
       <td>0</td>
@@ -2155,17 +2165,17 @@ Name: HALLMARK_G2M_CHECKPOINT, Length: 201, dtype: object
       <th>11</th>
       <td>0</td>
       <td>0</td>
-      <td>3</td>
       <td>0</td>
       <td>0</td>
       <td>0</td>
-      <td>1</td>
+      <td>0</td>
+      <td>2</td>
       <td>0</td>
       <td>0</td>
       <td>0</td>
       <td>...</td>
       <td>0</td>
-      <td>190</td>
+      <td>192</td>
       <td>0</td>
       <td>0</td>
       <td>0</td>
@@ -2190,8 +2200,8 @@ Name: HALLMARK_G2M_CHECKPOINT, Length: 201, dtype: object
       <td>...</td>
       <td>0</td>
       <td>0</td>
-      <td>148</td>
-      <td>0</td>
+      <td>1</td>
+      <td>147</td>
       <td>0</td>
       <td>0</td>
       <td>0</td>
@@ -2216,8 +2226,8 @@ Name: HALLMARK_G2M_CHECKPOINT, Length: 201, dtype: object
       <td>0</td>
       <td>0</td>
       <td>0</td>
-      <td>114</td>
       <td>0</td>
+      <td>113</td>
       <td>0</td>
       <td>0</td>
       <td>0</td>
@@ -2273,7 +2283,7 @@ Name: HALLMARK_G2M_CHECKPOINT, Length: 201, dtype: object
     </tr>
   </tbody>
 </table>
-<p>16 rows × 25 columns</p>
+<p>16 rows × 26 columns</p>
 </div></div></div>
 </div>
 <div class="cell docutils container">
@@ -2284,13 +2294,7 @@ Name: HALLMARK_G2M_CHECKPOINT, Length: 201, dtype: object
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/sara.jimenez/miniconda3/envs/scvi-env/lib/python3.9/site-packages/scanpy/plotting/_tools/scatterplots.py:392: UserWarning: No data for colormapping provided via &#39;c&#39;. Parameters &#39;cmap&#39; will be ignored
-  cax = scatter(
-/Users/sara.jimenez/miniconda3/envs/scvi-env/lib/python3.9/site-packages/scanpy/plotting/_tools/scatterplots.py:392: UserWarning: No data for colormapping provided via &#39;c&#39;. Parameters &#39;cmap&#39; will be ignored
-  cax = scatter(
-</pre></div>
-</div>
-<img alt="../_images/1a3964c55a96b6bd64555c746fc39c822d172c3b64ca58b8c855718ce2bb5115.png" src="../_images/1a3964c55a96b6bd64555c746fc39c822d172c3b64ca58b8c855718ce2bb5115.png" />
+<img alt="../_images/360dbae50a924b606a20c4d2971c6a68bb6a2eec4a63f46383599d4ba5135b90.png" src="../_images/360dbae50a924b606a20c4d2971c6a68bb6a2eec4a63f46383599d4ba5135b90.png" />
 </div>
 </div>
 </section>
@@ -2358,35 +2362,35 @@ Name: HALLMARK_G2M_CHECKPOINT, Length: 201, dtype: object
   <tbody>
     <tr>
       <th>AAACCCAAGGCCCAAA-1</th>
-      <td>7</td>
+      <td>8</td>
       <td>4.856472</td>
       <td>9.690603</td>
       <td>8.354910</td>
     </tr>
     <tr>
       <th>AAACCCAAGTAATACG-1</th>
-      <td>6</td>
+      <td>3</td>
       <td>4.181449</td>
       <td>9.379154</td>
       <td>8.239065</td>
     </tr>
     <tr>
       <th>AAACCCAAGTCACACT-1</th>
-      <td>1</td>
+      <td>0</td>
       <td>5.816601</td>
       <td>9.581491</td>
       <td>8.330382</td>
     </tr>
     <tr>
       <th>AAACCCACAAAGCGTG-1</th>
-      <td>3</td>
+      <td>2</td>
       <td>3.799609</td>
       <td>8.947156</td>
       <td>7.835975</td>
     </tr>
     <tr>
       <th>AAACCCACAATCGAAA-1</th>
-      <td>8</td>
+      <td>9</td>
       <td>5.699392</td>
       <td>9.351058</td>
       <td>8.158802</td>
@@ -2400,35 +2404,35 @@ Name: HALLMARK_G2M_CHECKPOINT, Length: 201, dtype: object
     </tr>
     <tr>
       <th>TTTGTTGGTTGGATCT-1</th>
-      <td>4</td>
+      <td>1</td>
       <td>4.210640</td>
       <td>9.136371</td>
       <td>7.935945</td>
     </tr>
     <tr>
       <th>TTTGTTGGTTTCTTAC-1</th>
-      <td>11</td>
+      <td>12</td>
       <td>3.039032</td>
       <td>8.845634</td>
       <td>7.969704</td>
     </tr>
     <tr>
       <th>TTTGTTGTCCATTTCA-1</th>
-      <td>20</td>
+      <td>7</td>
       <td>5.355362</td>
       <td>8.856803</td>
       <td>7.839919</td>
     </tr>
     <tr>
       <th>TTTGTTGTCTACACAG-1</th>
-      <td>12</td>
+      <td>13</td>
       <td>3.027162</td>
       <td>9.174402</td>
       <td>8.183677</td>
     </tr>
     <tr>
       <th>TTTGTTGTCTCATTAC-1</th>
-      <td>22</td>
+      <td>23</td>
       <td>3.119196</td>
       <td>9.655923</td>
       <td>8.444192</td>
@@ -2463,17 +2467,31 @@ Name: HALLMARK_G2M_CHECKPOINT, Length: 201, dtype: object
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x3193fe2e0&gt;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/my/xsqd7w190lg06fx4rlnfklshlvq6xm/T/ipykernel_30071/1963405496.py:4: UserWarning: The palette list has more values (28) than needed (26), which may not be intended.
+  sns.boxplot(x = &quot;leiden&quot;, y = &quot;%-Mito&quot;, hue = &#39;leiden&#39;, data = df_temp, ax = ax,
+/var/folders/my/xsqd7w190lg06fx4rlnfklshlvq6xm/T/ipykernel_30071/1963405496.py:7: UserWarning: No artists with labels found to put in legend.  Note that artists whose label start with an underscore are ignored when legend() is called with no argument.
+  ax.legend().set_visible(False)
+/var/folders/my/xsqd7w190lg06fx4rlnfklshlvq6xm/T/ipykernel_30071/1963405496.py:10: UserWarning: The palette list has more values (28) than needed (26), which may not be intended.
+  sns.boxplot(x = &quot;leiden&quot;, y = &quot;library_size&quot;, hue = &#39;leiden&#39;, data = df_temp, ax = ax,
+/var/folders/my/xsqd7w190lg06fx4rlnfklshlvq6xm/T/ipykernel_30071/1963405496.py:13: UserWarning: No artists with labels found to put in legend.  Note that artists whose label start with an underscore are ignored when legend() is called with no argument.
+  ax.legend().set_visible(False)
+/var/folders/my/xsqd7w190lg06fx4rlnfklshlvq6xm/T/ipykernel_30071/1963405496.py:16: UserWarning: The palette list has more values (28) than needed (26), which may not be intended.
+  sns.boxplot(x = &quot;leiden&quot;, y = &quot;n_genes_per_cell&quot;, hue = &#39;leiden&#39;, data = df_temp, ax = ax,
+/var/folders/my/xsqd7w190lg06fx4rlnfklshlvq6xm/T/ipykernel_30071/1963405496.py:19: UserWarning: No artists with labels found to put in legend.  Note that artists whose label start with an underscore are ignored when legend() is called with no argument.
+  ax.legend(loc=&quot;lower left&quot;, ncol = 5)
 </pre></div>
 </div>
-<img alt="../_images/4c0e2e69d8e419bdf13958408c56bdc0bb552106509804d63d09e3e06743c76e.png" src="../_images/4c0e2e69d8e419bdf13958408c56bdc0bb552106509804d63d09e3e06743c76e.png" />
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x2be993fd0&gt;
+</pre></div>
+</div>
+<img alt="../_images/a3cac9525b6cefb9ad181f04dd3eb7b2fd26af3e50deb7e5a5af1408c432bbcc.png" src="../_images/a3cac9525b6cefb9ad181f04dd3eb7b2fd26af3e50deb7e5a5af1408c432bbcc.png" />
 </div>
 </div>
 <section id="highlight-clusters-of-interest">
 <h3>Highlight clusters of interest<a class="headerlink" href="#highlight-clusters-of-interest" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">clusters_interest</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;17&#39;</span><span class="p">]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">clusters_interest</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;&#39;</span><span class="p">]</span> <span class="c1">#explore</span>
 <span class="n">colors</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;red&#39;</span><span class="p">]</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">adata</span><span class="o">.</span><span class="n">obsm</span><span class="p">[</span><span class="s1">&#39;X_umap&#39;</span><span class="p">][:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">adata</span><span class="o">.</span><span class="n">obsm</span><span class="p">[</span><span class="s1">&#39;X_umap&#39;</span><span class="p">][:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">s</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;gray&#39;</span><span class="p">)</span>
 <span class="k">for</span> <span class="n">counter</span><span class="p">,</span> <span class="n">item</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">clusters_interest</span><span class="p">):</span>
@@ -2835,7 +2853,7 @@ Name: HALLMARK_G2M_CHECKPOINT, Length: 201, dtype: object
 <h2>Other approaches:<a class="headerlink" href="#other-approaches" title="Link to this heading">#</a></h2>
 <p>If you wish to test other DEA approaches, please consider the following suggestings:</p>
 <ol class="arabic simple">
-<li><p>pseudobulk based edgeR analysis (<a class="reference external" href="https://www.sc-best-practices.org/conditions/differential_gene_expression.html">https://www.sc-best-practices.org/conditions/differential_gene_expression.html</a>)</p></li>
+<li><p>pseudobulk based pyDESeq2 analysis</p></li>
 <li><p>Memento: <a class="reference external" href="https://www.biorxiv.org/content/10.1101/2022.11.09.515836v1">https://www.biorxiv.org/content/10.1101/2022.11.09.515836v1</a>, <a class="github reference external" href="https://github.com/yelabucsf/scrna-parameter-estimation">yelabucsf/scrna-parameter-estimation</a></p></li>
 </ol>
 </section>
