@@ -211,7 +211,10 @@
 </details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../day_2/README.html">Day 2</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../day_2/nb1_ligand_recepter_interactions.html">Ligand-Receptor Interactions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../day_2/nb2_differential_cellular_abundance.html">Differential Cellular Abundance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../day_2/nb2_differential_cellular_abundance.html">Introduction</a></li>
+
+
+
 <li class="toctree-l2 has-children"><a class="reference internal" href="../day_2/spatialdata/README.html">Spatial Analysis</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l3"><a class="reference internal" href="../day_2/spatialdata/beginner/nb1_spatialdata_objects.html">1. SpatialData Objects</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../day_2/spatialdata/beginner/nb2_static_plotting.html">2. Static Plotting</a></li>
@@ -491,6 +494,15 @@ document.write(`
 </div>
 </div>
 </div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">warnings</span>
+
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s2">&quot;ignore&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="trajectory-inference">
 <h1>Trajectory Inference<a class="headerlink" href="#trajectory-inference" title="Link to this heading">#</a></h1>
@@ -520,14 +532,7 @@ document.write(`
 <p>The data consists of CD34+ human bone marrow cells undergoing differentiation.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data_path</span> <span class="o">=</span> <span class="s1">&#39;./data_day1/&#39;</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adata_bm</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="n">read_h5ad</span><span class="p">(</span><span class="n">data_path</span> <span class="o">+</span> <span class="s1">&#39;human_cd34_bm_rep1.h5ad&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adata_bm</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="n">read_h5ad</span><span class="p">(</span><span class="s1">&#39;./data_day1/human_cd34_bm_rep1.h5ad&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -562,7 +567,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/6bfb177b7697e6937b147b635d18e6fc08992a0e4cceb328318581fc93d123a0.png" src="../_images/6bfb177b7697e6937b147b635d18e6fc08992a0e4cceb328318581fc93d123a0.png" />
+<img alt="../_images/5f485b026202525c1a9170a18e6c8dcf11946f53cecc9e6664a06ebb84eb8421.png" src="../_images/5f485b026202525c1a9170a18e6c8dcf11946f53cecc9e6664a06ebb84eb8421.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -574,7 +579,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/4d70034be3dbf7f822ef984388c87fbedd5c2343d708de8628d61dfa6a2db1af.png" src="../_images/4d70034be3dbf7f822ef984388c87fbedd5c2343d708de8628d61dfa6a2db1af.png" />
+<img alt="../_images/f79291fe8a4c5d73c7eca1ad57ec9587cba76bd7e165cf1137fa3d8ce6714e84.png" src="../_images/f79291fe8a4c5d73c7eca1ad57ec9587cba76bd7e165cf1137fa3d8ce6714e84.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -613,12 +618,6 @@ document.write(`
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/tim.treis/anaconda3/envs/spatialdata/envs/workshop_2025/lib/python3.10/site-packages/tqdm/auto.py:21: TqdmWarning: IProgress not found. Please update jupyter and ipywidgets. See https://ipywidgets.readthedocs.io/en/stable/user_install.html
-  from .autonotebook import tqdm as notebook_tqdm
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -634,7 +633,7 @@ document.write(`
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;Eigen-Values&#39;)
 </pre></div>
 </div>
-<img alt="../_images/197c6507d5ad9a61065b40a4e8ea56b17f5c8c2f50ffe2754c512ccad19d7937.png" src="../_images/197c6507d5ad9a61065b40a4e8ea56b17f5c8c2f50ffe2754c512ccad19d7937.png" />
+<img alt="../_images/03ece78d7383dda2653b21787c0dd73d6a8e1ab1caf2f92428626231d766d5a3.png" src="../_images/03ece78d7383dda2653b21787c0dd73d6a8e1ab1caf2f92428626231d766d5a3.png" />
 </div>
 </div>
 <p>We see a clear gap between 8th and 9th eigenvalues (note: counting starts at 0). This is indicative that the first 8 eigenvalues are the most informative about the data.</p>
@@ -683,14 +682,6 @@ document.write(`
 <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]):</span>
     <span class="n">corr_temp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">corrcoef</span><span class="p">(</span><span class="n">data</span><span class="p">[:,</span> <span class="n">j</span><span class="p">],</span> <span class="n">diff_1</span><span class="p">)</span>
     <span class="n">corr_score</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">corr_temp</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/tim.treis/anaconda3/envs/spatialdata/envs/workshop_2025/lib/python3.10/site-packages/numpy/lib/_function_base_impl.py:2999: RuntimeWarning: invalid value encountered in divide
-  c /= stddev[:, None]
-/Users/tim.treis/anaconda3/envs/spatialdata/envs/workshop_2025/lib/python3.10/site-packages/numpy/lib/_function_base_impl.py:3000: RuntimeWarning: invalid value encountered in divide
-  c /= stddev[None, :]
 </pre></div>
 </div>
 </div>
@@ -873,7 +864,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/f57470df0846e507620b6aaddb6cf734449558a6a947a56211175e5d34178844.png" src="../_images/f57470df0846e507620b6aaddb6cf734449558a6a947a56211175e5d34178844.png" />
+<img alt="../_images/5783f44403a81158cf5828376c67d059c7cd9c00bd749e61802cadb5051150ac.png" src="../_images/5783f44403a81158cf5828376c67d059c7cd9c00bd749e61802cadb5051150ac.png" />
 </div>
 </div>
 <p>As we can see, KLF1, GATA1 are some of the highly correlated genes with diffusion component 1. Inspecting the top genes this way can help you get a sense of what each diffusion component is trying to explain.</p>
@@ -901,93 +892,15 @@ document.write(`
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/tim.treis/anaconda3/envs/spatialdata/envs/workshop_2025/lib/python3.10/site-packages/numpy/lib/_function_base_impl.py:2999: RuntimeWarning: invalid value encountered in divide
-  c /= stddev[:, None]
-/Users/tim.treis/anaconda3/envs/spatialdata/envs/workshop_2025/lib/python3.10/site-packages/numpy/lib/_function_base_impl.py:3000: RuntimeWarning: invalid value encountered in divide
-  c /= stddev[None, :]
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/tim.treis/anaconda3/envs/spatialdata/envs/workshop_2025/lib/python3.10/site-packages/numpy/lib/_function_base_impl.py:2999: RuntimeWarning: invalid value encountered in divide
-  c /= stddev[:, None]
-/Users/tim.treis/anaconda3/envs/spatialdata/envs/workshop_2025/lib/python3.10/site-packages/numpy/lib/_function_base_impl.py:3000: RuntimeWarning: invalid value encountered in divide
-  c /= stddev[None, :]
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/tim.treis/anaconda3/envs/spatialdata/envs/workshop_2025/lib/python3.10/site-packages/numpy/lib/_function_base_impl.py:2999: RuntimeWarning: invalid value encountered in divide
-  c /= stddev[:, None]
-/Users/tim.treis/anaconda3/envs/spatialdata/envs/workshop_2025/lib/python3.10/site-packages/numpy/lib/_function_base_impl.py:3000: RuntimeWarning: invalid value encountered in divide
-  c /= stddev[None, :]
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/tim.treis/anaconda3/envs/spatialdata/envs/workshop_2025/lib/python3.10/site-packages/numpy/lib/_function_base_impl.py:2999: RuntimeWarning: invalid value encountered in divide
-  c /= stddev[:, None]
-/Users/tim.treis/anaconda3/envs/spatialdata/envs/workshop_2025/lib/python3.10/site-packages/numpy/lib/_function_base_impl.py:3000: RuntimeWarning: invalid value encountered in divide
-  c /= stddev[None, :]
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>5
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/tim.treis/anaconda3/envs/spatialdata/envs/workshop_2025/lib/python3.10/site-packages/numpy/lib/_function_base_impl.py:2999: RuntimeWarning: invalid value encountered in divide
-  c /= stddev[:, None]
-/Users/tim.treis/anaconda3/envs/spatialdata/envs/workshop_2025/lib/python3.10/site-packages/numpy/lib/_function_base_impl.py:3000: RuntimeWarning: invalid value encountered in divide
-  c /= stddev[None, :]
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>6
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/tim.treis/anaconda3/envs/spatialdata/envs/workshop_2025/lib/python3.10/site-packages/numpy/lib/_function_base_impl.py:2999: RuntimeWarning: invalid value encountered in divide
-  c /= stddev[:, None]
-/Users/tim.treis/anaconda3/envs/spatialdata/envs/workshop_2025/lib/python3.10/site-packages/numpy/lib/_function_base_impl.py:3000: RuntimeWarning: invalid value encountered in divide
-  c /= stddev[None, :]
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>7
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/tim.treis/anaconda3/envs/spatialdata/envs/workshop_2025/lib/python3.10/site-packages/numpy/lib/_function_base_impl.py:2999: RuntimeWarning: invalid value encountered in divide
-  c /= stddev[:, None]
-/Users/tim.treis/anaconda3/envs/spatialdata/envs/workshop_2025/lib/python3.10/site-packages/numpy/lib/_function_base_impl.py:3000: RuntimeWarning: invalid value encountered in divide
-  c /= stddev[None, :]
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>8
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/tim.treis/anaconda3/envs/spatialdata/envs/workshop_2025/lib/python3.10/site-packages/numpy/lib/_function_base_impl.py:2999: RuntimeWarning: invalid value encountered in divide
-  c /= stddev[:, None]
-/Users/tim.treis/anaconda3/envs/spatialdata/envs/workshop_2025/lib/python3.10/site-packages/numpy/lib/_function_base_impl.py:3000: RuntimeWarning: invalid value encountered in divide
-  c /= stddev[None, :]
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>9
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/tim.treis/anaconda3/envs/spatialdata/envs/workshop_2025/lib/python3.10/site-packages/numpy/lib/_function_base_impl.py:2999: RuntimeWarning: invalid value encountered in divide
-  c /= stddev[:, None]
-/Users/tim.treis/anaconda3/envs/spatialdata/envs/workshop_2025/lib/python3.10/site-packages/numpy/lib/_function_base_impl.py:3000: RuntimeWarning: invalid value encountered in divide
-  c /= stddev[None, :]
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>10
-</pre></div>
-</div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/tim.treis/anaconda3/envs/spatialdata/envs/workshop_2025/lib/python3.10/site-packages/numpy/lib/_function_base_impl.py:2999: RuntimeWarning: invalid value encountered in divide
-  c /= stddev[:, None]
-/Users/tim.treis/anaconda3/envs/spatialdata/envs/workshop_2025/lib/python3.10/site-packages/numpy/lib/_function_base_impl.py:3000: RuntimeWarning: invalid value encountered in divide
-  c /= stddev[None, :]
+2
+3
+4
+5
+6
+7
+8
+9
+10
 </pre></div>
 </div>
 </div>
@@ -1304,7 +1217,7 @@ document.write(`
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x169c31ab0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x2dff29420&gt;
 </pre></div>
 </div>
 <img alt="../_images/a88bc51c29bbbd59a1c395887f19b58cdf877ba910a734736664b6f2b427fd76.png" src="../_images/a88bc51c29bbbd59a1c395887f19b58cdf877ba910a734736664b6f2b427fd76.png" />
@@ -1322,80 +1235,49 @@ document.write(`
 <img alt="../_images/85b59cd4d4d792a110c02a3ea6c4000a6e4465e8c6c883a805ff633e8c566b62.png" src="../_images/85b59cd4d4d792a110c02a3ea6c4000a6e4465e8c6c883a805ff633e8c566b62.png" />
 </div>
 </div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">terminal_states</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">terminal_states</span><span class="p">))</span>  <span class="c1"># This removes duplicates</span>
+<span class="n">terminal_states</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;Run4_239382662691758&#39;,
+ &#39;Run5_191691434420467&#39;,
+ &#39;Run5_235737711528756&#39;,
+ &#39;Run4_236650105264556&#39;,
+ &#39;Run5_160990068137253&#39;]
+</pre></div>
+</div>
+</div>
+</div>
 </section>
 <section id="compute-pseudotime">
 <h3>Compute pseudotime<a class="headerlink" href="#compute-pseudotime" title="Link to this heading">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pr_res</span> <span class="o">=</span> <span class="n">palantir</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">run_palantir</span><span class="p">(</span><span class="n">adata_bm</span><span class="p">,</span> 
-                                    <span class="n">early_cell</span> <span class="o">=</span> <span class="n">start_cell</span><span class="p">,</span> 
-                                    <span class="n">terminal_states</span><span class="o">=</span><span class="n">terminal_states</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pr_res</span> <span class="o">=</span> <span class="n">palantir</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">run_palantir</span><span class="p">(</span>
+    <span class="n">adata_bm</span><span class="p">,</span>
+    <span class="n">early_cell</span> <span class="o">=</span> <span class="n">start_cell</span><span class="p">,</span>
+    <span class="n">terminal_states</span><span class="o">=</span><span class="n">terminal_states</span>
+<span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Sampling and flocking waypoints...
-Time for determining waypoints: 0.004721713066101074 minutes
+Time for determining waypoints: 0.0045789519945780436 minutes
 Determining pseudotime...
 Shortest path distances using 30-nearest neighbor graph...
-Time for shortest paths: 0.17886656522750854 minutes
+Time for shortest paths: 0.04830904801686605 minutes
 Iteratively refining the pseudotime...
 Correlation at iteration 1: 0.9998
 Correlation at iteration 2: 1.0000
 Entropy and branch probabilities...
 Markov chain construction...
 Computing fundamental matrix and absorption probabilities...
-</pre></div>
-</div>
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">InvalidIndexError</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">36</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">pr_res</span> <span class="o">=</span> <span class="n">palantir</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">run_palantir</span><span class="p">(</span><span class="n">adata_bm</span><span class="p">,</span> 
-<span class="g g-Whitespace">      </span><span class="mi">2</span>                                     <span class="n">early_cell</span> <span class="o">=</span> <span class="n">start_cell</span><span class="p">,</span> 
-<span class="g g-Whitespace">      </span><span class="mi">3</span>                                     <span class="n">terminal_states</span><span class="o">=</span><span class="n">terminal_states</span><span class="p">)</span>
-
-<span class="nn">File ~/anaconda3/envs/spatialdata/envs/workshop_2025/lib/python3.10/site-packages/palantir/core.py:162,</span> in <span class="ni">run_palantir</span><span class="nt">(data, early_cell, terminal_states, knn, num_waypoints, n_jobs, scale_components, use_early_cell_as_start, max_iterations, eigvec_key, pseudo_time_key, entropy_key, fate_prob_key, save_as_df, waypoints_key, seed)</span>
-<span class="g g-Whitespace">    </span><span class="mi">160</span> <span class="c1"># Entropy and branch probabilities</span>
-<span class="g g-Whitespace">    </span><span class="mi">161</span> <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Entropy and branch probabilities...&quot;</span><span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">162</span> <span class="n">ent</span><span class="p">,</span> <span class="n">branch_probs</span> <span class="o">=</span> <span class="n">_differentiation_entropy</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">163</span>     <span class="n">data_df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">waypoints</span><span class="p">,</span> <span class="p">:],</span> <span class="n">terminal_cells</span><span class="p">,</span> <span class="n">knn</span><span class="p">,</span> <span class="n">n_jobs</span><span class="p">,</span> <span class="n">pseudotime</span>
-<span class="g g-Whitespace">    </span><span class="mi">164</span> <span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">166</span> <span class="c1"># Project results to all cells</span>
-<span class="g g-Whitespace">    </span><span class="mi">167</span> <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Project results to all cells...&quot;</span><span class="p">)</span>
-
-<span class="nn">File ~/anaconda3/envs/spatialdata/envs/workshop_2025/lib/python3.10/site-packages/palantir/core.py:540,</span> in <span class="ni">_differentiation_entropy</span><span class="nt">(wp_data, terminal_states, knn, n_jobs, pseudotime)</span>
-<span class="g g-Whitespace">    </span><span class="mi">538</span> <span class="n">bp</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">terminal_states</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">terminal_states</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">539</span> <span class="n">bp</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">terminal_states</span><span class="p">)),</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">terminal_states</span><span class="p">))]</span> <span class="o">=</span> <span class="mi">1</span>
-<span class="ne">--&gt; </span><span class="mi">540</span> <span class="n">branch_probs</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">branch_probs</span><span class="p">,</span> <span class="n">bp</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="n">branch_probs</span><span class="o">.</span><span class="n">columns</span><span class="p">]])</span>
-<span class="g g-Whitespace">    </span><span class="mi">542</span> <span class="k">return</span> <span class="n">ent</span><span class="p">,</span> <span class="n">branch_probs</span>
-
-<span class="nn">File ~/anaconda3/envs/spatialdata/envs/workshop_2025/lib/python3.10/site-packages/pandas/core/reshape/concat.py:395,</span> in <span class="ni">concat</span><span class="nt">(objs, axis, join, ignore_index, keys, levels, names, verify_integrity, sort, copy)</span>
-<span class="g g-Whitespace">    </span><span class="mi">380</span>     <span class="n">copy</span> <span class="o">=</span> <span class="kc">False</span>
-<span class="g g-Whitespace">    </span><span class="mi">382</span> <span class="n">op</span> <span class="o">=</span> <span class="n">_Concatenator</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">383</span>     <span class="n">objs</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">384</span>     <span class="n">axis</span><span class="o">=</span><span class="n">axis</span><span class="p">,</span>
-   <span class="p">(</span><span class="o">...</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">392</span>     <span class="n">sort</span><span class="o">=</span><span class="n">sort</span><span class="p">,</span>
-<span class="g g-Whitespace">    </span><span class="mi">393</span> <span class="p">)</span>
-<span class="ne">--&gt; </span><span class="mi">395</span> <span class="k">return</span> <span class="n">op</span><span class="o">.</span><span class="n">get_result</span><span class="p">()</span>
-
-<span class="nn">File ~/anaconda3/envs/spatialdata/envs/workshop_2025/lib/python3.10/site-packages/pandas/core/reshape/concat.py:680,</span> in <span class="ni">_Concatenator.get_result</span><span class="nt">(self)</span>
-<span class="g g-Whitespace">    </span><span class="mi">678</span>         <span class="n">obj_labels</span> <span class="o">=</span> <span class="n">obj</span><span class="o">.</span><span class="n">axes</span><span class="p">[</span><span class="mi">1</span> <span class="o">-</span> <span class="n">ax</span><span class="p">]</span>
-<span class="g g-Whitespace">    </span><span class="mi">679</span>         <span class="k">if</span> <span class="ow">not</span> <span class="n">new_labels</span><span class="o">.</span><span class="n">equals</span><span class="p">(</span><span class="n">obj_labels</span><span class="p">):</span>
-<span class="ne">--&gt; </span><span class="mi">680</span>             <span class="n">indexers</span><span class="p">[</span><span class="n">ax</span><span class="p">]</span> <span class="o">=</span> <span class="n">obj_labels</span><span class="o">.</span><span class="n">get_indexer</span><span class="p">(</span><span class="n">new_labels</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">682</span>     <span class="n">mgrs_indexers</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">obj</span><span class="o">.</span><span class="n">_mgr</span><span class="p">,</span> <span class="n">indexers</span><span class="p">))</span>
-<span class="g g-Whitespace">    </span><span class="mi">684</span> <span class="n">new_data</span> <span class="o">=</span> <span class="n">concatenate_managers</span><span class="p">(</span>
-<span class="g g-Whitespace">    </span><span class="mi">685</span>     <span class="n">mgrs_indexers</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">new_axes</span><span class="p">,</span> <span class="n">concat_axis</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">bm_axis</span><span class="p">,</span> <span class="n">copy</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">copy</span>
-<span class="g g-Whitespace">    </span><span class="mi">686</span> <span class="p">)</span>
-
-<span class="nn">File ~/anaconda3/envs/spatialdata/envs/workshop_2025/lib/python3.10/site-packages/pandas/core/indexes/base.py:3885,</span> in <span class="ni">Index.get_indexer</span><span class="nt">(self, target, method, limit, tolerance)</span>
-<span class="g g-Whitespace">   </span><span class="mi">3882</span> <span class="bp">self</span><span class="o">.</span><span class="n">_check_indexing_method</span><span class="p">(</span><span class="n">method</span><span class="p">,</span> <span class="n">limit</span><span class="p">,</span> <span class="n">tolerance</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">3884</span> <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_index_as_unique</span><span class="p">:</span>
-<span class="ne">-&gt; </span><span class="mi">3885</span>     <span class="k">raise</span> <span class="n">InvalidIndexError</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_requires_unique_msg</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">3887</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">target</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-<span class="g g-Whitespace">   </span><span class="mi">3888</span>     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">intp</span><span class="p">)</span>
-
-<span class="ne">InvalidIndexError</span>: Reindexing only valid with uniquely valued Index objects
+Project results to all cells...
 </pre></div>
 </div>
 </div>
@@ -1403,6 +1285,16 @@ Computing fundamental matrix and absorption probabilities...
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adata_bm</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>AnnData object with n_obs × n_vars = 5780 × 14651
+    obs: &#39;clusters&#39;, &#39;palantir_pseudotime&#39;, &#39;palantir_diff_potential&#39;, &#39;palantir_entropy&#39;
+    uns: &#39;cluster_colors&#39;, &#39;ct_colors&#39;, &#39;palantir_branch_probs_cell_types&#39;, &#39;clusters_colors&#39;, &#39;pca&#39;, &#39;neighbors_30&#39;, &#39;diffmap_evals&#39;, &#39;DM_EigenValues&#39;, &#39;palantir_waypoints&#39;
+    obsm: &#39;tsne&#39;, &#39;MAGIC_imputed_data&#39;, &#39;palantir_branch_probs&#39;, &#39;X_tsne&#39;, &#39;X_pca&#39;, &#39;X_diffmap&#39;, &#39;DM_EigenVectors&#39;, &#39;DM_EigenVectors_multiscaled&#39;, &#39;palantir_fate_probabilities&#39;
+    varm: &#39;PCs&#39;
+    obsp: &#39;neighbors_30_distances&#39;, &#39;neighbors_30_connectivities&#39;, &#39;DM_Kernel&#39;, &#39;DM_Similarity&#39;
 </pre></div>
 </div>
 </div>
@@ -1423,6 +1315,23 @@ Computing fundamental matrix and absorption probabilities...
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>index
+Run4_120703408880541    0.459019
+Run4_120703409056541    0.028737
+Run4_120703409580963    0.715494
+Run4_120703423990708    0.695433
+Run4_120703424252854    0.392679
+                          ...   
+Run5_241114589051630    0.857762
+Run5_241114589051819    0.316552
+Run5_241114589128940    0.375939
+Run5_241114589357942    0.910322
+Run5_241114589841822    0.390998
+Name: palantir_pseudotime, Length: 5780, dtype: float64
+</pre></div>
+</div>
+</div>
 </div>
 <p>In the output above, each row is a cell barcode and the number associated with each cell is it’s pseudotime alignment score (between 0 representing early and 1 representing differentiated).</p>
 <div class="cell docutils container">
@@ -1433,11 +1342,138 @@ Computing fundamental matrix and absorption probabilities...
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Run5_160990068137253</th>
+      <th>Run4_236650105264556</th>
+      <th>Run4_239382662691758</th>
+      <th>Run5_191691434420467</th>
+      <th>Run5_235737711528756</th>
+    </tr>
+    <tr>
+      <th>index</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Run4_120703408880541</th>
+      <td>0.235071</td>
+      <td>0.180036</td>
+      <td>0.035995</td>
+      <td>0.535293</td>
+      <td>0.013604</td>
+    </tr>
+    <tr>
+      <th>Run4_120703409056541</th>
+      <td>0.847727</td>
+      <td>0.020302</td>
+      <td>0.038866</td>
+      <td>0.075761</td>
+      <td>0.017345</td>
+    </tr>
+    <tr>
+      <th>Run4_120703409580963</th>
+      <td>0.560245</td>
+      <td>0.047756</td>
+      <td>0.168834</td>
+      <td>0.180990</td>
+      <td>0.042174</td>
+    </tr>
+    <tr>
+      <th>Run4_120703423990708</th>
+      <td>0.560245</td>
+      <td>0.047756</td>
+      <td>0.168834</td>
+      <td>0.180990</td>
+      <td>0.042174</td>
+    </tr>
+    <tr>
+      <th>Run4_120703424252854</th>
+      <td>0.571194</td>
+      <td>0.049778</td>
+      <td>0.147356</td>
+      <td>0.188765</td>
+      <td>0.042906</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>Run5_241114589051630</th>
+      <td>0.063427</td>
+      <td>0.768260</td>
+      <td>0.000000</td>
+      <td>0.154651</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>Run5_241114589051819</th>
+      <td>0.591425</td>
+      <td>0.048275</td>
+      <td>0.133081</td>
+      <td>0.182692</td>
+      <td>0.044525</td>
+    </tr>
+    <tr>
+      <th>Run5_241114589128940</th>
+      <td>0.483215</td>
+      <td>0.077421</td>
+      <td>0.106939</td>
+      <td>0.297572</td>
+      <td>0.034853</td>
+    </tr>
+    <tr>
+      <th>Run5_241114589357942</th>
+      <td>0.040443</td>
+      <td>0.852235</td>
+      <td>0.000000</td>
+      <td>0.098610</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>Run5_241114589841822</th>
+      <td>0.573807</td>
+      <td>0.049872</td>
+      <td>0.144114</td>
+      <td>0.189106</td>
+      <td>0.043101</td>
+    </tr>
+  </tbody>
+</table>
+<p>5780 rows × 5 columns</p>
+</div></div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># You can rename the different branches:</span>
-<span class="n">adata_bm</span><span class="o">.</span><span class="n">obsm</span><span class="p">[</span><span class="s1">&#39;palantir_fate_probabilities&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Branch1&#39;</span><span class="p">,</span> <span class="s1">&#39;Branch2&#39;</span><span class="p">,</span> <span class="s1">&#39;Branch3&#39;</span><span class="p">,</span> <span class="s1">&#39;Branch4&#39;</span><span class="p">,</span> <span class="s1">&#39;Branch5&#39;</span><span class="p">,</span> <span class="s1">&#39;Branch6&#39;</span><span class="p">]</span>
+<span class="n">adata_bm</span><span class="o">.</span><span class="n">obsm</span><span class="p">[</span><span class="s1">&#39;palantir_fate_probabilities&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Branch1&#39;</span><span class="p">,</span> <span class="s1">&#39;Branch2&#39;</span><span class="p">,</span> <span class="s1">&#39;Branch3&#39;</span><span class="p">,</span> <span class="s1">&#39;Branch4&#39;</span><span class="p">,</span> <span class="s1">&#39;Branch5&#39;</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -1446,6 +1482,23 @@ Computing fundamental matrix and absorption probabilities...
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Get the entropy</span>
 <span class="n">adata_bm</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;palantir_entropy&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>index
+Run4_120703408880541    1.161692
+Run4_120703409056541    0.611179
+Run4_120703409580963    1.213072
+Run4_120703423990708    1.213072
+Run4_120703424252854    1.201219
+                          ...   
+Run5_241114589051630    0.732780
+Run5_241114589051819    1.174458
+Run5_241114589128940    1.266257
+Run5_241114589357942    0.540862
+Run5_241114589841822    1.197894
+Name: palantir_entropy, Length: 5780, dtype: float64
 </pre></div>
 </div>
 </div>
@@ -1458,6 +1511,9 @@ Computing fundamental matrix and absorption probabilities...
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sc</span><span class="o">.</span><span class="n">pl</span><span class="o">.</span><span class="n">tsne</span><span class="p">(</span><span class="n">adata_bm</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;palantir_entropy&#39;</span><span class="p">,</span> <span class="s1">&#39;palantir_pseudotime&#39;</span><span class="p">])</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/96af75c8f92b73e082be4a53b477fabe2103b324cf56acf57b8697f75ce4a207.png" src="../_images/96af75c8f92b73e082be4a53b477fabe2103b324cf56acf57b8697f75ce4a207.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1475,6 +1531,9 @@ Computing fundamental matrix and absorption probabilities...
     <span class="n">fig</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">im1</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/8a70ad28092adc31c88d17293b852bd9fedaa4ce61338add4a1af9e12ac9dab3.png" src="../_images/8a70ad28092adc31c88d17293b852bd9fedaa4ce61338add4a1af9e12ac9dab3.png" />
 </div>
 </div>
 </section>
@@ -1519,6 +1578,12 @@ Computing fundamental matrix and absorption probabilities...
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 1.0, &#39;Run4_121896095574750&#39;)
+</pre></div>
+</div>
+<img alt="../_images/7390b27e69cd6b04aa9b19399ebbddd5057663f929697a2487c89f5742f4fc03.png" src="../_images/7390b27e69cd6b04aa9b19399ebbddd5057663f929697a2487c89f5742f4fc03.png" />
+</div>
 </div>
 </section>
 <section id="visualize-gene-expression-trends">
@@ -1538,6 +1603,16 @@ Computing fundamental matrix and absorption probabilities...
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>AnnData object with n_obs × n_vars = 5780 × 14651
+    obs: &#39;clusters&#39;, &#39;palantir_pseudotime&#39;, &#39;palantir_diff_potential&#39;, &#39;palantir_entropy&#39;
+    uns: &#39;cluster_colors&#39;, &#39;ct_colors&#39;, &#39;palantir_branch_probs_cell_types&#39;, &#39;clusters_colors&#39;, &#39;pca&#39;, &#39;neighbors_30&#39;, &#39;diffmap_evals&#39;, &#39;DM_EigenValues&#39;, &#39;palantir_waypoints&#39;
+    obsm: &#39;tsne&#39;, &#39;MAGIC_imputed_data&#39;, &#39;palantir_branch_probs&#39;, &#39;X_tsne&#39;, &#39;X_pca&#39;, &#39;X_diffmap&#39;, &#39;DM_EigenVectors&#39;, &#39;DM_EigenVectors_multiscaled&#39;, &#39;palantir_fate_probabilities&#39;, &#39;branch_masks&#39;
+    varm: &#39;PCs&#39;
+    obsp: &#39;neighbors_30_distances&#39;, &#39;neighbors_30_connectivities&#39;, &#39;DM_Kernel&#39;, &#39;DM_Similarity&#39;
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1545,11 +1620,173 @@ Computing fundamental matrix and absorption probabilities...
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Branch1</th>
+      <th>Branch2</th>
+      <th>Branch3</th>
+      <th>Branch4</th>
+      <th>Branch5</th>
+    </tr>
+    <tr>
+      <th>index</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Run4_120703408880541</th>
+      <td>False</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>Run4_120703409056541</th>
+      <td>False</td>
+      <td>True</td>
+      <td>True</td>
+      <td>True</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>Run4_120703409580963</th>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>Run4_120703423990708</th>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>Run4_120703424252854</th>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>Run5_241114589051630</th>
+      <td>False</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>Run5_241114589051819</th>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>Run5_241114589128940</th>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>Run5_241114589357942</th>
+      <td>False</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>Run5_241114589841822</th>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+  </tbody>
+</table>
+<p>5780 rows × 5 columns</p>
+</div></div></div>
 </div>
 <p>Visualizing the branch selection:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">help</span><span class="p">(</span><span class="n">palantir</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">plot_branch_selection</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Help on function plot_branch_selection in module palantir.plot:
+
+plot_branch_selection(ad: anndata._core.anndata.AnnData, pseudo_time_key: str = &#39;palantir_pseudotime&#39;, fate_prob_key: str = &#39;palantir_fate_probabilities&#39;, masks_key: str = &#39;branch_masks&#39;, fates: Union[List[str], str, NoneType] = None, embedding_basis: str = &#39;X_umap&#39;, figsize: Tuple[float, float] = (15, 5), **kwargs)
+    Plot cells along specific fates of pseudotime ordering and the UMAP embedding.
+    
+    Parameters
+    ----------
+    ad : sc.AnnData
+        Annotated data matrix. The pseudotime and fate probabilities should be stored under the keys provided.
+    pseudo_time_key : str, optional
+        Key to access the pseudotime from obs of the AnnData object. Default is &#39;palantir_pseudotime&#39;.
+    fate_prob_key : str, optional
+        Key to access the fate probabilities from obsm of the AnnData object.
+        Default is &#39;palantir_fate_probabilities&#39;.
+    masks_key : str, optional
+        Key to access the branch cell selection masks from obsm of the AnnData object.
+        Default is &#39;branch_masks&#39;.
+    fates : Union[List[str], str]
+        The fates to be plotted. If not specified, all fates will be plotted.
+    embedding_basis : str, optional
+        Key to access the UMAP embedding from obsm of the AnnData object. Default is &#39;X_umap&#39;.
+    figsize : Tuple[float, float], optional
+        Width and height of each subplot in inches. The total height of the figure is determined by
+        multiplying the height by the number of fates. Default is (15, 5).
+    **kwargs
+        Additional arguments passed to `matplotlib.pyplot.scatter`.
+    
+    Returns
+    -------
+    matplotlib.pyplot.Figure
+        A matplotlib Figure object representing the plot of the branch selections.
 </pre></div>
 </div>
 </div>
@@ -1561,6 +1798,9 @@ Computing fundamental matrix and absorption probabilities...
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<img alt="../_images/aa7256c2bdf659eaec07997f9eef7613cd3298ff8198188481a368b5e790e24e.png" src="../_images/aa7256c2bdf659eaec07997f9eef7613cd3298ff8198188481a368b5e790e24e.png" />
+</div>
 </div>
 <p>Now we can compute the gene expression trend along the trajectory. It is recommended that you MAGIC impute the data for this otherwise the trends will not be informative (due to 0s).</p>
 <div class="cell docutils container">
@@ -1568,6 +1808,18 @@ Computing fundamental matrix and absorption probabilities...
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
 <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;/data/peer/sharmar1/msk_workshop/workshop_2024_spring/python_funs/&quot;</span><span class="p">)</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">workshop_extra</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">107</span><span class="p">],</span> <span class="n">line</span> <span class="mi">3</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;/data/peer/sharmar1/msk_workshop/workshop_2024_spring/python_funs/&quot;</span><span class="p">)</span>
+<span class="ne">----&gt; </span><span class="mi">3</span> <span class="kn">import</span><span class="w"> </span><span class="nn">workshop_extra</span>
+
+<span class="ne">ModuleNotFoundError</span>: No module named &#39;workshop_extra&#39;
 </pre></div>
 </div>
 </div>
@@ -1914,16 +2166,16 @@ Computing fundamental matrix and absorption probabilities...
         },
         codeMirrorConfig: {
             theme: "abcdef",
-            mode: "workshop_2025"
+            mode: "python"
         },
         kernelOptions: {
-            name: "workshop_2025",
+            name: "python3",
             path: "./day_1"
         },
         predefinedOutput: true
     }
     </script>
-    <script>kernelName = 'workshop_2025'</script>
+    <script>kernelName = 'python3'</script>
 
                 </article>
               

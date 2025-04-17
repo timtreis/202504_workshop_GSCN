@@ -211,7 +211,10 @@
 </details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../day_2/README.html">Day 2</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../day_2/nb1_ligand_recepter_interactions.html">Ligand-Receptor Interactions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../day_2/nb2_differential_cellular_abundance.html">Differential Cellular Abundance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../day_2/nb2_differential_cellular_abundance.html">Introduction</a></li>
+
+
+
 <li class="toctree-l2 has-children"><a class="reference internal" href="../day_2/spatialdata/README.html">Spatial Analysis</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l3"><a class="reference internal" href="../day_2/spatialdata/beginner/nb1_spatialdata_objects.html">1. SpatialData Objects</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../day_2/spatialdata/beginner/nb2_static_plotting.html">2. Static Plotting</a></li>
@@ -455,7 +458,10 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#true-celltypes">True celltypes</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#batch-effect-correction-harmony">Batch effect correction - Harmony</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#batch-effect-correction-harmony">Batch effect correction - Harmony</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#compare-integrations-using-scib-metrics">Compare integrations using scib-metrics</a></li>
+</ul>
+</li>
 </ul>
 
             </nav>
@@ -494,7 +500,7 @@ document.write(`
 <p>⚠️ Adjust the variable below to the data path on your specific workstation.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data_path</span> <span class="o">=</span> <span class="s1">&#39;../../../../scWorkshop/data_day1/&#39;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data_path</span> <span class="o">=</span> <span class="s1">&#39;./data_day1/&#39;</span>
 </pre></div>
 </div>
 </div>
@@ -1384,7 +1390,7 @@ Categories (2, object): [&#39;0&#39;, &#39;1&#39;]
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>np.int64(0)
 </pre></div>
 </div>
 </div>
@@ -1421,10 +1427,10 @@ Categories (2, object): [&#39;0&#39;, &#39;1&#39;]
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x2e72c5930&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x2a82fb7c0&gt;
 </pre></div>
 </div>
-<img alt="../_images/19ac676aaccf0b60424f90eeb1a9e3b762a128773aeb890f5c4e80253630a29f.png" src="../_images/19ac676aaccf0b60424f90eeb1a9e3b762a128773aeb890f5c4e80253630a29f.png" />
+<img alt="../_images/e555c51dd4db264fc38722ce5bcc47bf75709b00d47e9091299ea368221fc32f.png" src="../_images/e555c51dd4db264fc38722ce5bcc47bf75709b00d47e9091299ea368221fc32f.png" />
 </div>
 </div>
 <p>If you have more than 2 batch, you can run a for loop to visualize the distribution of each batch compared to the whole data. For this, you can adapt the following example code:</p>
@@ -1444,7 +1450,7 @@ Categories (2, object): [&#39;0&#39;, &#39;1&#39;]
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/f673ed2c01f4ab69ba46df97428b56056857746539a886ee4adc67c8d59ffb6f.png" src="../_images/f673ed2c01f4ab69ba46df97428b56056857746539a886ee4adc67c8d59ffb6f.png" />
+<img alt="../_images/d59baa2d637fd1746ae49ecc34915e817e3dd438b973f8ea622eefd033dc2a7c.png" src="../_images/d59baa2d637fd1746ae49ecc34915e817e3dd438b973f8ea622eefd033dc2a7c.png" />
 </div>
 </div>
 <p>We see that on average batch-1 cells have higher library size and higher number of genes expressed per cell. We will keep this mind as we analyze the data.</p>
@@ -1469,7 +1475,7 @@ Categories (2, object): [&#39;0&#39;, &#39;1&#39;]
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(0.0, 500.0)
 </pre></div>
 </div>
-<img alt="../_images/a5da0d130aac50f69f5e4909c8db6dab08ea7c935d10c573b449c13f2da37105.png" src="../_images/a5da0d130aac50f69f5e4909c8db6dab08ea7c935d10c573b449c13f2da37105.png" />
+<img alt="../_images/5dfc88548683300b927acd5e03f51fbae505ebba25769e8feeefff21a307f6b8.png" src="../_images/5dfc88548683300b927acd5e03f51fbae505ebba25769e8feeefff21a307f6b8.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1561,7 +1567,7 @@ Categories (2, object): [&#39;0&#39;, &#39;1&#39;]
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;% Variance Explained&#39;)
 </pre></div>
 </div>
-<img alt="../_images/13f7669f4de8ab3ce8f4d6cc70397b2d055cf65352be5afc2b44dd3643fc8074.png" src="../_images/13f7669f4de8ab3ce8f4d6cc70397b2d055cf65352be5afc2b44dd3643fc8074.png" />
+<img alt="../_images/0a742b826fbbf6ba54531274253bf20883f037c67822a4b05376bccee3d16110.png" src="../_images/0a742b826fbbf6ba54531274253bf20883f037c67822a4b05376bccee3d16110.png" />
 </div>
 </div>
 <p>Based on the plot above, we will select 30 principal components.</p>
@@ -1580,8 +1586,7 @@ Categories (2, object): [&#39;0&#39;, &#39;1&#39;]
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>OMP: Info #276: omp_set_nested routine deprecated, please use omp_set_max_active_levels instead.
-/Users/sara.jimenez/miniconda3/envs/workshop_2025/lib/python3.10/site-packages/tqdm/auto.py:21: TqdmWarning: IProgress not found. Please update jupyter and ipywidgets. See https://ipywidgets.readthedocs.io/en/stable/user_install.html
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/tim.treis/anaconda3/envs/spatialdata/envs/workshop_2025/lib/python3.10/site-packages/tqdm/auto.py:21: TqdmWarning: IProgress not found. Please update jupyter and ipywidgets. See https://ipywidgets.readthedocs.io/en/stable/user_install.html
   from .autonotebook import tqdm as notebook_tqdm
 </pre></div>
 </div>
@@ -1603,7 +1608,7 @@ Categories (2, object): [&#39;0&#39;, &#39;1&#39;]
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/my/xsqd7w190lg06fx4rlnfklshlvq6xm/T/ipykernel_35685/3585288984.py:2: FutureWarning: In the future, the default backend for leiden will be igraph instead of leidenalg.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/var/folders/qg/qgc908995g3fc8qtss2fsbhhxyxxj4/T/ipykernel_16241/3585288984.py:2: FutureWarning: In the future, the default backend for leiden will be igraph instead of leidenalg.
 
  To achieve the future defaults please pass: flavor=&quot;igraph&quot; and n_iterations=2.  directed must also be False to work with igraph&#39;s implementation.
   sc.tl.leiden(adata, resolution = 0.5, neighbors_key = &#39;neighbors_30&#39;)
@@ -1640,7 +1645,7 @@ Categories (2, object): [&#39;0&#39;, &#39;1&#39;]
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/8b326d80ce94fae62c821badf84db5ac9b9b85ae2f89637ce950978d1cf9961a.png" src="../_images/8b326d80ce94fae62c821badf84db5ac9b9b85ae2f89637ce950978d1cf9961a.png" />
+<img alt="../_images/4b2f71b58b70d161d3231ac37b073bc2f8c63853c91d834b430459a669abfec5.png" src="../_images/4b2f71b58b70d161d3231ac37b073bc2f8c63853c91d834b430459a669abfec5.png" />
 </div>
 </div>
 </section>
@@ -1666,7 +1671,7 @@ Categories (2, object): [&#39;0&#39;, &#39;1&#39;]
 </div>
 </div>
 <div class="cell_output docutils container">
-<a class="reference internal image-reference" href="../_images/518967cf2bcb6d8187edb6d2c9066a7570d854a679700ea693bf6fe5871e2374.png"><img alt="../_images/518967cf2bcb6d8187edb6d2c9066a7570d854a679700ea693bf6fe5871e2374.png" src="../_images/518967cf2bcb6d8187edb6d2c9066a7570d854a679700ea693bf6fe5871e2374.png" style="width: 1036px; height: 623px;" />
+<a class="reference internal image-reference" href="../_images/956ad29d82e9b52349a5800b2b369f0a2c34e684bc7d452c887beb53778dbbad.png"><img alt="../_images/956ad29d82e9b52349a5800b2b369f0a2c34e684bc7d452c887beb53778dbbad.png" src="../_images/956ad29d82e9b52349a5800b2b369f0a2c34e684bc7d452c887beb53778dbbad.png" style="width: 1037px; height: 623px;" />
 </a>
 </div>
 </div>
@@ -1716,47 +1721,27 @@ Categories (2, object): [&#39;0&#39;, &#39;1&#39;]
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting scanorama
-  Downloading scanorama-1.7.4-py3-none-any.whl.metadata (525 bytes)
-Requirement already satisfied: annoy&gt;=1.11.5 in /Users/sara.jimenez/miniconda3/envs/workshop_2025/lib/python3.10/site-packages (from scanorama) (1.17.3)
-Collecting fbpca&gt;=1.0 (from scanorama)
-  Downloading fbpca-1.0.tar.gz (11 kB)
-  Preparing metadata (setup.py) ... ?25ldone
-?25hCollecting geosketch&gt;=1.0 (from scanorama)
-  Downloading geosketch-1.3-py3-none-any.whl.metadata (394 bytes)
-Collecting intervaltree&gt;=3.1.0 (from scanorama)
-  Downloading intervaltree-3.1.0.tar.gz (32 kB)
-  Preparing metadata (setup.py) ... ?25ldone
-?25hRequirement already satisfied: matplotlib&gt;=2.0.2 in /Users/sara.jimenez/miniconda3/envs/workshop_2025/lib/python3.10/site-packages (from scanorama) (3.10.1)
-Requirement already satisfied: numpy&gt;=1.12.0 in /Users/sara.jimenez/miniconda3/envs/workshop_2025/lib/python3.10/site-packages (from scanorama) (1.26.4)
-Requirement already satisfied: scipy&gt;=1.0.0 in /Users/sara.jimenez/miniconda3/envs/workshop_2025/lib/python3.10/site-packages (from scanorama) (1.11.4)
-Requirement already satisfied: scikit-learn&gt;=0.20rc1 in /Users/sara.jimenez/miniconda3/envs/workshop_2025/lib/python3.10/site-packages (from scanorama) (1.5.2)
-Collecting sortedcontainers&lt;3.0,&gt;=2.0 (from intervaltree&gt;=3.1.0-&gt;scanorama)
-  Downloading sortedcontainers-2.4.0-py2.py3-none-any.whl.metadata (10 kB)
-Requirement already satisfied: contourpy&gt;=1.0.1 in /Users/sara.jimenez/miniconda3/envs/workshop_2025/lib/python3.10/site-packages (from matplotlib&gt;=2.0.2-&gt;scanorama) (1.3.1)
-Requirement already satisfied: cycler&gt;=0.10 in /Users/sara.jimenez/miniconda3/envs/workshop_2025/lib/python3.10/site-packages (from matplotlib&gt;=2.0.2-&gt;scanorama) (0.12.1)
-Requirement already satisfied: fonttools&gt;=4.22.0 in /Users/sara.jimenez/miniconda3/envs/workshop_2025/lib/python3.10/site-packages (from matplotlib&gt;=2.0.2-&gt;scanorama) (4.57.0)
-Requirement already satisfied: kiwisolver&gt;=1.3.1 in /Users/sara.jimenez/miniconda3/envs/workshop_2025/lib/python3.10/site-packages (from matplotlib&gt;=2.0.2-&gt;scanorama) (1.4.8)
-Requirement already satisfied: packaging&gt;=20.0 in /Users/sara.jimenez/miniconda3/envs/workshop_2025/lib/python3.10/site-packages (from matplotlib&gt;=2.0.2-&gt;scanorama) (24.2)
-Requirement already satisfied: pillow&gt;=8 in /Users/sara.jimenez/miniconda3/envs/workshop_2025/lib/python3.10/site-packages (from matplotlib&gt;=2.0.2-&gt;scanorama) (11.1.0)
-Requirement already satisfied: pyparsing&gt;=2.3.1 in /Users/sara.jimenez/miniconda3/envs/workshop_2025/lib/python3.10/site-packages (from matplotlib&gt;=2.0.2-&gt;scanorama) (3.2.3)
-Requirement already satisfied: python-dateutil&gt;=2.7 in /Users/sara.jimenez/miniconda3/envs/workshop_2025/lib/python3.10/site-packages (from matplotlib&gt;=2.0.2-&gt;scanorama) (2.9.0.post0)
-Requirement already satisfied: joblib&gt;=1.2.0 in /Users/sara.jimenez/miniconda3/envs/workshop_2025/lib/python3.10/site-packages (from scikit-learn&gt;=0.20rc1-&gt;scanorama) (1.4.2)
-Requirement already satisfied: threadpoolctl&gt;=3.1.0 in /Users/sara.jimenez/miniconda3/envs/workshop_2025/lib/python3.10/site-packages (from scikit-learn&gt;=0.20rc1-&gt;scanorama) (3.6.0)
-Requirement already satisfied: six&gt;=1.5 in /Users/sara.jimenez/miniconda3/envs/workshop_2025/lib/python3.10/site-packages (from python-dateutil&gt;=2.7-&gt;matplotlib&gt;=2.0.2-&gt;scanorama) (1.16.0)
-Downloading scanorama-1.7.4-py3-none-any.whl (12 kB)
-Downloading geosketch-1.3-py3-none-any.whl (8.1 kB)
-Using cached sortedcontainers-2.4.0-py2.py3-none-any.whl (29 kB)
-Building wheels for collected packages: fbpca, intervaltree
-  Building wheel for fbpca (setup.py) ... ?25ldone
-?25h  Created wheel for fbpca: filename=fbpca-1.0-py3-none-any.whl size=11428 sha256=1a0b7d876d92715e7b838055a833305f0e0439e6b220b3a6a5002549f9756bd8
-  Stored in directory: /Users/sara.jimenez/Library/Caches/pip/wheels/3c/ea/60/8d1c9fbbc99492a1775b36a5e29c8c1ef309cc5821bd5a219d
-  Building wheel for intervaltree (setup.py) ... ?25ldone
-?25h  Created wheel for intervaltree: filename=intervaltree-3.1.0-py2.py3-none-any.whl size=26160 sha256=69132210ee62d94076532f890afa451bc55b41ee97165a2aaad0d63f3bf4cef9
-  Stored in directory: /Users/sara.jimenez/Library/Caches/pip/wheels/fa/80/8c/43488a924a046b733b64de3fac99252674c892a4c3801c0a61
-Successfully built fbpca intervaltree
-Installing collected packages: sortedcontainers, fbpca, intervaltree, geosketch, scanorama
-Successfully installed fbpca-1.0 geosketch-1.3 intervaltree-3.1.0 scanorama-1.7.4 sortedcontainers-2.4.0
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: scanorama in /Users/tim.treis/anaconda3/envs/spatialdata/envs/workshop_2025/lib/python3.10/site-packages (1.7.4)
+Requirement already satisfied: annoy&gt;=1.11.5 in /Users/tim.treis/anaconda3/envs/spatialdata/envs/workshop_2025/lib/python3.10/site-packages (from scanorama) (1.17.3)
+Requirement already satisfied: fbpca&gt;=1.0 in /Users/tim.treis/anaconda3/envs/spatialdata/envs/workshop_2025/lib/python3.10/site-packages (from scanorama) (1.0)
+Requirement already satisfied: geosketch&gt;=1.0 in /Users/tim.treis/anaconda3/envs/spatialdata/envs/workshop_2025/lib/python3.10/site-packages (from scanorama) (1.3)
+Requirement already satisfied: intervaltree&gt;=3.1.0 in /Users/tim.treis/anaconda3/envs/spatialdata/envs/workshop_2025/lib/python3.10/site-packages (from scanorama) (3.1.0)
+Requirement already satisfied: matplotlib&gt;=2.0.2 in /Users/tim.treis/anaconda3/envs/spatialdata/envs/workshop_2025/lib/python3.10/site-packages (from scanorama) (3.10.1)
+Requirement already satisfied: numpy&gt;=1.12.0 in /Users/tim.treis/anaconda3/envs/spatialdata/envs/workshop_2025/lib/python3.10/site-packages (from scanorama) (2.1.3)
+Requirement already satisfied: scipy&gt;=1.0.0 in /Users/tim.treis/anaconda3/envs/spatialdata/envs/workshop_2025/lib/python3.10/site-packages (from scanorama) (1.15.2)
+Requirement already satisfied: scikit-learn&gt;=0.20rc1 in /Users/tim.treis/anaconda3/envs/spatialdata/envs/workshop_2025/lib/python3.10/site-packages (from scanorama) (1.5.2)
+Requirement already satisfied: sortedcontainers&lt;3.0,&gt;=2.0 in /Users/tim.treis/anaconda3/envs/spatialdata/envs/workshop_2025/lib/python3.10/site-packages (from intervaltree&gt;=3.1.0-&gt;scanorama) (2.4.0)
+Requirement already satisfied: contourpy&gt;=1.0.1 in /Users/tim.treis/anaconda3/envs/spatialdata/envs/workshop_2025/lib/python3.10/site-packages (from matplotlib&gt;=2.0.2-&gt;scanorama) (1.3.1)
+Requirement already satisfied: cycler&gt;=0.10 in /Users/tim.treis/anaconda3/envs/spatialdata/envs/workshop_2025/lib/python3.10/site-packages (from matplotlib&gt;=2.0.2-&gt;scanorama) (0.12.1)
+Requirement already satisfied: fonttools&gt;=4.22.0 in /Users/tim.treis/anaconda3/envs/spatialdata/envs/workshop_2025/lib/python3.10/site-packages (from matplotlib&gt;=2.0.2-&gt;scanorama) (4.57.0)
+Requirement already satisfied: kiwisolver&gt;=1.3.1 in /Users/tim.treis/anaconda3/envs/spatialdata/envs/workshop_2025/lib/python3.10/site-packages (from matplotlib&gt;=2.0.2-&gt;scanorama) (1.4.7)
+Requirement already satisfied: packaging&gt;=20.0 in /Users/tim.treis/anaconda3/envs/spatialdata/envs/workshop_2025/lib/python3.10/site-packages (from matplotlib&gt;=2.0.2-&gt;scanorama) (24.2)
+Requirement already satisfied: pillow&gt;=8 in /Users/tim.treis/anaconda3/envs/spatialdata/envs/workshop_2025/lib/python3.10/site-packages (from matplotlib&gt;=2.0.2-&gt;scanorama) (11.1.0)
+Requirement already satisfied: pyparsing&gt;=2.3.1 in /Users/tim.treis/anaconda3/envs/spatialdata/envs/workshop_2025/lib/python3.10/site-packages (from matplotlib&gt;=2.0.2-&gt;scanorama) (3.2.3)
+Requirement already satisfied: python-dateutil&gt;=2.7 in /Users/tim.treis/anaconda3/envs/spatialdata/envs/workshop_2025/lib/python3.10/site-packages (from matplotlib&gt;=2.0.2-&gt;scanorama) (2.9.0.post0)
+Requirement already satisfied: joblib&gt;=1.2.0 in /Users/tim.treis/anaconda3/envs/spatialdata/envs/workshop_2025/lib/python3.10/site-packages (from scikit-learn&gt;=0.20rc1-&gt;scanorama) (1.4.2)
+Requirement already satisfied: threadpoolctl&gt;=3.1.0 in /Users/tim.treis/anaconda3/envs/spatialdata/envs/workshop_2025/lib/python3.10/site-packages (from scikit-learn&gt;=0.20rc1-&gt;scanorama) (3.6.0)
+Requirement already satisfied: six&gt;=1.5 in /Users/tim.treis/anaconda3/envs/spatialdata/envs/workshop_2025/lib/python3.10/site-packages (from python-dateutil&gt;=2.7-&gt;matplotlib&gt;=2.0.2-&gt;scanorama) (1.17.0)
 </pre></div>
 </div>
 </div>
@@ -1804,11 +1789,13 @@ Successfully installed fbpca-1.0 geosketch-1.3 intervaltree-3.1.0 scanorama-1.7.
 <p>Now we can run Scanorama to obtain corrected expression counts.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">corrected</span> <span class="o">=</span> <span class="n">scanorama</span><span class="o">.</span><span class="n">correct_scanpy</span><span class="p">(</span><span class="n">adatas</span><span class="p">,</span> 
-                                     <span class="n">return_dimred</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-                                     <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> 
-                                     <span class="n">dimred</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> 
-                                     <span class="n">knn</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">corrected</span> <span class="o">=</span> <span class="n">scanorama</span><span class="o">.</span><span class="n">correct_scanpy</span><span class="p">(</span>
+    <span class="n">adatas</span><span class="p">,</span> 
+    <span class="n">return_dimred</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">dimred</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span>
+    <span class="n">knn</span><span class="o">=</span><span class="mi">30</span>
+<span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1817,9 +1804,9 @@ Successfully installed fbpca-1.0 geosketch-1.3 intervaltree-3.1.0 scanorama-1.7.
 Processing datasets (0, 1)
 </pre></div>
 </div>
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/sara.jimenez/miniconda3/envs/workshop_2025/lib/python3.10/site-packages/anndata/_core/anndata.py:787: ImplicitModificationWarning: Trying to modify index of attribute `.obs` of view, initializing view as actual.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/tim.treis/anaconda3/envs/spatialdata/envs/workshop_2025/lib/python3.10/site-packages/anndata/_core/anndata.py:787: ImplicitModificationWarning: Trying to modify index of attribute `.obs` of view, initializing view as actual.
   getattr(self, attr).index = value
-/Users/sara.jimenez/miniconda3/envs/workshop_2025/lib/python3.10/site-packages/anndata/_core/anndata.py:787: ImplicitModificationWarning: Trying to modify index of attribute `.obs` of view, initializing view as actual.
+/Users/tim.treis/anaconda3/envs/spatialdata/envs/workshop_2025/lib/python3.10/site-packages/anndata/_core/anndata.py:787: ImplicitModificationWarning: Trying to modify index of attribute `.obs` of view, initializing view as actual.
   getattr(self, attr).index = value
 </pre></div>
 </div>
@@ -1904,7 +1891,7 @@ Processing datasets (0, 1)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;/Users/sara.jimenez/Documents/scWorkshop/data/&#39;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;./data_day1/&#39;
 </pre></div>
 </div>
 </div>
@@ -1967,7 +1954,7 @@ Processing datasets (0, 1)
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 1.0, &#39;UMAP of un-corrected data&#39;)
 </pre></div>
 </div>
-<a class="reference internal image-reference" href="../_images/cc76fb741949f30ccf33cd2927e7fa073ead1cb275f38495678db683520b03a5.png"><img alt="../_images/cc76fb741949f30ccf33cd2927e7fa073ead1cb275f38495678db683520b03a5.png" src="../_images/cc76fb741949f30ccf33cd2927e7fa073ead1cb275f38495678db683520b03a5.png" style="width: 399px; height: 398px;" />
+<a class="reference internal image-reference" href="../_images/5fa7f98c3fcef3e416b8e4fe078b71191fcbd2ac81910e9c144083d6a0298ed5.png"><img alt="../_images/5fa7f98c3fcef3e416b8e4fe078b71191fcbd2ac81910e9c144083d6a0298ed5.png" src="../_images/5fa7f98c3fcef3e416b8e4fe078b71191fcbd2ac81910e9c144083d6a0298ed5.png" style="width: 399px; height: 398px;" />
 </a>
 </div>
 </div>
@@ -2044,13 +2031,7 @@ correct(datasets_full, genes_list, return_dimred=False, batch_size=5000, verbose
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/sara.jimenez/miniconda3/envs/scvi-env/lib/python3.9/site-packages/scanpy/plotting/_tools/scatterplots.py:392: UserWarning: No data for colormapping provided via &#39;c&#39;. Parameters &#39;cmap&#39; will be ignored
-  cax = scatter(
-/Users/sara.jimenez/miniconda3/envs/scvi-env/lib/python3.9/site-packages/scanpy/plotting/_tools/scatterplots.py:392: UserWarning: No data for colormapping provided via &#39;c&#39;. Parameters &#39;cmap&#39; will be ignored
-  cax = scatter(
-</pre></div>
-</div>
-<a class="reference internal image-reference" href="../_images/4224ea664055046811d5956571c22d691c184250e945f07f9f1a404f5d3f1796.png"><img alt="../_images/4224ea664055046811d5956571c22d691c184250e945f07f9f1a404f5d3f1796.png" src="../_images/4224ea664055046811d5956571c22d691c184250e945f07f9f1a404f5d3f1796.png" style="width: 971px; height: 299px;" />
+<a class="reference internal image-reference" href="../_images/cdc130600e11d41d6c0c66e272fd08225e90542176cc5d7375eb480ae9782398.png"><img alt="../_images/cdc130600e11d41d6c0c66e272fd08225e90542176cc5d7375eb480ae9782398.png" src="../_images/cdc130600e11d41d6c0c66e272fd08225e90542176cc5d7375eb480ae9782398.png" style="width: 971px; height: 299px;" />
 </a>
 </div>
 </div>
@@ -2076,19 +2057,17 @@ correct(datasets_full, genes_list, return_dimred=False, batch_size=5000, verbose
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting harmonypy
-  Downloading harmonypy-0.0.10-py3-none-any.whl (20 kB)
-Requirement already satisfied: pandas in /Users/sara.jimenez/miniconda3/envs/scvi-env/lib/python3.9/site-packages (from harmonypy) (1.5.3)
-Requirement already satisfied: scipy in /Users/sara.jimenez/miniconda3/envs/scvi-env/lib/python3.9/site-packages (from harmonypy) (1.11.4)
-Requirement already satisfied: numpy in /Users/sara.jimenez/miniconda3/envs/scvi-env/lib/python3.9/site-packages (from harmonypy) (1.26.4)
-Requirement already satisfied: scikit-learn in /Users/sara.jimenez/miniconda3/envs/scvi-env/lib/python3.9/site-packages (from harmonypy) (1.2.2)
-Requirement already satisfied: python-dateutil&gt;=2.8.1 in /Users/sara.jimenez/miniconda3/envs/scvi-env/lib/python3.9/site-packages (from pandas-&gt;harmonypy) (2.8.2)
-Requirement already satisfied: pytz&gt;=2020.1 in /Users/sara.jimenez/miniconda3/envs/scvi-env/lib/python3.9/site-packages (from pandas-&gt;harmonypy) (2023.3)
-Requirement already satisfied: joblib&gt;=1.1.1 in /Users/sara.jimenez/miniconda3/envs/scvi-env/lib/python3.9/site-packages (from scikit-learn-&gt;harmonypy) (1.2.0)
-Requirement already satisfied: threadpoolctl&gt;=2.0.0 in /Users/sara.jimenez/miniconda3/envs/scvi-env/lib/python3.9/site-packages (from scikit-learn-&gt;harmonypy) (3.1.0)
-Requirement already satisfied: six&gt;=1.5 in /Users/sara.jimenez/miniconda3/envs/scvi-env/lib/python3.9/site-packages (from python-dateutil&gt;=2.8.1-&gt;pandas-&gt;harmonypy) (1.16.0)
-Installing collected packages: harmonypy
-Successfully installed harmonypy-0.0.10
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Requirement already satisfied: harmonypy in /Users/tim.treis/anaconda3/envs/spatialdata/envs/workshop_2025/lib/python3.10/site-packages (0.0.10)
+Requirement already satisfied: numpy in /Users/tim.treis/anaconda3/envs/spatialdata/envs/workshop_2025/lib/python3.10/site-packages (from harmonypy) (2.1.3)
+Requirement already satisfied: pandas in /Users/tim.treis/anaconda3/envs/spatialdata/envs/workshop_2025/lib/python3.10/site-packages (from harmonypy) (2.2.3)
+Requirement already satisfied: scikit-learn in /Users/tim.treis/anaconda3/envs/spatialdata/envs/workshop_2025/lib/python3.10/site-packages (from harmonypy) (1.5.2)
+Requirement already satisfied: scipy in /Users/tim.treis/anaconda3/envs/spatialdata/envs/workshop_2025/lib/python3.10/site-packages (from harmonypy) (1.15.2)
+Requirement already satisfied: python-dateutil&gt;=2.8.2 in /Users/tim.treis/anaconda3/envs/spatialdata/envs/workshop_2025/lib/python3.10/site-packages (from pandas-&gt;harmonypy) (2.9.0.post0)
+Requirement already satisfied: pytz&gt;=2020.1 in /Users/tim.treis/anaconda3/envs/spatialdata/envs/workshop_2025/lib/python3.10/site-packages (from pandas-&gt;harmonypy) (2024.1)
+Requirement already satisfied: tzdata&gt;=2022.7 in /Users/tim.treis/anaconda3/envs/spatialdata/envs/workshop_2025/lib/python3.10/site-packages (from pandas-&gt;harmonypy) (2025.2)
+Requirement already satisfied: joblib&gt;=1.2.0 in /Users/tim.treis/anaconda3/envs/spatialdata/envs/workshop_2025/lib/python3.10/site-packages (from scikit-learn-&gt;harmonypy) (1.4.2)
+Requirement already satisfied: threadpoolctl&gt;=3.1.0 in /Users/tim.treis/anaconda3/envs/spatialdata/envs/workshop_2025/lib/python3.10/site-packages (from scikit-learn-&gt;harmonypy) (3.6.0)
+Requirement already satisfied: six&gt;=1.5 in /Users/tim.treis/anaconda3/envs/spatialdata/envs/workshop_2025/lib/python3.10/site-packages (from python-dateutil&gt;=2.8.2-&gt;pandas-&gt;harmonypy) (1.17.0)
 </pre></div>
 </div>
 </div>
@@ -2103,18 +2082,15 @@ Successfully installed harmonypy-0.0.10
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2024-11-08 00:24:58,334 - harmonypy - INFO - Computing initial centroids with sklearn.KMeans...
-2024-11-08 00:25:01,665 - harmonypy - INFO - sklearn.KMeans initialization complete.
-2024-11-08 00:25:01,729 - harmonypy - INFO - Iteration 1 of 10
-2024-11-08 00:25:04,518 - harmonypy - INFO - Iteration 2 of 10
-2024-11-08 00:25:10,266 - harmonypy - INFO - Iteration 3 of 10
-2024-11-08 00:25:18,058 - harmonypy - INFO - Iteration 4 of 10
-2024-11-08 00:25:25,918 - harmonypy - INFO - Iteration 5 of 10
-2024-11-08 00:25:33,910 - harmonypy - INFO - Iteration 6 of 10
-2024-11-08 00:25:41,468 - harmonypy - INFO - Iteration 7 of 10
-2024-11-08 00:25:50,139 - harmonypy - INFO - Iteration 8 of 10
-2024-11-08 00:25:57,992 - harmonypy - INFO - Iteration 9 of 10
-2024-11-08 00:26:00,988 - harmonypy - INFO - Converged after 9 iterations
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2025-04-17 15:59:58,897 - harmonypy - INFO - Computing initial centroids with sklearn.KMeans...
+2025-04-17 16:00:01,141 - harmonypy - INFO - sklearn.KMeans initialization complete.
+2025-04-17 16:00:01,183 - harmonypy - INFO - Iteration 1 of 10
+2025-04-17 16:00:02,599 - harmonypy - INFO - Iteration 2 of 10
+2025-04-17 16:00:04,071 - harmonypy - INFO - Iteration 3 of 10
+2025-04-17 16:00:05,472 - harmonypy - INFO - Iteration 4 of 10
+2025-04-17 16:00:07,030 - harmonypy - INFO - Iteration 5 of 10
+2025-04-17 16:00:08,542 - harmonypy - INFO - Iteration 6 of 10
+2025-04-17 16:00:10,087 - harmonypy - INFO - Converged after 6 iterations
 </pre></div>
 </div>
 </div>
@@ -2150,8 +2126,13 @@ Successfully installed harmonypy-0.0.10
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Nearest neighbors on PCA_harmony</span>
-<span class="n">sc</span><span class="o">.</span><span class="n">pp</span><span class="o">.</span><span class="n">neighbors</span><span class="p">(</span><span class="n">adata_harmony</span><span class="p">,</span> <span class="n">n_neighbors</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">use_rep</span><span class="o">=</span><span class="s1">&#39;X_pca_harmony&#39;</span><span class="p">,</span> <span class="n">metric</span><span class="o">=</span><span class="s1">&#39;euclidean&#39;</span><span class="p">,</span> 
-                <span class="n">key_added</span><span class="o">=</span><span class="s1">&#39;neighbors_30_harmony&#39;</span><span class="p">)</span>
+<span class="n">sc</span><span class="o">.</span><span class="n">pp</span><span class="o">.</span><span class="n">neighbors</span><span class="p">(</span>
+    <span class="n">adata_harmony</span><span class="p">,</span>
+    <span class="n">n_neighbors</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span>
+    <span class="n">use_rep</span><span class="o">=</span><span class="s1">&#39;X_pca_harmony&#39;</span><span class="p">,</span>
+    <span class="n">metric</span><span class="o">=</span><span class="s1">&#39;euclidean&#39;</span><span class="p">,</span> 
+    <span class="n">key_added</span><span class="o">=</span><span class="s1">&#39;neighbors_30_harmony&#39;</span>
+<span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -2166,7 +2147,7 @@ Successfully installed harmonypy-0.0.10
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">3</span><span class="o">*</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="o">*</span><span class="mi">2</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">5</span><span class="o">*</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="o">*</span><span class="mi">2</span><span class="p">))</span>
 <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
 <span class="n">c0</span> <span class="o">=</span> <span class="n">adata_harmony</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;batch&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span>
 <span class="n">c1</span> <span class="o">=</span> <span class="n">adata_harmony</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;batch&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span>
@@ -2191,7 +2172,7 @@ Successfully installed harmonypy-0.0.10
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 1.0, &#39;UMAP of un-corrected data&#39;)
 </pre></div>
 </div>
-<a class="reference internal image-reference" href="../_images/d1512abedff60d082ad0f06578d8a4509c09b29689c3c1d0e9926dc6e0b26cb6.png"><img alt="../_images/d1512abedff60d082ad0f06578d8a4509c09b29689c3c1d0e9926dc6e0b26cb6.png" src="../_images/d1512abedff60d082ad0f06578d8a4509c09b29689c3c1d0e9926dc6e0b26cb6.png" style="width: 430px; height: 398px;" />
+<a class="reference internal image-reference" href="../_images/98f7b8ef25d34569bd8c52533fba3e0f527093dbbb7fd57731be3f836834d030.png"><img alt="../_images/98f7b8ef25d34569bd8c52533fba3e0f527093dbbb7fd57731be3f836834d030.png" src="../_images/98f7b8ef25d34569bd8c52533fba3e0f527093dbbb7fd57731be3f836834d030.png" style="width: 640px; height: 398px;" />
 </a>
 </div>
 </div>
@@ -2202,14 +2183,190 @@ Successfully installed harmonypy-0.0.10
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/sara.jimenez/miniconda3/envs/scvi-env/lib/python3.9/site-packages/scanpy/plotting/_tools/scatterplots.py:392: UserWarning: No data for colormapping provided via &#39;c&#39;. Parameters &#39;cmap&#39; will be ignored
-  cax = scatter(
-</pre></div>
-</div>
-<a class="reference internal image-reference" href="../_images/64c0ad6e9814f5ffc9028fa4c2b2b63b61d1c79dc9bbb27c30ffdd736762c0f7.png"><img alt="../_images/64c0ad6e9814f5ffc9028fa4c2b2b63b61d1c79dc9bbb27c30ffdd736762c0f7.png" src="../_images/64c0ad6e9814f5ffc9028fa4c2b2b63b61d1c79dc9bbb27c30ffdd736762c0f7.png" style="width: 485px; height: 296px;" />
+<a class="reference internal image-reference" href="../_images/d04ac476632110ab55107c3e6ef21b8cea08289e8211f6b1e5f80da18bd98529.png"><img alt="../_images/d04ac476632110ab55107c3e6ef21b8cea08289e8211f6b1e5f80da18bd98529.png" src="../_images/d04ac476632110ab55107c3e6ef21b8cea08289e8211f6b1e5f80da18bd98529.png" style="width: 485px; height: 296px;" />
 </a>
 </div>
 </div>
+<section id="compare-integrations-using-scib-metrics">
+<h2>Compare integrations using scib-metrics<a class="headerlink" href="#compare-integrations-using-scib-metrics" title="Link to this heading">#</a></h2>
+<p>Integration is very much dataset dependent and there is no single tool that always performs best. Usually, it’s better to use a few methods and evaluate their quality by certain downstrea metrics. One package that can facility this is <code class="docutils literal notranslate"><span class="pre">scib-metrics</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Please run this step if we did not install harmonypy</span>
+<span class="o">!</span>pip<span class="w"> </span>install<span class="w"> </span>scib-metrics
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting scib-metrics
+  Downloading scib_metrics-0.5.3-py3-none-any.whl.metadata (8.2 kB)
+Requirement already satisfied: anndata in /Users/tim.treis/anaconda3/envs/spatialdata/envs/workshop_2025/lib/python3.10/site-packages (from scib-metrics) (0.11.4)
+Collecting chex (from scib-metrics)
+  Downloading chex-0.1.89-py3-none-any.whl.metadata (17 kB)
+Requirement already satisfied: igraph&gt;0.9.0 in /Users/tim.treis/anaconda3/envs/spatialdata/envs/workshop_2025/lib/python3.10/site-packages (from scib-metrics) (0.11.8)
+Requirement already satisfied: jax in /Users/tim.treis/anaconda3/envs/spatialdata/envs/workshop_2025/lib/python3.10/site-packages (from scib-metrics) (0.5.2)
+Requirement already satisfied: jaxlib in /Users/tim.treis/anaconda3/envs/spatialdata/envs/workshop_2025/lib/python3.10/site-packages (from scib-metrics) (0.5.2)
+Requirement already satisfied: matplotlib in /Users/tim.treis/anaconda3/envs/spatialdata/envs/workshop_2025/lib/python3.10/site-packages (from scib-metrics) (3.10.1)
+Requirement already satisfied: numpy in /Users/tim.treis/anaconda3/envs/spatialdata/envs/workshop_2025/lib/python3.10/site-packages (from scib-metrics) (2.1.3)
+Requirement already satisfied: pandas in /Users/tim.treis/anaconda3/envs/spatialdata/envs/workshop_2025/lib/python3.10/site-packages (from scib-metrics) (2.2.3)
+Collecting plottable (from scib-metrics)
+  Downloading plottable-0.1.5-py3-none-any.whl.metadata (3.2 kB)
+Requirement already satisfied: pynndescent in /Users/tim.treis/anaconda3/envs/spatialdata/envs/workshop_2025/lib/python3.10/site-packages (from scib-metrics) (0.5.13)
+Collecting rich (from scib-metrics)
+  Using cached rich-14.0.0-py3-none-any.whl.metadata (18 kB)
+Requirement already satisfied: scanpy&gt;=1.9 in /Users/tim.treis/anaconda3/envs/spatialdata/envs/workshop_2025/lib/python3.10/site-packages (from scib-metrics) (1.11.1)
+Requirement already satisfied: scikit-learn in /Users/tim.treis/anaconda3/envs/spatialdata/envs/workshop_2025/lib/python3.10/site-packages (from scib-metrics) (1.5.2)
+Requirement already satisfied: scipy in /Users/tim.treis/anaconda3/envs/spatialdata/envs/workshop_2025/lib/python3.10/site-packages (from scib-metrics) (1.15.2)
+Requirement already satisfied: tqdm in /Users/tim.treis/anaconda3/envs/spatialdata/envs/workshop_2025/lib/python3.10/site-packages (from scib-metrics) (4.67.1)
+Requirement already satisfied: umap-learn&gt;=0.5.0 in /Users/tim.treis/anaconda3/envs/spatialdata/envs/workshop_2025/lib/python3.10/site-packages (from scib-metrics) (0.5.7)
+Requirement already satisfied: texttable&gt;=1.6.2 in /Users/tim.treis/anaconda3/envs/spatialdata/envs/workshop_2025/lib/python3.10/site-packages (from igraph&gt;0.9.0-&gt;scib-metrics) (1.7.0)
+Requirement already satisfied: h5py&gt;=3.7 in /Users/tim.treis/anaconda3/envs/spatialdata/envs/workshop_2025/lib/python3.10/site-packages (from scanpy&gt;=1.9-&gt;scib-metrics) (3.13.0)
+Requirement already satisfied: joblib in /Users/tim.treis/anaconda3/envs/spatialdata/envs/workshop_2025/lib/python3.10/site-packages (from scanpy&gt;=1.9-&gt;scib-metrics) (1.4.2)
+Requirement already satisfied: legacy-api-wrap&gt;=1.4 in /Users/tim.treis/anaconda3/envs/spatialdata/envs/workshop_2025/lib/python3.10/site-packages (from scanpy&gt;=1.9-&gt;scib-metrics) (1.4.1)
+Requirement already satisfied: natsort in /Users/tim.treis/anaconda3/envs/spatialdata/envs/workshop_2025/lib/python3.10/site-packages (from scanpy&gt;=1.9-&gt;scib-metrics) (8.4.0)
+Requirement already satisfied: networkx&gt;=2.7 in /Users/tim.treis/anaconda3/envs/spatialdata/envs/workshop_2025/lib/python3.10/site-packages (from scanpy&gt;=1.9-&gt;scib-metrics) (3.4.2)
+Requirement already satisfied: numba&gt;=0.57 in /Users/tim.treis/anaconda3/envs/spatialdata/envs/workshop_2025/lib/python3.10/site-packages (from scanpy&gt;=1.9-&gt;scib-metrics) (0.61.0)
+Requirement already satisfied: packaging&gt;=21.3 in /Users/tim.treis/anaconda3/envs/spatialdata/envs/workshop_2025/lib/python3.10/site-packages (from scanpy&gt;=1.9-&gt;scib-metrics) (24.2)
+Requirement already satisfied: patsy!=1.0.0 in /Users/tim.treis/anaconda3/envs/spatialdata/envs/workshop_2025/lib/python3.10/site-packages (from scanpy&gt;=1.9-&gt;scib-metrics) (1.0.1)
+Requirement already satisfied: seaborn&gt;=0.13 in /Users/tim.treis/anaconda3/envs/spatialdata/envs/workshop_2025/lib/python3.10/site-packages (from scanpy&gt;=1.9-&gt;scib-metrics) (0.13.2)
+Requirement already satisfied: session-info2 in /Users/tim.treis/anaconda3/envs/spatialdata/envs/workshop_2025/lib/python3.10/site-packages (from scanpy&gt;=1.9-&gt;scib-metrics) (0.1.2)
+Requirement already satisfied: statsmodels&gt;=0.13 in /Users/tim.treis/anaconda3/envs/spatialdata/envs/workshop_2025/lib/python3.10/site-packages (from scanpy&gt;=1.9-&gt;scib-metrics) (0.14.4)
+Requirement already satisfied: typing-extensions in /Users/tim.treis/anaconda3/envs/spatialdata/envs/workshop_2025/lib/python3.10/site-packages (from scanpy&gt;=1.9-&gt;scib-metrics) (4.13.1)
+Requirement already satisfied: array-api-compat!=1.5,&gt;1.4 in /Users/tim.treis/anaconda3/envs/spatialdata/envs/workshop_2025/lib/python3.10/site-packages (from anndata-&gt;scib-metrics) (1.11.2)
+Requirement already satisfied: exceptiongroup in /Users/tim.treis/anaconda3/envs/spatialdata/envs/workshop_2025/lib/python3.10/site-packages (from anndata-&gt;scib-metrics) (1.2.2)
+Requirement already satisfied: contourpy&gt;=1.0.1 in /Users/tim.treis/anaconda3/envs/spatialdata/envs/workshop_2025/lib/python3.10/site-packages (from matplotlib-&gt;scib-metrics) (1.3.1)
+Requirement already satisfied: cycler&gt;=0.10 in /Users/tim.treis/anaconda3/envs/spatialdata/envs/workshop_2025/lib/python3.10/site-packages (from matplotlib-&gt;scib-metrics) (0.12.1)
+Requirement already satisfied: fonttools&gt;=4.22.0 in /Users/tim.treis/anaconda3/envs/spatialdata/envs/workshop_2025/lib/python3.10/site-packages (from matplotlib-&gt;scib-metrics) (4.57.0)
+Requirement already satisfied: kiwisolver&gt;=1.3.1 in /Users/tim.treis/anaconda3/envs/spatialdata/envs/workshop_2025/lib/python3.10/site-packages (from matplotlib-&gt;scib-metrics) (1.4.7)
+Requirement already satisfied: pillow&gt;=8 in /Users/tim.treis/anaconda3/envs/spatialdata/envs/workshop_2025/lib/python3.10/site-packages (from matplotlib-&gt;scib-metrics) (11.1.0)
+Requirement already satisfied: pyparsing&gt;=2.3.1 in /Users/tim.treis/anaconda3/envs/spatialdata/envs/workshop_2025/lib/python3.10/site-packages (from matplotlib-&gt;scib-metrics) (3.2.3)
+Requirement already satisfied: python-dateutil&gt;=2.7 in /Users/tim.treis/anaconda3/envs/spatialdata/envs/workshop_2025/lib/python3.10/site-packages (from matplotlib-&gt;scib-metrics) (2.9.0.post0)
+Requirement already satisfied: pytz&gt;=2020.1 in /Users/tim.treis/anaconda3/envs/spatialdata/envs/workshop_2025/lib/python3.10/site-packages (from pandas-&gt;scib-metrics) (2024.1)
+Requirement already satisfied: tzdata&gt;=2022.7 in /Users/tim.treis/anaconda3/envs/spatialdata/envs/workshop_2025/lib/python3.10/site-packages (from pandas-&gt;scib-metrics) (2025.2)
+Requirement already satisfied: llvmlite&gt;=0.30 in /Users/tim.treis/anaconda3/envs/spatialdata/envs/workshop_2025/lib/python3.10/site-packages (from pynndescent-&gt;scib-metrics) (0.44.0)
+Requirement already satisfied: threadpoolctl&gt;=3.1.0 in /Users/tim.treis/anaconda3/envs/spatialdata/envs/workshop_2025/lib/python3.10/site-packages (from scikit-learn-&gt;scib-metrics) (3.6.0)
+Requirement already satisfied: absl-py&gt;=0.9.0 in /Users/tim.treis/anaconda3/envs/spatialdata/envs/workshop_2025/lib/python3.10/site-packages (from chex-&gt;scib-metrics) (2.2.0)
+Collecting toolz&gt;=0.9.0 (from chex-&gt;scib-metrics)
+  Using cached toolz-1.0.0-py3-none-any.whl.metadata (5.1 kB)
+Requirement already satisfied: ml_dtypes&gt;=0.4.0 in /Users/tim.treis/anaconda3/envs/spatialdata/envs/workshop_2025/lib/python3.10/site-packages (from jax-&gt;scib-metrics) (0.5.1)
+Requirement already satisfied: opt_einsum in /Users/tim.treis/anaconda3/envs/spatialdata/envs/workshop_2025/lib/python3.10/site-packages (from jax-&gt;scib-metrics) (3.4.0)
+Collecting markdown-it-py&gt;=2.2.0 (from rich-&gt;scib-metrics)
+  Using cached markdown_it_py-3.0.0-py3-none-any.whl.metadata (6.9 kB)
+Requirement already satisfied: pygments&lt;3.0.0,&gt;=2.13.0 in /Users/tim.treis/anaconda3/envs/spatialdata/envs/workshop_2025/lib/python3.10/site-packages (from rich-&gt;scib-metrics) (2.19.1)
+Collecting mdurl~=0.1 (from markdown-it-py&gt;=2.2.0-&gt;rich-&gt;scib-metrics)
+  Using cached mdurl-0.1.2-py3-none-any.whl.metadata (1.6 kB)
+Requirement already satisfied: six&gt;=1.5 in /Users/tim.treis/anaconda3/envs/spatialdata/envs/workshop_2025/lib/python3.10/site-packages (from python-dateutil&gt;=2.7-&gt;matplotlib-&gt;scib-metrics) (1.17.0)
+Downloading scib_metrics-0.5.3-py3-none-any.whl (37 kB)
+Downloading chex-0.1.89-py3-none-any.whl (99 kB)
+Downloading plottable-0.1.5-py3-none-any.whl (24 kB)
+Using cached rich-14.0.0-py3-none-any.whl (243 kB)
+Using cached markdown_it_py-3.0.0-py3-none-any.whl (87 kB)
+Downloading toolz-1.0.0-py3-none-any.whl (56 kB)
+Using cached mdurl-0.1.2-py3-none-any.whl (10.0 kB)
+Installing collected packages: toolz, mdurl, markdown-it-py, rich, plottable, chex, scib-metrics
+Successfully installed chex-0.1.89 markdown-it-py-3.0.0 mdurl-0.1.2 plottable-0.1.5 rich-14.0.0 scib-metrics-0.5.3 toolz-1.0.0
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">scib_metrics.benchmark</span><span class="w"> </span><span class="kn">import</span> <span class="n">Benchmarker</span><span class="p">,</span> <span class="n">BioConservation</span><span class="p">,</span> <span class="n">BatchCorrection</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can see that both AnnData objects produced one embedding vector with 30 values for every cell.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adata_corrected</span><span class="o">.</span><span class="n">obsm</span><span class="p">[</span><span class="s1">&#39;X_scanorama&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(15476, 30)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adata_harmony</span><span class="o">.</span><span class="n">obsm</span><span class="p">[</span><span class="s1">&#39;X_pca_harmony&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(15476, 30)
+</pre></div>
+</div>
+</div>
+</div>
+<p>We’ll now create a joint AnnData object that we pass to scib-metrics for evaluation.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adata_for_scib</span> <span class="o">=</span> <span class="n">adata_corrected</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">adata_for_scib</span><span class="o">.</span><span class="n">obsm</span><span class="p">[</span><span class="s1">&#39;Unintegrated&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">adata_corrected</span><span class="o">.</span><span class="n">obsm</span><span class="p">[</span><span class="s1">&#39;X_pca&#39;</span><span class="p">]</span>
+<span class="n">adata_for_scib</span><span class="o">.</span><span class="n">obsm</span><span class="p">[</span><span class="s1">&#39;X_scanorama&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">adata_corrected</span><span class="o">.</span><span class="n">obsm</span><span class="p">[</span><span class="s1">&#39;X_scanorama&#39;</span><span class="p">]</span>
+<span class="n">adata_for_scib</span><span class="o">.</span><span class="n">obsm</span><span class="p">[</span><span class="s1">&#39;X_pca_harmony&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">adata_harmony</span><span class="o">.</span><span class="n">obsm</span><span class="p">[</span><span class="s1">&#39;X_pca_harmony&#39;</span><span class="p">]</span>
+<span class="n">adata_for_scib</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;batch&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">adata_corrected</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;batch_id&#39;</span><span class="p">]</span>
+<span class="n">adata_for_scib</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;celltype&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">adata_corrected</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;CellType&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bm</span> <span class="o">=</span> <span class="n">Benchmarker</span><span class="p">(</span>
+    <span class="n">adata_for_scib</span><span class="p">,</span>
+    <span class="n">batch_key</span><span class="o">=</span><span class="s2">&quot;batch&quot;</span><span class="p">,</span>
+    <span class="n">label_key</span><span class="o">=</span><span class="s2">&quot;celltype&quot;</span><span class="p">,</span>
+    <span class="n">bio_conservation_metrics</span><span class="o">=</span><span class="n">BioConservation</span><span class="p">(),</span>
+    <span class="n">batch_correction_metrics</span><span class="o">=</span><span class="n">BatchCorrection</span><span class="p">(),</span>
+    <span class="n">embedding_obsm_keys</span><span class="o">=</span><span class="p">[</span>
+        <span class="s2">&quot;Unintegrated&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;X_scanorama&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;X_pca_harmony&quot;</span><span class="p">,</span>
+    <span class="p">],</span>
+<span class="p">)</span>
+<span class="n">bm</span><span class="o">.</span><span class="n">benchmark</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/Users/tim.treis/anaconda3/envs/spatialdata/envs/workshop_2025/lib/python3.10/site-packages/scanpy/preprocessing/_pca/__init__.py:438: FutureWarning: Argument `use_highly_variable` is deprecated, consider using the mask argument. Use_highly_variable=True can be called through mask_var=&quot;highly_variable&quot;. Use_highly_variable=False can be called through mask_var=None
+  warn(msg, FutureWarning)
+Computing neighbors: 100%|██████████| 3/3 [00:18&lt;00:00,  6.19s/it]
+Embeddings:   0%|<span class=" -Color -Color-Green">          </span>| 0/3 [00:00&lt;?, ?it/s]/Users/tim.treis/anaconda3/envs/spatialdata/envs/workshop_2025/lib/python3.10/site-packages/scib_metrics/metrics/_graph_connectivity.py:32: FutureWarning: pandas.value_counts is deprecated and will be removed in a future version. Use pd.Series(obj).value_counts() instead.
+  tab = pd.value_counts(comps)
+/Users/tim.treis/anaconda3/envs/spatialdata/envs/workshop_2025/lib/python3.10/site-packages/scib_metrics/metrics/_pcr_comparison.py:49: UserWarning: PCR comparison score is negative, meaning variance contribution increased after integration. Setting to 0.
+  warnings.warn(
+Embeddings:  33%|<span class=" -Color -Color-Green">███▎      </span>| 1/3 [00:20&lt;00:41, 20.68s/it]/Users/tim.treis/anaconda3/envs/spatialdata/envs/workshop_2025/lib/python3.10/site-packages/scib_metrics/metrics/_graph_connectivity.py:32: FutureWarning: pandas.value_counts is deprecated and will be removed in a future version. Use pd.Series(obj).value_counts() instead.
+  tab = pd.value_counts(comps)
+/Users/tim.treis/anaconda3/envs/spatialdata/envs/workshop_2025/lib/python3.10/site-packages/scib_metrics/metrics/_pcr_comparison.py:49: UserWarning: PCR comparison score is negative, meaning variance contribution increased after integration. Setting to 0.
+  warnings.warn(
+Embeddings:  67%|<span class=" -Color -Color-Green">██████▋   </span>| 2/3 [00:31&lt;00:15, 15.08s/it]/Users/tim.treis/anaconda3/envs/spatialdata/envs/workshop_2025/lib/python3.10/site-packages/scib_metrics/metrics/_graph_connectivity.py:32: FutureWarning: pandas.value_counts is deprecated and will be removed in a future version. Use pd.Series(obj).value_counts() instead.
+  tab = pd.value_counts(comps)
+Embeddings: 100%|<span class=" -Color -Color-Green">██████████</span>| 3/3 [00:43&lt;00:00, 14.45s/it]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bm</span><span class="o">.</span><span class="n">plot_results_table</span><span class="p">(</span><span class="n">min_max_scale</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<a class="reference internal image-reference" href="../_images/358c9a08bdc96ecdd3445910122dc01865dfe556e66ad0bf94ce52337946a9ce.png"><img alt="../_images/358c9a08bdc96ecdd3445910122dc01865dfe556e66ad0bf94ce52337946a9ce.png" src="../_images/358c9a08bdc96ecdd3445910122dc01865dfe556e66ad0bf94ce52337946a9ce.png" style="width: 1030px; height: 253px;" />
+</a>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;plottable.table.Table at 0x2cc859600&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can see that, based on the default <code class="docutils literal notranslate"><span class="pre">scib-metrics</span></code>, harmony seems to perform significantly better than <code class="docutils literal notranslate"><span class="pre">scanorama</span></code>. For more information on what these metrics exactly are or how best to understand them, please refer to the <a class="reference external" href="https://scib-metrics.readthedocs.io/">official scib-metrics documentation.</a></p>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -2295,7 +2452,10 @@ Successfully installed harmonypy-0.0.10
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#true-celltypes">True celltypes</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#batch-effect-correction-harmony">Batch effect correction - Harmony</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#batch-effect-correction-harmony">Batch effect correction - Harmony</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#compare-integrations-using-scib-metrics">Compare integrations using scib-metrics</a></li>
+</ul>
+</li>
 </ul>
 
   </nav></div>
